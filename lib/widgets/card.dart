@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Voluntariado extends StatelessWidget {
@@ -23,7 +22,7 @@ class Voluntariado extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                    '/Users/anitatarantino/Documents/DAMM/fluttertest/assets/images/voluntario.jpg',
+                    'assets/images/voluntario.jpg',
                 // height: 138,
                 // width: 328,
                 ),
