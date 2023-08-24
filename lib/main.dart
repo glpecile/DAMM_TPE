@@ -1,5 +1,5 @@
+import 'package:SerManos/widgets/cells/card.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertest/widgets/card.dart';
 
 void main() {
   runApp(const MyApp());
