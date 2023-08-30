@@ -24,8 +24,6 @@ class Voluntariado extends StatelessWidget {
           children: [
             Image.asset(
               'assets/images/voluntario.jpg',
-              // height: 138,
-              // width: 328,
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
@@ -40,8 +38,7 @@ class Voluntariado extends StatelessWidget {
                       const Text("ACCIÓN SOCIAL",
                           style: TextStyle(
                               color: SerManosColors.neutral_75,
-                              fontSize: 10,
-                              fontFamily: 'Roboto')),
+                              fontSize: 10,)),
                       const Text(
                         "Un Techo para mi País",
                         style: TextStyle(
