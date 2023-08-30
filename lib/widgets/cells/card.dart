@@ -1,4 +1,5 @@
 import 'package:SerManos/widgets/tokens/colors.dart';
+import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 
 class Voluntariado extends StatelessWidget {
@@ -36,14 +37,11 @@ class Voluntariado extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text("ACCIÓN SOCIAL",
-                          style: TextStyle(
-                              color: SerManosColors.neutral_75,
-                              fontSize: 10,)),
+                          style: SerManosTypography.overline()),
                       const Text(
                         "Un Techo para mi País",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
+                        style: SerManosTypography.headline_02(
+                            color: SerManosColors.neutral_100),
                       ),
                       const SizedBox(
                         height: 4,
@@ -95,18 +93,16 @@ class Vacantes extends StatelessWidget {
           children: [
             Text(
               "Vacantes: ",
-              style: TextStyle(fontSize: 12),
+              style: SerManosTypography.body_02(),
             ),
             Icon(
               Icons.person_rounded,
               color: SerManosColors.secondary_200,
               size: 20,
             ),
-            Text(
-              "10",
-              style:
-                  TextStyle(color: SerManosColors.secondary_200, fontSize: 16),
-            ),
+            Text("10",
+                style: SerManosTypography.subtitle_01(
+                    color: SerManosColors.secondary_200)),
           ],
         ));
   }
