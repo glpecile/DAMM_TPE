@@ -1,5 +1,6 @@
 import 'package:SerManos/widgets/cells/card.dart';
 import 'package:SerManos/widgets/cells/header.dart';
+import 'package:SerManos/widgets/cells/modal.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               body: TabBarView(
                 children: [
                   Voluntariado(),
-                  Icon(Icons.directions_transit),
+                  const Modal(),
                   Icon(Icons.directions_bike),
                 ],
               ),
