@@ -1,4 +1,5 @@
 import 'package:SerManos/widgets/cells/card.dart';
+import 'package:SerManos/widgets/cells/card_news.dart';
 import 'package:SerManos/widgets/cells/header.dart';
 import 'package:SerManos/widgets/cells/modal.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
@@ -65,12 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
         home: DefaultTabController(
             length: 3,
             child:Scaffold(
-              appBar: Header(),
-              body: TabBarView(
+              appBar: const Header(),
+              body: const TabBarView(
                 children: [
-                  Voluntariado(),
-                  const Modal(),
-                  Icon(Icons.directions_bike),
+                  CardVolunteers(),
+                  Modal(),
+                  CardNews(),
                 ],
               ),
               floatingActionButton: FloatingActionButton(

@@ -2,7 +2,9 @@ import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 
-class Voluntariado extends StatelessWidget {
+class CardVolunteers extends StatelessWidget {
+  const CardVolunteers({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(

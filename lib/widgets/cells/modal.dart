@@ -35,24 +35,6 @@ class Modal extends StatelessWidget{
                               children:[
                                 ButtonCTA(color: SerManosColors.primary_100, text: 'Cancelar', onPressed: () { Navigator.pop(context); }),
                                 ButtonCTA(color: SerManosColors.primary_100, text: 'Confirmar', onPressed: () {  },)
-
-                                // TextButton(
-                                //   onPressed: () {
-                                //     Navigator.pop(context);
-                                //   },
-                                //   child: const Text('Cancelar',
-                                //     style: TextStyle(
-                                //         color: SerManosColors.primary_100
-                                //     ),),
-                                // ),
-                                //
-                                // TextButton(
-                                //   onPressed: () {},
-                                //   child: const Text('Confirmar',
-                                //     style: TextStyle(
-                                //         color: SerManosColors.primary_100
-                                //     ),),
-                                // ),
                               ]
                           )
                         ],
