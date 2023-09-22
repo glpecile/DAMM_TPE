@@ -37,7 +37,7 @@ class CardNews extends StatelessWidget {
                     children: [
                       const Expanded(
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
+                          padding: EdgeInsets.fromLTRB(8, 16, 8, 0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,22 +49,28 @@ class CardNews extends StatelessWidget {
                                 style: SerManosTypography.subtitle_01(
                                     color: SerManosColors.neutral_100),
                               ),
-                              Text("Desde el Hospital Centenario recalcan la importancia de la donación voluntaria de Sangre",
-                                  style: SerManosTypography.body_02()
+                              Padding(
+                                padding: EdgeInsets.only(left:0, bottom: 8, right: 0, top:0),
+                                child: Text("Desde el Hospital Centenario recalcan la importancia de la donación voluntaria de Sangre",
+                                    style: SerManosTypography.body_02()
+                                ),
                               ),
                             ],
                           ),
                         ),
                       ),
-                      Column(
-                        children: [
-                          Align(
-                              alignment: Alignment.bottomRight,
-                              child: (
-                                  ButtonCTA(color: SerManosColors.primary_100, text: "Leer Más", onPressed: () {  },)
-                              )
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0,0,8,0),
+                        child: Column(
+                          children: [
+                            Align(
+                                alignment: Alignment.bottomRight,
+                                child: (
+                                    ButtonCTA(color: SerManosColors.primary_100, text: "Leer Más", onPressed: () {  },)
+                                )
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),

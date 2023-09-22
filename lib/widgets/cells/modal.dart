@@ -21,7 +21,7 @@ class Modal extends StatelessWidget{
                         borderRadius:
                         BorderRadius.circular(4)),
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(16, 16, 8, 16),
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16,8),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -29,7 +29,9 @@ class Modal extends StatelessWidget{
                         children: <Widget>[
                           const Text("Te estas por postular a", style: SerManosTypography.subtitle_01(color: SerManosColors.neutral_100),),
                           const SizedBox(height: 5),
-                          const Text('Un Techo para mi País', style: SerManosTypography.headline_02(color: SerManosColors.neutral_100)),
+                          const Padding(
+                              padding: EdgeInsets.only(left:0, bottom: 8, right: 0, top:0),
+                              child: Text('Un Techo para mi País', style: SerManosTypography.headline_02(color: SerManosColors.neutral_100))),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children:[
