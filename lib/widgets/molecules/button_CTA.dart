@@ -15,6 +15,8 @@ class ButtonCTA extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      style: TextButton.styleFrom(
+      padding: const EdgeInsets.fromLTRB(8, 12, 8, 12)),
       onPressed: onPressed,
       child: Text(
         text,

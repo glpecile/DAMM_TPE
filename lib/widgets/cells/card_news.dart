@@ -1,3 +1,4 @@
+import 'package:SerManos/widgets/molecules/button_CTA.dart';
 import 'package:flutter/material.dart';
 import '../tokens/colors.dart';
 import '../tokens/typography.dart';
@@ -31,27 +32,43 @@ class CardNews extends StatelessWidget {
                         'assets/images/donante.jpg',width: 118,height: 156,
                       ),
                     ]),
-                const Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("REPORTE 2820",
-                            style: SerManosTypography.overline()),
-                        Text(
-                          "Ser donante voluntario",
-                          style: SerManosTypography.subtitle_01(
-                              color: SerManosColors.neutral_100),
+                Expanded(
+                  child: Column(
+                    children: [
+                      const Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("REPORTE 2820",
+                                  style: SerManosTypography.overline()),
+                              Text(
+                                "Ser donante voluntario",
+                                style: SerManosTypography.subtitle_01(
+                                    color: SerManosColors.neutral_100),
+                              ),
+                              Text("Desde el Hospital Centenario recalcan la importancia de la donación voluntaria de Sangre",
+                                  style: SerManosTypography.body_02()
+                              ),
+                            ],
+                          ),
                         ),
-                        Text("Desde el Hospital Centenario recalcan la importancia de la donación voluntaria de Sangre",
-                            style: SerManosTypography.body_02()
-                        ),
-                      ],
-                    ),
+                      ),
+                      Column(
+                        children: [
+                          Align(
+                              alignment: Alignment.bottomRight,
+                              child: (
+                                  ButtonCTA(color: SerManosColors.primary_100, text: "Leer Más", onPressed: () {  },)
+                              )
+                          ),
+                        ],
+                      )
+                    ],
                   ),
-                )
+                ),
               ]
           ),
         ),
