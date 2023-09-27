@@ -3,6 +3,7 @@ import 'package:SerManos/widgets/cells/card_news.dart';
 import 'package:SerManos/widgets/cells/header.dart';
 import 'package:SerManos/widgets/cells/modal.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
+import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'SerManos',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: SerManosColors.secondary_10),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: SerManosColors.secondary_10),
         useMaterial3: true,
         fontFamily: 'Roboto',
       ),
@@ -61,27 +63,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
         home: DefaultTabController(
             length: 3,
-            child:Scaffold(
+            child: Scaffold(
               appBar: const Header(),
-              body: const TabBarView(
+              body: const SerManosGrid(
+                  child: TabBarView(
                 children: [
                   CardVolunteers(),
                   Modal(),
                   CardNews(),
                 ],
-              ),
+              )),
               floatingActionButton: FloatingActionButton(
                 onPressed: _incrementCounter,
                 tooltip: 'Increment',
                 child: const Icon(Icons.add),
               ),
-            )
-        )
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
+            ))
+        // This trailing comma makes auto-formatting nicer for build methods.
+        );
   }
 }
