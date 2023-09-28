@@ -23,6 +23,12 @@ abstract interface class SerManosColors {
   // #191919
   static const Color neutral_100 = Color(0xff191919);
 
+  // #0x26000000
+  static const Color neutral_100_10 = Color(0x26000000);
+
+  // #0x4D000000
+  static const Color neutral_100_30 = Color(0x4D000000);
+
   /// Primary colors
   /// La paleta de colores primarios se usan en todos los elementos
   /// interactivos como CTAs, links, estados activos, etc.
