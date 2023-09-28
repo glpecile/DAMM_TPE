@@ -1,4 +1,5 @@
 import 'package:SerManos/widgets/tokens/colors.dart';
+import 'package:SerManos/widgets/tokens/shadows.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 
@@ -9,56 +10,51 @@ class CardVolunteers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-          width: 328,
-          height: 234,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(2),
-            color: SerManosColors.neutral_0,
-            boxShadow: const [
-              BoxShadow(
-                color: SerManosColors.neutral_75,
-                blurRadius: 6,
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(2),
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/images/voluntario.jpg',
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+      width: 328,
+      height: 234,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(2),
+        color: SerManosColors.neutral_0,
+        boxShadow: SerManosShadows.shadow_2,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(2),
+        child: Column(
+          children: [
+            Image.asset(
+              'assets/images/voluntario.jpg',
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("ACCIÓN SOCIAL",
-                              style: SerManosTypography.overline()),
-                          const Text(
-                            "Un Techo para mi País",
-                            style: SerManosTypography.headline_02(
-                                color: SerManosColors.neutral_100),
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          VacantesIcons(),
-                        ],
+                      const Text("ACCIÓN SOCIAL",
+                          style: SerManosTypography.overline()),
+                      const Text(
+                        "Un Techo para mi País",
+                        style: SerManosTypography.headline_02(
+                            color: SerManosColors.neutral_100),
                       ),
-                      gIcons()
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      VacantesIcons(),
                     ],
                   ),
-                ),
-              ],
+                  gIcons()
+                ],
+              ),
             ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    ));
   }
 }
 
