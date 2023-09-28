@@ -1,3 +1,4 @@
+import 'package:SerManos/widgets/atoms/icons.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/shadows.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
@@ -38,7 +39,7 @@ class CardVolunteers extends StatelessWidget {
                           style: SerManosTypography.overline()),
                       const Text(
                         "Un Techo para mi País",
-                        style: SerManosTypography.headline_02(
+                        style: SerManosTypography.subtitle_01(
                             color: SerManosColors.neutral_100),
                       ),
                       const SizedBox(
@@ -64,12 +65,15 @@ class gIcons extends StatelessWidget {
     return const Row(
       children: <Widget>[
         Icon(
-          Icons.favorite_border,
+          SerManosIcons.likeOutlined,
           color: SerManosColors.primary_100,
           size: 24,
         ),
+        SizedBox(
+          width: 16,
+        ),
         Icon(
-          Icons.fmd_good_rounded,
+          SerManosIcons.location,
           color: SerManosColors.primary_100,
           size: 24,
         ),
