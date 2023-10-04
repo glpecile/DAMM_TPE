@@ -56,16 +56,15 @@ class CardNews extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                    padding: const EdgeInsets.fromLTRB(0,0,8,0),
                     child: Column(
                       children: [
                         Align(
                             alignment: Alignment.bottomRight,
-                            child: (ButtonCTA(
-                              color: SerManosColors.primary_100,
-                              text: "Leer Más",
-                              onPressed: () {},
-                            ))),
+                            child: (
+                                ButtonCTA(btnColor: SerManosColors.primary_100, text: "Leer Más", onPressed: () {  },foregroundColor: SerManosColors.neutral_75,)
+                            )
+                        ),
                       ],
                     ),
                   )
