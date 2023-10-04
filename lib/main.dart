@@ -1,4 +1,5 @@
 import 'package:SerManos/widgets/cells/card.dart';
+import 'package:SerManos/widgets/cells/card_actual.dart';
 import 'package:SerManos/widgets/cells/card_news.dart';
 import 'package:SerManos/widgets/cells/header.dart';
 import 'package:SerManos/widgets/cells/modal.dart';
@@ -71,7 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
               body: const SerManosGrid(
                   child: TabBarView(
                 children: [
-                  CardVolunteers(),
+                  CardVolunteersActual(),
+                  // CardVolunteers(),
                   Modal(),
                   CardNews(),
                 ],

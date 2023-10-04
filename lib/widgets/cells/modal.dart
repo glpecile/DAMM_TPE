@@ -1,6 +1,6 @@
+import 'package:SerManos/widgets/atoms/icons.dart';
 import 'package:SerManos/widgets/molecules/floating_button.dart';
 import 'package:SerManos/widgets/molecules/short_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../molecules/button_CTA.dart';
@@ -17,8 +17,8 @@ class Modal extends StatelessWidget{
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              FloatingButton(onPressed: (){}, foregroundColor: SerManosColors.neutral_75.withOpacity(0.1), backgroundColor: SerManosColors.primary_10, icon: Icons.near_me, iconColor: SerManosColors.primary_100,),
-              ShortButton(btnColor: SerManosColors.neutral_0, text: "Completar", onPressed: (){}, foregroundColor: SerManosColors.neutral_10, backgroundColor: SerManosColors.primary_100, size: Size.medium, icon: Icons.add),
+              FloatingButton(onPressed: (){}, foregroundColor: SerManosColors.neutral_75.withOpacity(0.1), backgroundColor: SerManosColors.primary_10, icon: SerManosIcons.nearMe, iconColor: SerManosColors.primary_100,),
+              ShortButton(btnColor: SerManosColors.neutral_0, text: "Completar", onPressed: (){}, foregroundColor: SerManosColors.neutral_10, backgroundColor: SerManosColors.primary_100, size: Size.medium, icon: SerManosIcons.add),
               ElevatedButton(
                   child: const Text('showModalBottomSheet'),
                   onPressed: () {
