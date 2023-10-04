@@ -47,7 +47,7 @@ abstract interface class SerManosColors {
   /// primarios para indicar al usuario una atención secundaria.
 
   // #E1ECF5
-  static const Color secondary_10 = Color(0xffe1ecf5);
+  static const Color secondary_10 = Color(0xffeaf5fd);
 
   // #CAE5FB
   static const Color secondary_25 = Color(0xffcae5fb);

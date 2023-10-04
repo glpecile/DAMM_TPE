@@ -42,6 +42,4 @@ class CardVolunteersActual extends StatelessWidget {
                 ))));
   }
 
-
-
 }
