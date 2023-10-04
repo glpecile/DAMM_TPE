@@ -1,4 +1,3 @@
-import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:flutter/material.dart';
 
 class ButtonCTA extends StatelessWidget {
