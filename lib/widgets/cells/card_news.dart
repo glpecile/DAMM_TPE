@@ -12,7 +12,7 @@ class CardNews extends StatelessWidget {
     return Center(
       child: Container(
         width: 328,
-        // height: 156,
+        height: 156,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2),
             color: SerManosColors.neutral_0,

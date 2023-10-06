@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'SerManos',
       theme: ThemeData(
         colorScheme:
-            ColorScheme.fromSeed(seedColor: SerManosColors.secondary_10),
+        ColorScheme.fromSeed(seedColor: SerManosColors.secondary_10),
         useMaterial3: true,
         fontFamily: 'Roboto',
       ),
@@ -46,24 +46,24 @@ class _MyHomePageState extends State<MyHomePage> {
         home: DefaultTabController(
             length: 3,
             child: Scaffold(
-      backgroundColor: SerManosColors.secondary_10,
+              backgroundColor: SerManosColors.secondary_10,
               appBar: const Header(),
-              body: const SerManosGrid(
+              body:  SerManosGrid(
                   child: TabBarView(
-                children: [
-                  // CardVolunteersActual(),
-                  // CardVolunteers(),
-                  CardInput(),
-                  Modal(),
-                  CardNews(),
-                ],
-              )),
+                    children: [
+                      // CardVolunteersActual(),
+                      // CardVolunteers(),
+                      CardInput(),
+                      Modal(),
+                      CardNews(),
+                    ],
+                  )),
               floatingActionButton: FloatingActionButton(
                 onPressed: (){},
                 tooltip: 'Increment',
                 child: const Icon(Icons.add),
               ),
             ))
-        );
+    );
   }
 }
