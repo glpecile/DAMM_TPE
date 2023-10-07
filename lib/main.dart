@@ -2,6 +2,8 @@ import 'package:SerManos/widgets/cells/cards/card_input.dart';
 import 'package:SerManos/widgets/cells/cards/card_news.dart';
 import 'package:SerManos/widgets/cells/header.dart';
 import 'package:SerManos/widgets/cells/modal.dart';
+import 'package:SerManos/widgets/cells/radio_button.dart';
+import 'package:SerManos/widgets/cells/text_input.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   // CardVolunteersActual(),
                   // CardVolunteers(),
-                  CardInput(),
+                  CardInput(text: "Información del usuario", data: GenderRadio()),
                   Modal(),
                   CardNews(),
                 ],
