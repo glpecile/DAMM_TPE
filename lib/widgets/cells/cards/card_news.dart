@@ -1,4 +1,4 @@
-import 'package:SerManos/widgets/molecules/button_CTA.dart';
+import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
 import 'package:SerManos/widgets/tokens/shadows.dart';
 import 'package:flutter/material.dart';
 import '../../tokens/colors.dart';
