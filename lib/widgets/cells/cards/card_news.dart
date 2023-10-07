@@ -1,8 +1,8 @@
 import 'package:SerManos/widgets/molecules/button_CTA.dart';
 import 'package:SerManos/widgets/tokens/shadows.dart';
 import 'package:flutter/material.dart';
-import '../tokens/colors.dart';
-import '../tokens/typography.dart';
+import '../../tokens/colors.dart';
+import '../../tokens/typography.dart';
 
 class CardNews extends StatelessWidget {
   const CardNews({super.key});

@@ -1,5 +1,5 @@
-import 'package:SerManos/widgets/cells/card_input.dart';
-import 'package:SerManos/widgets/cells/card_news.dart';
+import 'package:SerManos/widgets/cells/cards/card_input.dart';
+import 'package:SerManos/widgets/cells/cards/card_news.dart';
 import 'package:SerManos/widgets/cells/header.dart';
 import 'package:SerManos/widgets/cells/modal.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'SerManos',
       theme: ThemeData(
         colorScheme:
-        ColorScheme.fromSeed(seedColor: SerManosColors.secondary_10),
+            ColorScheme.fromSeed(seedColor: SerManosColors.secondary_10),
         useMaterial3: true,
         fontFamily: 'Roboto',
       ),
@@ -39,7 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,22 +47,21 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Scaffold(
               backgroundColor: SerManosColors.secondary_10,
               appBar: const Header(),
-              body:  SerManosGrid(
+              body: const SerManosGrid(
                   child: TabBarView(
-                    children: [
-                      // CardVolunteersActual(),
-                      // CardVolunteers(),
-                      CardInput(),
-                      Modal(),
-                      CardNews(),
-                    ],
-                  )),
+                children: [
+                  // CardVolunteersActual(),
+                  // CardVolunteers(),
+                  CardInput(),
+                  Modal(),
+                  CardNews(),
+                ],
+              )),
               floatingActionButton: FloatingActionButton(
-                onPressed: (){},
+                onPressed: () {},
                 tooltip: 'Increment',
                 child: const Icon(Icons.add),
               ),
-            ))
-    );
+            )));
   }
 }

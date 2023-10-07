@@ -1,7 +1,7 @@
 import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../tokens/colors.dart';
+import '../../tokens/colors.dart';
 
 class CardInput extends StatelessWidget {
   const CardInput({super.key});
