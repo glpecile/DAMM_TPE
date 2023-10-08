@@ -27,7 +27,31 @@ doc/api/
 .flutter-plugins-dependencies
 
 .DS_Store
-
 .idea
+.fvm/
 
-.fvm/flutter_sdk
+# https://chat.openai.com/share/a8b0b12c-d2ed-42a1-b385-512358cf9e47
+# .gitignore for Flutter
+**/ios/Pods/
+**/ios/Flutter/Flutter.framework/
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/App.framework/
+**/ios/Flutter/App.podspec
+**/ios/Flutter/Flutter.xcconfig
+**/ios/Flutter/Debug.xcconfig
+**/ios/Flutter/Release.xcconfig
+**/ios/Flutter/ephemeral/Flutter.framework/
+**/ios/Flutter/ephemeral/Flutter.podspec
+**/ios/Flutter/ephemeral/Generated.xcconfig
+
+# Xcode
+**/*.xcworkspace
+**/*.xcodeproj
+
+# Android
+**/android/build/
+**/android/app/build/
+
+# VSCode
+.vscode/
