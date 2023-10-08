@@ -36,7 +36,7 @@ class _SerManosPasswordInputState extends State<SerManosPasswordInput> {
             _isPasswordVisible
                 ? SerManosIcons.visibility
                 : SerManosIcons.visibilityOff,
-            color: SerManosColors.neutral_50,
+            color: SerManosColors.neutral_75,
           ),
           onPressed: () {
             setState(() {
