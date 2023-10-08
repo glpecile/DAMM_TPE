@@ -40,18 +40,14 @@ class ShortButton extends StatelessWidget {
     );
   }
 
-
-  EdgeInsets btnSize(Size size){
-    if(size == Size.small){
-      return const EdgeInsets.symmetric(vertical: 8, horizontal: 12);
-    }else{
-      return const EdgeInsets.all(12);
-    }
+  EdgeInsets btnSize(Size size) {
+    return (size == Size.small)
+        ? const EdgeInsets.symmetric(vertical: 8, horizontal: 12)
+        : const EdgeInsets.all(12);
   }
-
 }
 
-enum Size{
+enum Size {
   small,
   medium;
 }

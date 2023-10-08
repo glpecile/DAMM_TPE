@@ -1,8 +1,8 @@
-import 'package:SerManos/widgets/molecules/button_CTA.dart';
+import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
 import 'package:SerManos/widgets/tokens/shadows.dart';
 import 'package:flutter/material.dart';
-import '../tokens/colors.dart';
-import '../tokens/typography.dart';
+import '../../tokens/colors.dart';
+import '../../tokens/typography.dart';
 
 class CardNews extends StatelessWidget {
   const CardNews({super.key});
@@ -12,7 +12,7 @@ class CardNews extends StatelessWidget {
     return Center(
       child: Container(
         width: 328,
-        // height: 156,
+        height: 156,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2),
             color: SerManosColors.neutral_0,

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-import '../atoms/icons.dart';
-import '../tokens/colors.dart';
-import '../tokens/shadows.dart';
-import '../tokens/typography.dart';
+import '../../atoms/icons.dart';
+import '../../tokens/colors.dart';
+import '../../tokens/shadows.dart';
+import '../../tokens/typography.dart';
 
 class CardVolunteersActual extends StatelessWidget {
   const CardVolunteersActual({super.key});
@@ -41,7 +41,5 @@ class CardVolunteersActual extends StatelessWidget {
                   ),
                 ))));
   }
-
-
 
 }

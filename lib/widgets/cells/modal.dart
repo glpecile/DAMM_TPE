@@ -1,9 +1,8 @@
 import 'package:SerManos/widgets/atoms/icons.dart';
-import 'package:SerManos/widgets/molecules/floating_button.dart';
-import 'package:SerManos/widgets/molecules/short_button.dart';
+import 'package:SerManos/widgets/molecules/buttons/floating_button.dart';
+import 'package:SerManos/widgets/molecules/buttons/short_button.dart';
 import 'package:flutter/material.dart';
-
-import '../molecules/button_CTA.dart';
+import '../molecules/buttons/button_cta.dart';
 import '../tokens/colors.dart';
 import '../tokens/typography.dart';
 
