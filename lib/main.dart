@@ -2,16 +2,13 @@ import 'package:SerManos/models/login.dart';
 import 'package:SerManos/widgets/cells/cards/card_input.dart';
 import 'package:SerManos/widgets/cells/forms/log_in.dart';
 import 'package:SerManos/widgets/cells/header.dart';
-import 'package:SerManos/widgets/cells/modal.dart';
-import 'package:SerManos/widgets/cells/radio_button.dart';
-import 'package:SerManos/widgets/cells/search_bar.dart';
-import 'package:SerManos/widgets/cells/text_information.dart';
+import 'package:SerManos/widgets/cells/forms/radio_button.dart';
+import 'package:SerManos/widgets/molecules/inputs/search_input.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-
 
 void main() async {
   await Firebase.initializeApp(
@@ -73,8 +70,7 @@ class _SerManosHomePageState extends State<SerManosHomePage> {
                     ]),
                     CardInput(
                         text: "Información del usuario", data: GenderRadio()),
-                    // Modal(),
-                    SearchInput()
+                    SearchInput(),
                   ],
                 )))));
   }
