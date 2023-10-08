@@ -1,5 +1,5 @@
-enum Gender { Male, Female, NonBinary }
 // TODO: pasar de enum a string
+import '../helpers/gender.dart';
 
 class Volunteer {
   final String email;
@@ -10,7 +10,7 @@ class Volunteer {
   Gender? gender;
   String? phone;
   bool? hasCompletedProfile;
-  String? volunteering;
+  String? volunteering; // You can only have one volunteering
   bool? isVolunteeringApproved;
 
   Volunteer(

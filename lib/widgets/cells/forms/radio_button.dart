@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../helpers/gender.dart';
 import '../../tokens/colors.dart';
 
 class GenderRadio extends StatefulWidget {
@@ -45,15 +46,4 @@ class RadioGenderState extends State<GenderRadio>{
     );
   }
 
-}
-
-
-
-enum Gender{
-  hombre("Hombre"),
-  mujer("Mujer"),
-  no_binario("No binario");
-
-  const Gender(this.text);
-  final String text;
 }

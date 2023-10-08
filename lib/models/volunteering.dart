@@ -11,6 +11,7 @@ class Volunteering {
   final String requirements;
   final DateTime createdAt;
   final int availableVacant;
+  // bool? isFavorite; // TODO: check
 
   Volunteering(
       {required this.imageUrl,
@@ -23,4 +24,5 @@ class Volunteering {
       required this.requirements,
       required this.createdAt,
       required this.availableVacant});
+      //this.isFavorite});
 }
