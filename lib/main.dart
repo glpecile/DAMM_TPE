@@ -9,8 +9,14 @@ import 'package:SerManos/widgets/cells/text_information.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const SerManosApp());
 }
 
