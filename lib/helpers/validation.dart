@@ -49,11 +49,12 @@ bool isNameValid(String name) {
 }
 
 // name validator
-String? nameValidator(String? name) {
+String? nameValidator(String? name, String? value) {
+  value ??= 'nombre';
   if (name == null || name.isEmpty) {
-    return 'Por favor ingrese su nombre';
+    return 'Por favor ingrese su $value.';
   } else if (!isNameValid(name)) {
-    return 'Por favor ingrese un nombre válido';
+    return 'Por favor ingrese un $value válido (no debe contener números ni caracteres especiales).';
   }
   return null;
 }
