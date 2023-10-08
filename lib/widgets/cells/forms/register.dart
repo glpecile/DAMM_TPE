@@ -65,34 +65,41 @@ class _RegisterFormState extends State<RegisterForm> {
     return Form(
         child: Column(
       children: [
-        SerManosTextInput(
-            label: 'Nombre',
-            placeholder: "Ej: Juan",
-            validator: (name) {
-              nameValidator(name, 'nombre');
-            },
-            controller: nameController),
-        const SizedBox(height: 24),
-        SerManosTextInput(
-            label: 'Apellido',
-            placeholder: "Ej: Barcena",
-            validator: (lastName) {
-              nameValidator(lastName, 'apellido');
-            },
-            controller: lastNameController),
-        const SizedBox(height: 24),
-        SerManosTextInput(
-            label: 'Email',
-            placeholder: "Ej: juanbarcena@mail.com",
-            validator: emailValidator,
-            controller: emailController),
-        const SizedBox(height: 24),
-        SerManosTextInput(
-            label: 'Contraseña',
-            placeholder: "Ej: ABCD1234",
-            validator: passwordValidator,
-            controller: passwordController),
+        buildTextInput(
+            'Nombre', 'Ej: Juan', nameValidator, nameController, 'nombre'),
+        buildTextInput('Apellido', 'Ej: Barcena', nameValidator,
+            lastNameController, 'apellido'),
+        buildTextInput('Email', 'Ej: juanbarcena@mail.com', emailValidator,
+            emailController),
+        buildTextInput('Contraseña', 'Ej: ABCD1234', passwordValidator,
+            passwordController),
       ],
     ));
   }
+}
+
+Widget buildTextInput(
+  String label,
+  String placeholder,
+  Function validator,
+  TextEditingController controller, [
+  String? validationArgument,
+]) {
+  return Column(
+    children: [
+      SerManosTextInput(
+        label: label,
+        placeholder: placeholder,
+        validator: (value) {
+          if (validationArgument != null) {
+            validator(value, validationArgument);
+          } else {
+            validator(value);
+          }
+        },
+        controller: controller,
+      ),
+      const SizedBox(height: 24),
+    ],
+  );
 }

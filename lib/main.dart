@@ -1,9 +1,9 @@
 import 'package:SerManos/models/login.dart';
 import 'package:SerManos/widgets/cells/cards/card_input.dart';
+import 'package:SerManos/widgets/cells/forms/contact_data.dart';
 import 'package:SerManos/widgets/cells/forms/log_in.dart';
 import 'package:SerManos/widgets/cells/header.dart';
 import 'package:SerManos/widgets/cells/forms/radio_button.dart';
-import 'package:SerManos/widgets/molecules/inputs/search_input.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +70,7 @@ class _SerManosHomePageState extends State<SerManosHomePage> {
                     ]),
                     CardInput(
                         text: "Información del usuario", data: GenderRadio()),
-                    SearchInput(),
+                    ContactDataForm(),
                   ],
                 )))));
   }
