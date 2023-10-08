@@ -1,4 +1,5 @@
 import 'package:SerManos/helpers/validation.dart';
+import 'package:SerManos/models/login.dart';
 import 'package:SerManos/widgets/molecules/inputs/password_input.dart';
 import 'package:SerManos/widgets/molecules/inputs/text_input.dart';
 import 'package:flutter/material.dart';
@@ -6,14 +7,16 @@ import 'package:flutter/material.dart';
 class LogInForm extends StatefulWidget {
   const LogInForm({
     Key? key,
-    //required this.onValidationChanged,
-    //required this.logInData,
-    //required this.formKey,
+    // TODO: make required
+    this.onValidationChanged,
+    this.logInData,
+    this.formKey,
   }) : super(key: key);
 
-  //final Function(bool) onValidationChanged;
-  //final LogInData logInData;
-  //inal GlobalKey<FormState> formKey;
+  // TODO: remove ? and pass correct value
+  final Function(bool)? onValidationChanged;
+  final LogInData? logInData;
+  final GlobalKey<FormState>? formKey;
 
   @override
   State createState() => _LogInFormState();
@@ -32,15 +35,20 @@ class _LogInFormState extends State<LogInForm> {
           passwordValidator(passwordController.text) == null;
     });
     if (aux != _isFormValid) {
-      //widget.onValidationChanged(_isFormValid);
+      // TODO: remove ! once onValidationChanged is required
+      widget.onValidationChanged!(_isFormValid);
     }
   }
 
   @override
   void initState() {
+    emailController.addListener(() {
+      _validateForm();
+    });
+    passwordController.addListener(() {
+      _validateForm();
+    });
     super.initState();
-    emailController.addListener(() {});
-    passwordController.addListener(() {});
   }
 
   @override
