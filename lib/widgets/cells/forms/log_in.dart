@@ -1,5 +1,4 @@
-import 'package:SerManos/models/login.dart';
-import 'package:SerManos/utils/validation.dart';
+import 'package:SerManos/helpers/validation.dart';
 import 'package:SerManos/widgets/molecules/inputs/password_input.dart';
 import 'package:SerManos/widgets/molecules/inputs/text_input.dart';
 import 'package:flutter/material.dart';

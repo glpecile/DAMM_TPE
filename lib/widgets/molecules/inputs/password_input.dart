@@ -1,4 +1,4 @@
-import 'package:SerManos/utils/validation.dart';
+import 'package:SerManos/helpers/validation.dart';
 import 'package:SerManos/widgets/molecules/inputs/generic_input.dart';
 import 'package:SerManos/widgets/molecules/inputs/text_input.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
