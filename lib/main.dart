@@ -1,13 +1,9 @@
-import 'package:SerManos/models/login.dart';
 import 'package:SerManos/widgets/cells/cards/card_input.dart';
 import 'package:SerManos/widgets/cells/forms/contact_data.dart';
 import 'package:SerManos/widgets/cells/forms/log_in.dart';
 import 'package:SerManos/widgets/cells/forms/radio_button.dart';
 import 'package:SerManos/widgets/cells/header.dart';
-import 'package:SerManos/widgets/cells/modal.dart';
-import 'package:SerManos/widgets/cells/radio_button.dart';
-import 'package:SerManos/widgets/cells/search_bar.dart';
-import 'package:SerManos/widgets/cells/text_information.dart';
+import 'package:SerManos/widgets/molecules/inputs/date_input.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
@@ -50,21 +46,20 @@ class SerManosHomePage extends StatefulWidget {
 }
 
 class _SerManosHomePageState extends State<SerManosHomePage> {
-  final LogInData logInData = LogInData();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
         home: DefaultTabController(
             length: 3,
             child: Scaffold(
                 backgroundColor: SerManosColors.secondary_10,
-                appBar: Header(),
+                appBar: const Header(),
                 body: SerManosGrid(
                     child: TabBarView(
                   children: [
-                    Column(children: [
+                    const Column(children: [
                       Image(
                         image: AssetImage('assets/images/logo.png'),
                         width: 150,
@@ -72,9 +67,19 @@ class _SerManosHomePageState extends State<SerManosHomePage> {
                       ),
                       LogInForm()
                     ]),
-                    CardInput(
-                        text: "Información del usuario", data: GenderRadio()),
-                    ContactDataForm(),
+                    Column(
+                      children: [
+                        SerManosDateInput(
+                          label: "DD/MM/YYYY",
+                          placeholder: "Fecha de nacimiento",
+                          controller: dateController,
+                        ),
+                        const CardInput(
+                            text: "Información del usuario",
+                            data: GenderRadio()),
+                      ],
+                    ),
+                    const ContactDataForm(),
                   ],
                 )))));
   }
