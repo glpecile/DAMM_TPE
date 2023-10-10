@@ -11,6 +11,7 @@ class SerManosDateInput extends StatefulWidget {
     required this.placeholder,
     required this.label,
     required this.controller,
+    // TODO: make required
     this.validator,
     this.onSaved,
   });
@@ -18,6 +19,7 @@ class SerManosDateInput extends StatefulWidget {
   final String placeholder;
   final String label;
   final TextEditingController controller;
+  // TODO: remove !
   final Function(String?)? validator;
   final Function(String?)? onSaved;
 
@@ -52,9 +54,27 @@ class _SerManosDateInputState extends State<SerManosDateInput> {
         onPressed: () async {
           final DateTime? picked = await showDatePicker(
             context: context,
+            fieldLabelText: "Seleccionar fecha",
+            helpText: "Seleccionar fecha",
+            cancelText: "Cancelar".toUpperCase(),
+            confirmText: "Ok".toUpperCase(),
             initialDate: DateTime.now(),
             firstDate: firstDate,
             lastDate: lastDate,
+            builder: (BuildContext context, Widget? child) {
+              return Theme(
+                data: ThemeData.light().copyWith(
+                  colorScheme: const ColorScheme.light(
+                    primary: SerManosColors.primary_100,
+                    onPrimary: SerManosColors.neutral_0,
+                    surface: SerManosColors.neutral_0,
+                    onSurface: SerManosColors.neutral_100,
+                  ),
+                  dialogBackgroundColor: SerManosColors.neutral_0,
+                ),
+                child: child!,
+              );
+            },
           );
           if (picked != null) {
             widget.controller.text =
