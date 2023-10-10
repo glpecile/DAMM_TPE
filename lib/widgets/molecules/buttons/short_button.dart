@@ -1,3 +1,4 @@
+import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 
 class ShortButton extends StatelessWidget {
@@ -22,22 +23,26 @@ class ShortButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      style: TextButton.styleFrom(
+    return ElevatedButton(
+        style: TextButton.styleFrom(
           foregroundColor: foregroundColor,
           backgroundColor: backgroundColor,
-          padding: btnSize(size)),
-      onPressed: onPressed,
-      label: Text(
-        text,
-        style: TextStyle(
-          color: btnColor,
+          padding: btnSize(size),
         ),
-      ),
-      icon: Icon(
-        icon,
-      ),
-    );
+        onPressed: onPressed,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null)
+              Icon(
+                icon,
+                color: btnColor,
+              ),
+            if (icon != null) const SizedBox(width: 8),
+            Text(text, style: SerManosTypography.button(color: btnColor)),
+          ],
+        ));
   }
 
   EdgeInsets btnSize(Size size) {
