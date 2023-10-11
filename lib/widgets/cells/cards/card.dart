@@ -12,7 +12,6 @@ class CardVolunteers extends StatelessWidget {
     return Center(
         child: Container(
           width: 328,
-          height: 234,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2),
             color: SerManosColors.neutral_0,
@@ -26,7 +25,7 @@ class CardVolunteers extends StatelessWidget {
                   'assets/images/voluntario.jpg',
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.only(left: 16,right: 16,top: 8, bottom: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -89,13 +88,13 @@ class Vacantes extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
-          color: SerManosColors.secondary_10,
+          color: SerManosColors.secondary_25,
         ),
         child: const Row(
           children: [
             Text(
               "Vacantes: ",
-              style: SerManosTypography.body_02(),
+              style: SerManosTypography.body_02(color: SerManosColors.neutral_100),
             ),
             Icon(
               Icons.person_rounded,

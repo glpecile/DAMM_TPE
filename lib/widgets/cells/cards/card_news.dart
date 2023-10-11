@@ -23,6 +23,7 @@ class CardNews extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
+        width: 328,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(2),
           color: SerManosColors.neutral_0,
@@ -38,33 +39,40 @@ class CardNews extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        overline,
-                        style: const SerManosTypography.overline(),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8,right: 8,top: 16,bottom: 8),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              overline,
+                              style: const SerManosTypography.overline(),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                            Text(
+                              title,
+                              style: const SerManosTypography.subtitle_01(
+                                color: SerManosColors.neutral_100,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                            Text(
+                              description,
+                              style: const SerManosTypography.body_02(),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 3,
+                            ),
+                          ]
                       ),
-                      Text(
-                        title,
-                        style: const SerManosTypography.subtitle_01(
-                          color: SerManosColors.neutral_100,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-                      Text(
-                        description,
-                        style: const SerManosTypography.body_02(),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
-                      ),
-                      const SizedBox(height: 8),
-                      Align(
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 8),
+                      child: Align(
                         alignment: Alignment.bottomRight,
                         child: ButtonCTA(
                           btnColor: SerManosColors.primary_100,
@@ -73,8 +81,8 @@ class CardNews extends StatelessWidget {
                           foregroundColor: SerManosColors.neutral_75,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

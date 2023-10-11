@@ -1,3 +1,4 @@
+import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 
 class ButtonCTA extends StatelessWidget {
@@ -21,13 +22,13 @@ class ButtonCTA extends StatelessWidget {
     return TextButton(
       style: TextButton.styleFrom(
           foregroundColor: foregroundColor,
-          backgroundColor: backgroundColor,
-          padding: const EdgeInsets.fromLTRB(8, 12, 8, 12)),
+          backgroundColor: backgroundColor,),
       onPressed: onPressed,
-      child: Text(
-        text,
-        style: TextStyle(
-          color: btnColor,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        child: Text(
+          text,
+          style: SerManosTypography.button(color: btnColor)
         ),
       ),
     );

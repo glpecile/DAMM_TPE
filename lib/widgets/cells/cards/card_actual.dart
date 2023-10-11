@@ -6,7 +6,11 @@ import '../../tokens/shadows.dart';
 import '../../tokens/typography.dart';
 
 class CardVolunteersActual extends StatelessWidget {
-  const CardVolunteersActual({super.key});
+  final String title;
+
+  const CardVolunteersActual({
+    super.key,
+    required this.title,});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +26,9 @@ class CardVolunteersActual extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
                 color: SerManosColors.primary_5,
                 boxShadow: SerManosShadows.shadow_2),
-            child: const ClipRRect(
+            child: ClipRRect(
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -32,11 +36,11 @@ class CardVolunteersActual extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("ACCIÓN SOCIAL", style: SerManosTypography.overline()),
-                              Text("Un Techo para mi País", style: SerManosTypography.subtitle_01(color: SerManosColors.neutral_100),
+                              const Text("ACCIÓN SOCIAL", style: SerManosTypography.overline()),
+                              Text(title, style: const SerManosTypography.subtitle_01(color: SerManosColors.neutral_100),
                               ),
                             ]),
-                        Icon(SerManosIcons.location,color: SerManosColors.primary_100,)
+                        const Icon(SerManosIcons.location,color: SerManosColors.primary_100,)
                       ]
                   ),
                 ))));

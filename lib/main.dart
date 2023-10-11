@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:SerManos/widgets/cells/cards/card.dart';
 import 'package:SerManos/widgets/cells/cards/card_input.dart';
 import 'package:SerManos/widgets/cells/cards/card_news.dart';
 import 'package:SerManos/widgets/cells/forms/contact_data.dart';
@@ -79,12 +80,12 @@ class _SerManosHomePageState extends State<SerManosHomePage> {
                         CardNews(
                           overline: "REPORTE 2820",
                           title: "Ser donante de sangre voluntario",
-                          description:
-                              "Ser donante de sangre voluntario es un acto de solidaridad y de amor al prójimo. Donar sangre es donar vida.",
+                          description: "Desde el Hospital Centenario recalcan la importancia de la donación voluntaria de Sangre"
                         ),
                         SizedBox(
                           height: 10,
                         ),
+                        CardVolunteers()
                       ],
                     ),
                   ],
