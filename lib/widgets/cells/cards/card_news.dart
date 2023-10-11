@@ -50,22 +50,16 @@ class CardNews extends StatelessWidget {
                             Text(
                               overline,
                               style: const SerManosTypography.overline(),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
                             ),
                             Text(
                               title,
                               style: const SerManosTypography.subtitle_01(
                                 color: SerManosColors.neutral_100,
                               ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
                             ),
                             Text(
                               description,
                               style: const SerManosTypography.body_02(),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 3,
                             ),
                           ]
                       ),

@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:SerManos/helpers/gender.dart';
 import 'package:SerManos/models/profile.dart';
 import 'package:SerManos/widgets/cells/cards/card_input.dart';
-import 'package:SerManos/widgets/cells/forms/contact_data.dart';
-import 'package:SerManos/widgets/cells/forms/radio_button.dart';
 import 'package:SerManos/widgets/molecules/inputs/date_input.dart';
 import 'package:SerManos/widgets/molecules/inputs/ser_manos_photo_input.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
