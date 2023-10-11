@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:SerManos/widgets/cells/cards/card_input.dart';
+import 'package:SerManos/widgets/cells/cards/card_news.dart';
 import 'package:SerManos/widgets/cells/forms/contact_data.dart';
 import 'package:SerManos/widgets/cells/forms/log_in.dart';
+import 'package:SerManos/widgets/cells/forms/profile_data.dart';
 import 'package:SerManos/widgets/cells/forms/radio_button.dart';
 import 'package:SerManos/widgets/cells/header.dart';
 import 'package:SerManos/widgets/molecules/inputs/date_input.dart';
@@ -54,16 +56,16 @@ class _SerManosHomePageState extends State<SerManosHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
         home: DefaultTabController(
             length: 3,
             child: Scaffold(
                 backgroundColor: SerManosColors.secondary_10,
-                appBar: const Header(),
+                appBar: Header(),
                 body: SerManosGrid(
                     child: TabBarView(
                   children: [
-                    const Column(children: [
+                    Column(children: [
                       Image(
                         image: AssetImage('assets/images/logo.png'),
                         width: 150,
@@ -71,22 +73,20 @@ class _SerManosHomePageState extends State<SerManosHomePage> {
                       ),
                       LogInForm()
                     ]),
+                    ProfileDataForm(),
                     Column(
                       children: [
-                        SerManosDateInput(
-                          label: "DD/MM/YYYY",
-                          placeholder: "Fecha de nacimiento",
-                          controller: dateController,
+                        CardNews(
+                          overline: "REPORTE 2820",
+                          title: "Ser donante de sangre voluntario",
+                          description:
+                              "Ser donante de sangre voluntario es un acto de solidaridad y de amor al prójimo. Donar sangre es donar vida.",
                         ),
-                        SerManosPhotoInput(
-                          onSaved: (File image) {},
+                        SizedBox(
+                          height: 10,
                         ),
-                        const CardInput(
-                            text: "Información del usuario",
-                            data: GenderRadio()),
                       ],
                     ),
-                    const ContactDataForm(),
                   ],
                 )))));
   }
