@@ -57,3 +57,5 @@ doc/api/
 .vscode/
 
 ios/Podfile.lock
+
+custom_lint.log

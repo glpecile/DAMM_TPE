@@ -1,15 +1,9 @@
-import 'dart:io';
 
 import 'package:SerManos/widgets/cells/cards/card.dart';
-import 'package:SerManos/widgets/cells/cards/card_input.dart';
 import 'package:SerManos/widgets/cells/cards/card_news.dart';
-import 'package:SerManos/widgets/cells/forms/contact_data.dart';
 import 'package:SerManos/widgets/cells/forms/log_in.dart';
 import 'package:SerManos/widgets/cells/forms/profile_data.dart';
-import 'package:SerManos/widgets/cells/forms/radio_button.dart';
 import 'package:SerManos/widgets/cells/header.dart';
-import 'package:SerManos/widgets/molecules/inputs/date_input.dart';
-import 'package:SerManos/widgets/molecules/inputs/ser_manos_photo_input.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
