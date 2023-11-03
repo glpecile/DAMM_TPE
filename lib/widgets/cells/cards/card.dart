@@ -11,54 +11,56 @@ class CardVolunteers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-          width: 328,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(2),
-            color: SerManosColors.neutral_0,
-            boxShadow: SerManosShadows.shadow_2,
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(2),
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/images/voluntario.jpg',
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16,right: 16,top: 8, bottom: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+      width: 328,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(2),
+        color: SerManosColors.neutral_0,
+        boxShadow: SerManosShadows.shadow_2,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(2),
+        child: Column(
+          children: [
+            Image.asset(
+              'assets/images/voluntario.jpg',
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("ACCIÓN SOCIAL",
-                              style: SerManosTypography.overline()),
-                          const Text(
-                            "Un Techo para mi País",
-                            style: SerManosTypography.subtitle_01(
-                                color: SerManosColors.neutral_100),
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          VacantesIcons(),
-                        ],
+                      Text("ACCIÓN SOCIAL",
+                          style: SerManosTypography.overline()),
+                      Text(
+                        "Un Techo para mi País",
+                        style: SerManosTypography.subtitle_01(
+                            color: SerManosColors.neutral_100),
                       ),
-                      gIcons()
+                      SizedBox(
+                        height: 4,
+                      ),
+                      VacancyIcons(),
                     ],
                   ),
-                ),
-              ],
+                  gIcons()
+                ],
+              ),
             ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    ));
   }
 }
 
 class gIcons extends StatelessWidget {
+  const gIcons({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Row(
@@ -81,7 +83,9 @@ class gIcons extends StatelessWidget {
   }
 }
 
-class Vacantes extends StatelessWidget {
+class Vacancy extends StatelessWidget {
+  const Vacancy({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -94,7 +98,8 @@ class Vacantes extends StatelessWidget {
           children: [
             Text(
               "Vacantes: ",
-              style: SerManosTypography.body_02(color: SerManosColors.neutral_100),
+              style:
+                  SerManosTypography.body_02(color: SerManosColors.neutral_100),
             ),
             Icon(
               Icons.person_rounded,
@@ -109,13 +114,15 @@ class Vacantes extends StatelessWidget {
   }
 }
 
-class VacantesIcons extends StatelessWidget {
+class VacancyIcons extends StatelessWidget {
+  const VacancyIcons({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Vacantes(),
+          Vacancy(),
         ]);
   }
 }

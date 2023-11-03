@@ -1,9 +1,6 @@
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-@freezed
 class Volunteering {
   final int id;
   final String imageUrl;
@@ -20,20 +17,21 @@ class Volunteering {
   bool isFavorite; // TODO: check
   double? distanceToUser;
 
-  Volunteering({required this.id,
-    required this.imageUrl,
-    required this.type,
-    required this.title,
-    required this.goal,
-    required this.description,
-    required this.location,
-    required this.address,
-    required this.requirements,
-    required this.createdAt,
-    required this.availableVacant,
-    required this.currentVacant,
-    required this.isFavorite,
-    this.distanceToUser});
+  Volunteering(
+      {required this.id,
+      required this.imageUrl,
+      required this.type,
+      required this.title,
+      required this.goal,
+      required this.description,
+      required this.location,
+      required this.address,
+      required this.requirements,
+      required this.createdAt,
+      required this.availableVacant,
+      required this.currentVacant,
+      required this.isFavorite,
+      this.distanceToUser});
 
   factory Volunteering.fromJson(Map<String, dynamic> json) {
     return Volunteering(

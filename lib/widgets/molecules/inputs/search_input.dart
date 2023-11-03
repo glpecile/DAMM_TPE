@@ -30,57 +30,52 @@ class _SearchInputState extends State<SearchInput> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 25),
+    return SizedBox(
       width: 328,
-      height: 48,
-      child: Column(
+      height: 80,
+      child: Row(
         children: [
-          Row(
-            children: [
-              Flexible(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: Material(
-                    elevation: 3,
-                    child: TextFormField(
-                      controller: _controller,
-                      onChanged: (value) {
-                        setState(() {});
-                        widget.onChanged?.call(value);
-                      },
-                      onFieldSubmitted: widget.onEnter,
-                      cursorColor: SerManosColors.secondary_200,
-                      decoration: InputDecoration(
-                        fillColor: SerManosColors.neutral_0,
-                        filled: true,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(2),
-                            borderSide: BorderSide.none),
-                        hintText: 'Buscar',
-                        hintStyle: const SerManosTypography.subtitle_01(
-                            color: SerManosColors.neutral_75),
-                        prefixIcon: const Icon(
-                          SerManosIcons.search,
-                          color: SerManosColors.neutral_75,
-                        ),
-                        suffixIcon: _controller.text.isEmpty
-                            ? null
-                            : IconButton(
-                                icon: const Icon(
-                                  SerManosIcons.close,
-                                  color: SerManosColors.neutral_75,
-                                ),
-                                onPressed: _clearText,
-                              ),
-                      ),
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Material(
+                elevation: 3,
+                child: TextFormField(
+                  controller: _controller,
+                  onChanged: (value) {
+                    setState(() {});
+                    widget.onChanged?.call(value);
+                  },
+                  onFieldSubmitted: widget.onEnter,
+                  cursorColor: SerManosColors.secondary_200,
+                  decoration: InputDecoration(
+                    fillColor: SerManosColors.neutral_0,
+                    filled: true,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(2),
+                        borderSide: BorderSide.none),
+                    hintText: 'Buscar',
+                    hintStyle: const SerManosTypography.subtitle_01(
+                        color: SerManosColors.neutral_75),
+                    prefixIcon: const Icon(
+                      SerManosIcons.search,
+                      color: SerManosColors.neutral_75,
                     ),
+                    suffixIcon: _controller.text.isEmpty
+                        ? null
+                        : IconButton(
+                            icon: const Icon(
+                              SerManosIcons.close,
+                              color: SerManosColors.neutral_75,
+                            ),
+                            onPressed: _clearText,
+                          ),
                   ),
                 ),
               ),
-            ],
-          )
+            ),
+          ),
         ],
       ),
     );
