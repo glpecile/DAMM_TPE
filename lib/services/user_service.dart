@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../models/volunteer.dart';
 import 'image_service.dart';
 
+
 class UserService {
   final String collection = 'users';
 

@@ -1,6 +1,7 @@
 // TODO: pasar de enum a string
 import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/profile.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../helpers/gender.dart';
 
@@ -13,7 +14,6 @@ class Volunteer {
   Gender? gender;
   String? phone;
   String? secondaryEmail;
-
   bool? hasCompletedProfile;
   String? volunteering; // You can only have one volunteering
   bool? isVolunteeringApproved;
@@ -29,6 +29,7 @@ class Volunteer {
     this.hasCompletedProfile,
     this.volunteering,
     this.isVolunteeringApproved});
+
 
   // https://stackoverflow.com/questions/53886304/understanding-factory-constructor-code-example-dart
   factory Volunteer.fromJson(Map<String, dynamic> json) {
@@ -61,6 +62,7 @@ class Volunteer {
       'isVolunteeringApproved': isVolunteeringApproved
     };
   }
+
 
   void editVolunteer(ContactData contactData, ProfileData profileData) {
     //imageUrl = profileData.imageUrl;
