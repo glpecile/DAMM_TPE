@@ -59,3 +59,7 @@ doc/api/
 ios/Podfile.lock
 
 custom_lint.log
+
+.metadata
+
+damm.iml

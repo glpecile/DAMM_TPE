@@ -20,34 +20,40 @@ class Home extends StatelessWidget {
           appBar: Header(),
           body: SerManosGrid(
               child: TabBarView(
-            children: [
-              Column(children: [
-                SearchInput(),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Voluntarios',
-                  style: SerManosTypography.headline_01(),
-                ),
-                CardVolunteers(),
-              ]),
-              ProfileDataForm(),
-              Column(
                 children: [
-                  CardNews(
-                      overline: "REPORTE 2820",
-                      title: "Ser donante de sangre voluntario",
-                      description:
+                  Column(children: [
+                    SearchInput(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 16, bottom: 24, top: 24, right: 16),
+                        child: Text(
+                          'Voluntariados',
+                          style: SerManosTypography.headline_01(),
+                        ),
+                      ),
+                    ),
+                    CardVolunteers(),
+                  ]),
+                  ProfileDataForm(),
+                  Column(
+                    children: [
+                      CardNews(
+                          overline: "REPORTE 2820",
+                          title: "Ser donante de sangre voluntario",
+                          description:
                           "Desde el Hospital Centenario recalcan la importancia de la donación voluntaria de Sangre"),
-                  SizedBox(
-                    height: 10,
+                      SizedBox(
+                        height: 10,
+                      ),
+                      CardVolunteers()
+                    ],
                   ),
-                  CardVolunteers()
                 ],
-              ),
-            ],
-          ))),
+              ))),
     );
   }
 }

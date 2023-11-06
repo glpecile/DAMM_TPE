@@ -30,7 +30,7 @@ class _SearchInputState extends State<SearchInput> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: 328,
       height: 80,
       child: Row(
@@ -38,7 +38,7 @@ class _SearchInputState extends State<SearchInput> {
           Flexible(
             flex: 1,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.only(top:24),
               child: Material(
                 elevation: 3,
                 child: TextFormField(
@@ -65,12 +65,12 @@ class _SearchInputState extends State<SearchInput> {
                     suffixIcon: _controller.text.isEmpty
                         ? null
                         : IconButton(
-                            icon: const Icon(
-                              SerManosIcons.close,
-                              color: SerManosColors.neutral_75,
-                            ),
-                            onPressed: _clearText,
-                          ),
+                      icon: const Icon(
+                        SerManosIcons.close,
+                        color: SerManosColors.neutral_75,
+                      ),
+                      onPressed: _clearText,
+                    ),
                   ),
                 ),
               ),
