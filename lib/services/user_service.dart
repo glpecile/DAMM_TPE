@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../models/volunteer.dart';
 import 'image_service.dart';
 
-
 class UserService {
   final String collection = 'users';
 
@@ -36,7 +35,8 @@ class UserService {
       'name': name,
       'lastname': lastname,
       'password': password,
-      'hasCompletedProfile': false
+      'hasCompletedProfile': false,
+      'isVolunteeringApproved': false
     });
     return user;
   }
@@ -52,16 +52,18 @@ class UserService {
   Future<Volunteer?> getUserById(String userId) async {
     var user = await FirebaseFirestore.instance
         .collection(collection)
-        .doc(userId.toString())
+        .doc(userId)
         .get();
     if (user.exists) {
-      var userData = user.data();
-      return Volunteer.fromJson(userData!);
+      var userData = user.data() as Map<String, dynamic>;
+      userData['id'] = userId;
+      return Volunteer.fromJson(userData);
     }
     return null;
   }
 
-  Future<Volunteer?> editUser(ContactData contactData, ProfileData profileData) async {
+  Future<Volunteer?> editUser(
+      ContactData contactData, ProfileData profileData) async {
     Volunteer? volunteer = await getCurrentUser();
     if (volunteer == null || profileData.imageFile == null) {
       return null; // TODO: excepcion?
@@ -69,7 +71,8 @@ class UserService {
     volunteer.editVolunteer(contactData, profileData);
     final uid = FirebaseAuth.instance.currentUser!.uid;
     if (profileData.imageFile != null) {
-      String? imageUrl = await ImageService().uploadUserImage(uid, profileData.imageFile!);
+      String? imageUrl =
+          await ImageService().uploadUserImage(uid, profileData.imageFile!);
       volunteer.imageUrl = imageUrl;
     }
     await FirebaseFirestore.instance

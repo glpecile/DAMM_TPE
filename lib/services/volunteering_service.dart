@@ -1,8 +1,14 @@
 import 'package:SerManos/models/volunteering.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../models/volunteer.dart';
 
 class VolunteeringService {
   final String collection = 'volunteering';
+  final String userCollection = 'users';
+
+  Volunteer loggedUser;
+
+  VolunteeringService(this.loggedUser);
 
   Future<List<Volunteering>> getVolunteerings(
       String? textSearch, GeoPoint? userPosition) async {
@@ -56,15 +62,46 @@ class VolunteeringService {
     return null;
   }
 
-  Future<void> updateVolunteerings(String volunteeringId, int toChange) async {
+  Future<void> applyVolunteering(String volunteeringId) async {
     Volunteering? volunteering = await getVolunteeringById(volunteeringId);
-    if (volunteering == null) {
+    if (volunteering == null ||
+        volunteering.currentVacant == volunteering.availableVacant) {
       return;
     }
-    volunteering.currentVacant += toChange;
+
+    if (loggedUser.volunteering != null || !loggedUser.hasCompletedProfile) {
+      return;
+    }
+
+    await FirebaseFirestore.instance
+        .collection(userCollection)
+        .doc(loggedUser.id)
+        .update(
+            {'volunteering': volunteering.id, 'isVolunteeringApproved': false});
+  }
+
+  Future<void> leaveVolunteering(String volunteeringId) async {
+    Volunteering? volunteering = await getVolunteeringById(volunteeringId);
+    if (volunteering == null ||
+        volunteering.currentVacant == volunteering.availableVacant) {
+      return;
+    }
+
+    if (loggedUser.volunteering == null ||
+        loggedUser.volunteering != volunteeringId) {
+      return;
+    }
+
+    await FirebaseFirestore.instance
+        .collection(userCollection)
+        .doc(loggedUser.id)
+        .update({'volunteering': null, 'isVolunteeringApproved': false});
+
+    volunteering.currentVacant -= 1;
+
     await FirebaseFirestore.instance
         .collection(collection)
-        .doc(volunteeringId)
+        .doc(volunteering.id)
         .update({'currentVacant': volunteering.currentVacant});
   }
 }

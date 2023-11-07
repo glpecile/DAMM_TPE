@@ -5,6 +5,7 @@ import 'package:SerManos/models/profile.dart';
 import '../helpers/gender.dart';
 
 class Volunteer {
+  final String id;
   final String email;
   final String name;
   final String lastName;
@@ -13,12 +14,13 @@ class Volunteer {
   Gender? gender;
   String? phone;
   String? secondaryEmail;
-  bool? hasCompletedProfile;
+  bool hasCompletedProfile;
   String? volunteering; // You can only have one volunteering
-  bool? isVolunteeringApproved;
+  bool isVolunteeringApproved;
 
   Volunteer(
-      {required this.email,
+      {required this.id,
+      required this.email,
       required this.name,
       required this.lastName,
       this.imageUrl,
@@ -26,13 +28,14 @@ class Volunteer {
       this.gender,
       this.phone,
       this.secondaryEmail,
-      this.hasCompletedProfile,
+      required this.hasCompletedProfile,
       this.volunteering,
-      this.isVolunteeringApproved});
+      required this.isVolunteeringApproved});
 
   // https://stackoverflow.com/questions/53886304/understanding-factory-constructor-code-example-dart
   factory Volunteer.fromJson(Map<String, dynamic> json) {
     return Volunteer(
+        id: json['id'],
         email: json['email'],
         name: json['name'],
         lastName: json['lastName'],

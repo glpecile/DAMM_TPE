@@ -3,17 +3,8 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -49,20 +40,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBGOayX-WQxDUeRat4NRnaoiGP6lGKBUw0',
-    appId: '1:666241362205:android:5cd99cac2d2fb9d9c859f4',
-    messagingSenderId: '666241362205',
-    projectId: 'sermanos-91896',
-    storageBucket: 'sermanos-91896.appspot.com',
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: dotenv.get('ANDROID_API_KEY'),
+    appId: dotenv.get('ANDROID_APP_ID'),
+    messagingSenderId: dotenv.get('MSG_SENDER_ID'),
+    projectId: dotenv.get('PROJECT_ID'),
+    storageBucket: dotenv.get('STORAGE_BUCKET'),
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBRC-T9Oy7Mq8tdGETx3VuAVfCmoaYhaTs',
-    appId: '1:666241362205:ios:b8d435e304747628c859f4',
-    messagingSenderId: '666241362205',
-    projectId: 'sermanos-91896',
-    storageBucket: 'sermanos-91896.appspot.com',
-    iosBundleId: 'com.example.fluttertest',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: dotenv.get('IOS_API_KEY'),
+    appId: dotenv.get('IOS_APP_ID'),
+    messagingSenderId: dotenv.get('MSG_SENDER_ID'),
+    projectId: dotenv.get('PROJECT_ID'),
+    storageBucket: dotenv.get('STORAGE_BUCKET'),
+    iosBundleId: dotenv.get('IOS_BUNDLED_ID'),
   );
 }

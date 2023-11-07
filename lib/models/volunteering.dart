@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Volunteering {
-  final int id;
+  final String id;
   final String imageUrl;
   final String type;
   final String title;
