@@ -1,14 +1,16 @@
 import 'package:SerManos/models/volunteering.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/volunteer.dart';
+import 'analytics_service.dart';
 
 class VolunteeringService {
   final String collection = 'volunteering';
   final String userCollection = 'users';
 
   Volunteer loggedUser;
+  AnalyticsService analyticsService;
 
-  VolunteeringService(this.loggedUser);
+  VolunteeringService(this.loggedUser, this.analyticsService);
 
   Future<List<Volunteering>> getVolunteerings(
       String? textSearch, GeoPoint? userPosition) async {
@@ -73,6 +75,7 @@ class VolunteeringService {
       return;
     }
 
+    analyticsService.applyToVolunteeringEvent(volunteeringId, loggedUser.id);
     await FirebaseFirestore.instance
         .collection(userCollection)
         .doc(loggedUser.id)
@@ -92,6 +95,7 @@ class VolunteeringService {
       return;
     }
 
+    analyticsService.leaveVolunteeringEvent(volunteeringId, loggedUser.id);
     await FirebaseFirestore.instance
         .collection(userCollection)
         .doc(loggedUser.id)

@@ -4,10 +4,15 @@ import 'package:SerManos/models/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/volunteer.dart';
+import 'analytics_service.dart';
 import 'image_service.dart';
 
 class UserService {
   final String collection = 'users';
+
+  AnalyticsService analyticsService;
+
+  UserService(this.analyticsService);
 
   Future logIn(LogInData data) async {
     if (data.email == null || data.password == null) {
@@ -17,6 +22,7 @@ class UserService {
     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(
             email: data.email!, password: data.password!);
+    analyticsService.loginEvent(user.user!.uid);
     return user;
   }
 
@@ -60,6 +66,38 @@ class UserService {
       return Volunteer.fromJson(userData);
     }
     return null;
+  }
+
+  void addFavorite(String volunteeringId) async {
+    Volunteer? volunteer = await getCurrentUser();
+    if (volunteer == null) {
+      return;
+    }
+    volunteer.favorites.add(volunteeringId);
+    await FirebaseFirestore.instance
+        .collection(collection)
+        .doc(volunteer.id)
+        .update({'favorites': volunteer.favorites});
+  }
+
+  void removeFavorite(String volunteeringId) async {
+    Volunteer? volunteer = await getCurrentUser();
+    if (volunteer == null) {
+      return;
+    }
+    volunteer.favorites.remove(volunteeringId);
+    await FirebaseFirestore.instance
+        .collection(collection)
+        .doc(volunteer.id)
+        .update({'favorites': volunteer.favorites});
+  }
+
+  Future<List<String>> getFavorites() async {
+    Volunteer? volunteer = await getCurrentUser();
+    if (volunteer == null) {
+      return [];
+    }
+    return volunteer.favorites;
   }
 
   Future<Volunteer?> editUser(

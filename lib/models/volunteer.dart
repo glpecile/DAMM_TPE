@@ -9,6 +9,7 @@ class Volunteer {
   final String email;
   final String name;
   final String lastName;
+  final List<String> favorites;
   String? imageUrl;
   DateTime? birthDate;
   Gender? gender;
@@ -23,6 +24,7 @@ class Volunteer {
       required this.email,
       required this.name,
       required this.lastName,
+      required this.favorites,
       this.imageUrl,
       this.birthDate,
       this.gender,
@@ -39,6 +41,7 @@ class Volunteer {
         email: json['email'],
         name: json['name'],
         lastName: json['lastName'],
+        favorites: json['favorites'], //!= null ? List<String>.from(json['favorites']) : [],
         imageUrl: json['imageUrl'],
         birthDate: DateTime.tryParse(json['bitrhDate']),
         gender: json['gender'] != null ? Gender.values[json['gender']] : null,
@@ -54,6 +57,7 @@ class Volunteer {
       'email': email,
       'name': name,
       'lastName': lastName,
+      'favorites': favorites,
       'imageUrl': imageUrl,
       'birthDate': birthDate != null ? birthDate!.toIso8601String() : null,
       'gender': gender?.index,
