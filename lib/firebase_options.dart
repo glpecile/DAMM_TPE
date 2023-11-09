@@ -40,20 +40,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static FirebaseOptions android = FirebaseOptions(
-    apiKey: dotenv.get('ANDROID_API_KEY'),
-    appId: dotenv.get('ANDROID_APP_ID'),
-    messagingSenderId: dotenv.get('MSG_SENDER_ID'),
-    projectId: dotenv.get('PROJECT_ID'),
-    storageBucket: dotenv.get('STORAGE_BUCKET'),
+  static FirebaseOptions android = const FirebaseOptions(
+    apiKey: "AIzaSyBGOayX-WQxDUeRat4NRnaoiGP6lGKBUw0",
+    appId: "1:666241362205:android:5cd99cac2d2fb9d9c859f4",
+    messagingSenderId: "666241362205",
+    projectId: "sermanos-91896",
+    storageBucket: "sermanos-91896.appspot.com",
   );
 
-  static FirebaseOptions ios = FirebaseOptions(
-    apiKey: dotenv.get('IOS_API_KEY'),
-    appId: dotenv.get('IOS_APP_ID'),
-    messagingSenderId: dotenv.get('MSG_SENDER_ID'),
-    projectId: dotenv.get('PROJECT_ID'),
-    storageBucket: dotenv.get('STORAGE_BUCKET'),
-    iosBundleId: dotenv.get('IOS_BUNDLED_ID'),
+  static FirebaseOptions ios = const FirebaseOptions(
+    apiKey: "AIzaSyBRC-T9Oy7Mq8tdGETx3VuAVfCmoaYhaTs",
+    appId: "1:666241362205:ios:b8d435e304747628c859f4",
+    iosBundleId: "com.example.fluttertest",
+    messagingSenderId: "666241362205",
+    projectId: "sermanos-91896",
+    storageBucket: "sermanos-91896.appspot.com",
   );
 }
