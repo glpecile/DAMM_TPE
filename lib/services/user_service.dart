@@ -107,7 +107,7 @@ class UserService {
       return null; // TODO: excepcion?
     }
     volunteer.editVolunteer(contactData, profileData);
-    final uid = FirebaseAuth.instance.currentUser!.uid;
+    final uid = volunteer.id;
     if (profileData.imageFile != null) {
       String? imageUrl =
           await ImageService().uploadUserImage(uid, profileData.imageFile!);

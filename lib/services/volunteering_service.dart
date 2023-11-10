@@ -1,4 +1,5 @@
 import 'package:SerManos/models/volunteering.dart';
+import 'package:SerManos/services/user_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/volunteer.dart';
 import 'analytics_service.dart';
@@ -7,10 +8,10 @@ class VolunteeringService {
   final String collection = 'volunteering';
   final String userCollection = 'users';
 
-  Volunteer loggedUser;
   AnalyticsService analyticsService;
+  UserService userService;
 
-  VolunteeringService(this.loggedUser, this.analyticsService);
+  VolunteeringService(this.analyticsService, this.userService);
 
   Future<List<Volunteering>> getVolunteerings(
       String? textSearch, GeoPoint? userPosition) async {
@@ -71,7 +72,11 @@ class VolunteeringService {
       return;
     }
 
-    if (loggedUser.volunteering != null || !loggedUser.hasCompletedProfile) {
+    Volunteer? loggedUser = await userService.getCurrentUser();
+
+    if (loggedUser == null ||
+        loggedUser.volunteering != null ||
+        !loggedUser.hasCompletedProfile) {
       return;
     }
 
@@ -90,7 +95,10 @@ class VolunteeringService {
       return;
     }
 
-    if (loggedUser.volunteering == null ||
+    Volunteer? loggedUser = await userService.getCurrentUser();
+
+    if (loggedUser == null ||
+        loggedUser.volunteering == null ||
         loggedUser.volunteering != volunteeringId) {
       return;
     }
