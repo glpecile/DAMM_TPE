@@ -1,5 +1,7 @@
+import 'package:SerManos/helpers/state_logger.dart';
 import 'package:SerManos/pages/router.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:go_router/go_router.dart';
@@ -11,7 +13,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const ProviderScope(child: SerManosApp()));
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  runApp(const ProviderScope(observers: [StateLogger()], child: SerManosApp()));
 }
 
 class SerManosApp extends StatefulWidget {
