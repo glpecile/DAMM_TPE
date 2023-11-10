@@ -9,6 +9,9 @@ import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
+  static String name = 'home';
+  static String path = '/$name';
+
   const Home({super.key});
 
   @override
@@ -20,6 +23,27 @@ class Home extends StatelessWidget {
           appBar: Header(),
           body: SerManosGrid(
               child: TabBarView(
+            children: [
+              Column(children: [
+                SearchInput(),
+                SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: 16, bottom: 24, top: 24, right: 16),
+                    child: Text(
+                      'Voluntariados',
+                      style: SerManosTypography.headline_01(),
+                    ),
+                  ),
+                ),
+                // CardVolunteers(),
+              ]),
+              ProfileDataForm(),
+              Column(
                 children: [
                   Column(children: [
                     SearchInput(),
@@ -52,8 +76,11 @@ class Home extends StatelessWidget {
                       // CardVolunteers()
                     ],
                   ),
+                  // CardVolunteers()
                 ],
-              ))),
+              ),
+            ],
+          ))),
     );
   }
 }
