@@ -11,8 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
 class SerManosPhotoInput extends StatefulWidget {
-  const SerManosPhotoInput({Key? key, this.image, required this.onSaved})
-      : super(key: key);
+  SerManosPhotoInput({super.key, this.image, required this.onSaved});
 
   final String? image;
   final Function(File) onSaved;

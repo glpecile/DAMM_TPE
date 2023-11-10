@@ -9,8 +9,7 @@ class CardInput extends StatelessWidget {
 
   final Function(Gender?) onPressed;
 
-  const CardInput({Key? key, required this.title, required this.onPressed})
-      : super(key: key);
+  const CardInput({super.key, required this.title, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

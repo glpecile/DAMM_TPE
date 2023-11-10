@@ -6,12 +6,11 @@ import 'package:flutter/material.dart';
 
 class LogInForm extends StatefulWidget {
   const LogInForm({
-    Key? key,
-    // TODO: make required
-    this.onValidationChanged,
-    this.logInData,
-    this.formKey,
-  }) : super(key: key);
+    super.key,
+    required this.onValidationChanged,
+    required this.logInData,
+    required this.formKey,
+  });
 
   // TODO: remove ? and pass correct value
   final Function(bool)? onValidationChanged;

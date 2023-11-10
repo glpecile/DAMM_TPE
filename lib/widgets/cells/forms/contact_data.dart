@@ -7,12 +7,12 @@ import 'package:flutter/cupertino.dart';
 
 class ContactDataForm extends StatefulWidget {
   const ContactDataForm({
-    Key? key,
+    super.key,
     this.contactData,
     // TODO: make required
-    this.onValidationChanged,
-    this.formKey,
-  }) : super(key: key);
+    required this.onValidationChanged,
+    required this.formKey,
+  });
 
   // TODO: remove ? and pass correct value
   final ContactData? contactData;

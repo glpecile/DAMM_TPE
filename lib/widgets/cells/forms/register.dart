@@ -8,9 +8,9 @@ class RegisterForm extends StatefulWidget {
   const RegisterForm({
     super.key,
     // TODO: make required
-    this.onValidationChanged,
-    this.signUpInfo,
-    this.formKey,
+    required this.onValidationChanged,
+    required this.signUpInfo,
+    required this.formKey,
   });
 
   // TODO: remove ? and pass correct value

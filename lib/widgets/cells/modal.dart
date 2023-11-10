@@ -7,7 +7,9 @@ import '../tokens/colors.dart';
 import '../tokens/typography.dart';
 
 class Modal extends StatelessWidget{
-  const Modal({super.key});
+  const Modal({super.key, this.title});
+
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +38,9 @@ class Modal extends StatelessWidget{
                               children: <Widget>[
                                 const Text("Te estas por postular a", style: SerManosTypography.subtitle_01(color: SerManosColors.neutral_100),),
                                 const SizedBox(height: 5),
-                                const Padding(
-                                    padding: EdgeInsets.only(left:0, bottom: 8, right: 0, top:0),
-                                    child: Text('Un Techo para mi País', style: SerManosTypography.headline_02(color: SerManosColors.neutral_100))),
+                                Padding(
+                                    padding: const EdgeInsets.only(left:0, bottom: 8, right: 0, top:0),
+                                    child: Text(title!, style: const SerManosTypography.headline_02(color: SerManosColors.neutral_100))),
                                 Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children:[

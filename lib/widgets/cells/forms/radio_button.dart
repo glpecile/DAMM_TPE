@@ -36,7 +36,7 @@ class RadioGenderState extends State<GenderRadio> {
                               setState(() {
                                 _gender = gender;
                               });
-                              widget.onPressed!(gender);
+                              widget.onPressed(gender)!;
                             },
                           )),
                       const SizedBox(
@@ -46,7 +46,6 @@ class RadioGenderState extends State<GenderRadio> {
                     ],
                   ),
                 ))
-            .toList()
       ],
     );
   }

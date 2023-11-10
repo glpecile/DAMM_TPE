@@ -4,7 +4,6 @@ import 'package:SerManos/helpers/gender.dart';
 
 class ProfileData {
   String? dateOfBirth;
-  // FIXME: gender or just string?
   Gender? gender;
   String? imageUrl;
   File? imageFile;

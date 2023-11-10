@@ -1,81 +1,103 @@
 import 'package:SerManos/widgets/atoms/icons.dart';
+import 'package:SerManos/widgets/molecules/buttons/icon_btn.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/shadows.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 
 class CardVolunteers extends StatelessWidget {
-  const CardVolunteers({super.key});
+  final String imageUrl;
+  final String title;
+  final String description;
+  bool isFavorite = false;
+  final int currentVacant;
+  final void Function()? onPressedFav;
+  final void Function()? onPressedLocation;
+
+  CardVolunteers({super.key,
+    required this.imageUrl,
+    required this.title,
+    required this.description,
+    required this.isFavorite,
+    required this.currentVacant,
+    required this.onPressedFav,
+    required this.onPressedLocation,});
 
   @override
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      width: 328,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(2),
-        color: SerManosColors.neutral_0,
-        boxShadow: SerManosShadows.shadow_2,
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(2),
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/images/voluntario.jpg',
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          width: 328,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(2),
+            color: SerManosColors.neutral_0,
+            boxShadow: SerManosShadows.shadow_2,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(2),
+            child: Column(
+              children: [
+                Image.network(
+                  imageUrl,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text("ACCIÓN SOCIAL",
-                          style: SerManosTypography.overline()),
-                      Text(
-                        "Un Techo para mi País",
-                        style: SerManosTypography.subtitle_01(
-                            color: SerManosColors.neutral_100),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("ACCIÓN SOCIAL",
+                              style: SerManosTypography.overline()),
+                          Text(
+                            title,
+                            style: const SerManosTypography.subtitle_01(
+                                color: SerManosColors.neutral_100),
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          VacancyIcons(currentVacant: currentVacant),
+                        ],
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      VacancyIcons(),
+                      gIcons(isFavorite: isFavorite, onPressedFavorite: onPressedFav, onPressedLocation: onPressedLocation)
                     ],
                   ),
-                  gIcons()
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }
 
 class gIcons extends StatelessWidget {
-  const gIcons({super.key});
+  bool isFavorite;
+  final void Function()? onPressedFavorite;
+  final void Function()? onPressedLocation;
+
+  gIcons({super.key, required this.isFavorite, required this.onPressedFavorite, required this.onPressedLocation});
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: <Widget>[
-        Icon(
-          SerManosIcons.likeOutlined,
+        SerManosIconButton(
+          icon: isFavorite ? SerManosIcons.like : SerManosIcons.likeOutlined,
           color: SerManosColors.primary_100,
+          onPressed: onPressedFavorite,
           size: 24,
         ),
-        SizedBox(
+        const SizedBox(
           width: 16,
         ),
-        Icon(
-          SerManosIcons.location,
+        SerManosIconButton(
+          icon: SerManosIcons.locationSharp,
           color: SerManosColors.primary_100,
+          onPressed: onPressedLocation,
           size: 24,
         ),
       ],
@@ -84,7 +106,9 @@ class gIcons extends StatelessWidget {
 }
 
 class Vacancy extends StatelessWidget {
-  const Vacancy({super.key});
+  final String currentVacant;
+
+  const Vacancy({super.key, required this.currentVacant});
 
   @override
   Widget build(BuildContext context) {
@@ -94,20 +118,20 @@ class Vacancy extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
           color: SerManosColors.secondary_25,
         ),
-        child: const Row(
+        child: Row(
           children: [
-            Text(
+            const Text(
               "Vacantes: ",
               style:
-                  SerManosTypography.body_02(color: SerManosColors.neutral_100),
+              SerManosTypography.body_02(color: SerManosColors.neutral_100),
             ),
-            Icon(
+            const Icon(
               Icons.person_rounded,
               color: SerManosColors.secondary_200,
               size: 20,
             ),
-            Text("10",
-                style: SerManosTypography.subtitle_01(
+            Text(currentVacant,
+                style: const SerManosTypography.subtitle_01(
                     color: SerManosColors.secondary_200)),
           ],
         ));
@@ -115,14 +139,16 @@ class Vacancy extends StatelessWidget {
 }
 
 class VacancyIcons extends StatelessWidget {
-  const VacancyIcons({super.key});
+  final int currentVacant;
+
+  const VacancyIcons({super.key, required this.currentVacant});
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Vacancy(),
+          Vacancy(currentVacant: '$currentVacant'),
         ]);
   }
 }

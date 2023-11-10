@@ -16,7 +16,6 @@ class ProfileDataForm extends StatefulWidget {
 
   const ProfileDataForm({
     super.key,
-    // TODO add required
     this.profileData,
     this.onValidationChanged,
     this.formKey,

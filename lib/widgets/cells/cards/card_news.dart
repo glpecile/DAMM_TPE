@@ -12,12 +12,12 @@ class CardNews extends StatelessWidget {
   final String? imageUrl;
 
   const CardNews({
-    Key? key,
+    super.key,
     required this.overline,
     required this.title,
     required this.description,
     this.imageUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,8 @@ class CardNews extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Image.asset(
-                'assets/images/donante.jpg',
+              Image.network(
+                imageUrl!,
                 width: 118,
                 fit: BoxFit.cover,
               ),
@@ -65,7 +65,7 @@ class CardNews extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 8),
+                      padding: const EdgeInsets.only(right: 8),
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: ButtonCTA(
