@@ -13,15 +13,15 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return const DefaultTabController(
       length: 3,
       child: Scaffold(
           backgroundColor: SerManosColors.secondary_10,
-          appBar: const Header(),
+          appBar: Header(),
           body: SerManosGrid(
               child: TabBarView(
                 children: [
-                  const Column(children: [
+                  Column(children: [
                     SearchInput(),
                     SizedBox(
                       height: 10,
@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
                     ),
                     // CardVolunteers(),
                   ]),
-                  const ProfileDataForm(),
+                  ProfileDataForm(),
                   Column(
                     children: [
                       CardNews(
@@ -46,7 +46,7 @@ class Home extends StatelessWidget {
                           title: "Ser donante de sangre voluntario",
                           description:
                           "Desde el Hospital Centenario recalcan la importancia de la donación voluntaria de Sangre"),
-                      const SizedBox(
+                      SizedBox(
                         height: 10,
                       ),
                       // CardVolunteers()
