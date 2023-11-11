@@ -6,7 +6,7 @@ class ButtonCTA extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final Color foregroundColor;
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   const ButtonCTA({
     super.key,
@@ -14,7 +14,7 @@ class ButtonCTA extends StatelessWidget {
     required this.text,
     required this.onPressed,
     required this.foregroundColor,
-    this.backgroundColor = Colors.transparent,
+    this.backgroundColor,
   });
 
   @override
@@ -22,10 +22,14 @@ class ButtonCTA extends StatelessWidget {
     return TextButton(
       style: TextButton.styleFrom(
           foregroundColor: foregroundColor,
-          backgroundColor: backgroundColor,),
+          backgroundColor: backgroundColor,
+        shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4), // <-- Radius
+    ),
+          ),
       onPressed: onPressed,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         child: Text(
           text,
           style: SerManosTypography.button(color: btnColor)
@@ -33,4 +37,5 @@ class ButtonCTA extends StatelessWidget {
       ),
     );
   }
+
 }

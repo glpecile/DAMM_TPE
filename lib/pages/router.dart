@@ -14,32 +14,33 @@ class SerManosRouter {
   ];
 
   final GoRouter router = GoRouter(
-    routes: [
-      GoRoute(path: '/', redirect: (context, state) => '/home'),
-      GoRoute(
-        name: 'start',
-        path: '/start',
-        builder: (context, state) => const Start(),
-        routes: [
-          GoRoute(
-            name: 'register',
-            path: 'register',
-            builder: (context, state) => const Register(),
-          ),
-          GoRoute(
-            name: 'login',
-            path: 'login',
-            builder: (context, state) => const Login(),
-          ),
-        ],
-      ),
-      GoRoute(
-        name: 'home',
-        path: '/home',
-        builder: (context, state) => const Home(),
-      )
-    ],
-    errorBuilder: (context, state) => Text('Error: ${state.error}'),
-    redirect: (context, state) => '/home',
-  );
+      initialLocation: '/start/register',
+      routes: <RouteBase>[
+        GoRoute(path: '/', redirect: (context, state) => '/home'),
+        GoRoute(
+          name: 'start',
+          path: '/start',
+          builder: (context, state) => const Start(),
+          routes: <RouteBase>[
+            GoRoute(
+              name: Register.name,
+              path: Register.path,
+              builder: (context, state) => const Register(),
+            ),
+            GoRoute(
+              name: Login.name,
+              path: Login.path,
+              builder: (context, state) => const Login(),
+            ),
+          ],
+        ),
+        GoRoute(
+          name: Home.name,
+          path: Home.path,
+          builder: (context, state) => const Home(),
+        )
+      ],
+      errorBuilder: (context, state) => Text('Error: ${state.error}'),
+      // TODO: add auth redirect
+      debugLogDiagnostics: true);
 }

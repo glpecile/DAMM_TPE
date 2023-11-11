@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 class LogInForm extends StatefulWidget {
   const LogInForm({
     super.key,
-    required this.onValidationChanged,
-    required this.logInData,
-    required this.formKey,
+    this.onValidationChanged,
+    this.logInData,
+    this.formKey,
   });
 
   // TODO: remove ? and pass correct value

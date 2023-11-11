@@ -28,6 +28,9 @@ class ShortButton extends StatelessWidget {
           foregroundColor: foregroundColor,
           backgroundColor: backgroundColor,
           padding: btnSize(size),
+          shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4), // <-- Radius
+    )
         ),
         onPressed: onPressed,
         child: Row(
