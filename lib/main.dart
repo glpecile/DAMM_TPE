@@ -37,9 +37,7 @@ class _SerManosHomePageState extends State<SerManosApp> {
         useMaterial3: true,
         fontFamily: 'Roboto',
       ),
-      routerDelegate: _router.routerDelegate,
-      routeInformationParser: _router.routeInformationParser,
-      routeInformationProvider: _router.routeInformationProvider,
+      routerConfig: _router,
     );
   }
 }
