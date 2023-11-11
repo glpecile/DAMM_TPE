@@ -8,14 +8,19 @@ class VolunteeringService {
   final String collection = 'volunteering';
   final String userCollection = 'users';
 
-  AnalyticsService analyticsService;
-  UserService userService;
+  FirebaseFirestore? _firestore;
+  AnalyticsService? analyticsService;
+  UserService? userService;
 
-  VolunteeringService(this.analyticsService, this.userService);
+  VolunteeringService([this._firestore, this.analyticsService, this.userService]) {
+    _firestore ??= FirebaseFirestore.instance;
+    analyticsService ??= AnalyticsService();
+    userService ??= UserService(_firestore, analyticsService);
+  }
 
   Future<List<Volunteering>> getVolunteerings(
       String? textSearch, GeoPoint? userPosition) async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+    QuerySnapshot querySnapshot = await _firestore!
         .collection(collection)
         .orderBy('createdAt', descending: true)
         .get();
@@ -53,7 +58,7 @@ class VolunteeringService {
   }
 
   Future<Volunteering?> getVolunteeringById(String volunteeringId) async {
-    var data = await FirebaseFirestore.instance
+    var data = await _firestore!
         .collection(collection)
         .doc(volunteeringId)
         .get();
@@ -72,7 +77,7 @@ class VolunteeringService {
       return;
     }
 
-    Volunteer? loggedUser = await userService.getCurrentUser();
+    Volunteer? loggedUser = await userService!.getCurrentUser();
 
     if (loggedUser == null ||
         loggedUser.volunteering != null ||
@@ -80,8 +85,8 @@ class VolunteeringService {
       return;
     }
 
-    analyticsService.applyToVolunteeringEvent(volunteeringId, loggedUser.id);
-    await FirebaseFirestore.instance
+    analyticsService!.applyToVolunteeringEvent(volunteeringId, loggedUser.id);
+    await _firestore!
         .collection(userCollection)
         .doc(loggedUser.id)
         .update(
@@ -95,7 +100,7 @@ class VolunteeringService {
       return;
     }
 
-    Volunteer? loggedUser = await userService.getCurrentUser();
+    Volunteer? loggedUser = await userService!.getCurrentUser();
 
     if (loggedUser == null ||
         loggedUser.volunteering == null ||
@@ -103,15 +108,15 @@ class VolunteeringService {
       return;
     }
 
-    analyticsService.leaveVolunteeringEvent(volunteeringId, loggedUser.id);
-    await FirebaseFirestore.instance
+    analyticsService!.leaveVolunteeringEvent(volunteeringId, loggedUser.id);
+    await _firestore!
         .collection(userCollection)
         .doc(loggedUser.id)
         .update({'volunteering': null, 'isVolunteeringApproved': false});
 
     volunteering.currentVacant -= 1;
 
-    await FirebaseFirestore.instance
+    await _firestore!
         .collection(collection)
         .doc(volunteering.id)
         .update({'currentVacant': volunteering.currentVacant});

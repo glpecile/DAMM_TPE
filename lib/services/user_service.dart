@@ -1,6 +1,7 @@
 import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/login.dart';
 import 'package:SerManos/models/profile.dart';
+import 'package:SerManos/models/register.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/volunteer.dart';
@@ -10,9 +11,15 @@ import 'image_service.dart';
 class UserService {
   final String collection = 'users';
 
-  AnalyticsService analyticsService;
+  FirebaseFirestore? _firestore;
+  AnalyticsService? analyticsService;
+  ImageService? imageService;
 
-  UserService(this.analyticsService);
+  UserService([this._firestore, this.analyticsService]) {
+    _firestore ??= FirebaseFirestore.instance;
+    analyticsService ??= AnalyticsService();
+    imageService ??= ImageService();
+  }
 
   Future logIn(LogInData data) async {
     if (data.email == null || data.password == null) {
@@ -22,7 +29,7 @@ class UserService {
     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(
             email: data.email!, password: data.password!);
-    analyticsService.loginEvent(user.user!.uid);
+    analyticsService!.loginEvent(user.user!.uid);
     return user;
   }
 
@@ -31,16 +38,16 @@ class UserService {
   }
 
   Future signUp(
-      String name, String lastname, String email, String password) async {
+      RegisterData registerData) async {
     UserCredential user = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password);
+        .createUserWithEmailAndPassword(email: registerData.email!, password: registerData.password!);
     String uid = user.user!.uid;
-    await FirebaseFirestore.instance.collection(collection).doc(uid).set({
-      'email': email,
-      'secondaryEmail': email, // TODO: CHECK
-      'name': name,
-      'lastname': lastname,
-      'password': password,
+    await _firestore!.collection(collection).doc(uid).set({
+      'email': registerData.email!,
+      'secondaryEmail': registerData.email!, // TODO: CHECK
+      'name': registerData.firstName!,
+      'lastname': registerData.lastName!,
+      'password': registerData.password!,
       'hasCompletedProfile': false,
       'isVolunteeringApproved': false
     });
@@ -56,7 +63,7 @@ class UserService {
   }
 
   Future<Volunteer?> getUserById(String userId) async {
-    var user = await FirebaseFirestore.instance
+    var user = await _firestore!
         .collection(collection)
         .doc(userId)
         .get();
@@ -74,7 +81,7 @@ class UserService {
       return;
     }
     volunteer.favorites.add(volunteeringId);
-    await FirebaseFirestore.instance
+    await _firestore!
         .collection(collection)
         .doc(volunteer.id)
         .update({'favorites': volunteer.favorites});
@@ -86,7 +93,7 @@ class UserService {
       return;
     }
     volunteer.favorites.remove(volunteeringId);
-    await FirebaseFirestore.instance
+    await _firestore!
         .collection(collection)
         .doc(volunteer.id)
         .update({'favorites': volunteer.favorites});
@@ -109,11 +116,10 @@ class UserService {
     volunteer.editVolunteer(contactData, profileData);
     final uid = volunteer.id;
     if (profileData.imageFile != null) {
-      String? imageUrl =
-          await ImageService().uploadUserImage(uid, profileData.imageFile!);
+      String? imageUrl = await imageService!.uploadUserImage(uid, profileData.imageFile!);
       volunteer.imageUrl = imageUrl;
     }
-    await FirebaseFirestore.instance
+    await _firestore!
         .collection(collection)
         .doc(uid)
         .update(volunteer.toJson());

@@ -5,8 +5,14 @@ import '../models/news.dart';
 class NewsService {
   final String collection = 'news';
 
+  FirebaseFirestore? _firestore;
+
+  NewsService([this._firestore]) {
+    _firestore ??= FirebaseFirestore.instance;
+  }
+
   Future<List<News>> getNews() async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+    QuerySnapshot querySnapshot = await _firestore!
         .collection(collection)
         .orderBy('createdAt', descending: true)
         .get();
@@ -21,7 +27,7 @@ class NewsService {
   }
 
   Future<News?> getNewsById(String newsId) async {
-    var data = await FirebaseFirestore.instance
+    var data = await _firestore!
         .collection(collection)
         .doc(newsId)
         .get();
