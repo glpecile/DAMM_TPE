@@ -20,22 +20,23 @@ class Login extends StatelessWidget {
               Image.asset('assets/images/logo.png',
                 width: 150,
                 height: 150,),
-              SizedBox(height: 40,),
+              const SizedBox(height: 40,),
               const LogInForm(),
-              const SizedBox(height: 190,),
+              const SizedBox(height: 180,),
               Row(
                   children: [
                 Expanded(
                     child: ButtonCTA(
                         btnColor: SerManosColors.neutral_0,
                         text: "Iniciar Sesión", 
-                        onPressed: (){},
+                        onPressed: () => context.go('/start'),
                         foregroundColor: SerManosColors.neutral_25,
                         backgroundColor: SerManosColors.primary_100,
                         )
                 ),
               ]
               ),
+              const SizedBox(height: 10,),
               Row(
                 children: [
                 Expanded(child: ButtonCTA(
