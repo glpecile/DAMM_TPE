@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/login.dart';
 import 'package:SerManos/models/profile.dart';
@@ -37,17 +39,21 @@ class UserService {
     await FirebaseAuth.instance.signOut();
   }
 
-  Future signUp(
-      RegisterData registerData) async {
+  Future signUp(RegisterData registerData) async {
+    log(registerData.firstName);
+    log(registerData.lastName);
+    log(registerData.email);
+    log(registerData.password);
     UserCredential user = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: registerData.email!, password: registerData.password!);
+        .createUserWithEmailAndPassword(
+            email: registerData.email, password: registerData.password);
     String uid = user.user!.uid;
     await _firestore!.collection(collection).doc(uid).set({
-      'email': registerData.email!,
-      'secondaryEmail': registerData.email!, // TODO: CHECK
-      'name': registerData.firstName!,
-      'lastname': registerData.lastName!,
-      'password': registerData.password!,
+      'email': registerData.email,
+      'secondaryEmail': registerData.email, // TODO: CHECK
+      'name': registerData.firstName,
+      'lastname': registerData.lastName,
+      'password': registerData.password,
       'hasCompletedProfile': false,
       'isVolunteeringApproved': false
     });
@@ -63,10 +69,7 @@ class UserService {
   }
 
   Future<Volunteer?> getUserById(String userId) async {
-    var user = await _firestore!
-        .collection(collection)
-        .doc(userId)
-        .get();
+    var user = await _firestore!.collection(collection).doc(userId).get();
     if (user.exists) {
       var userData = user.data() as Map<String, dynamic>;
       userData['id'] = userId;
@@ -116,7 +119,8 @@ class UserService {
     volunteer.editVolunteer(contactData, profileData);
     final uid = volunteer.id;
     if (profileData.imageFile != null) {
-      String? imageUrl = await imageService!.uploadUserImage(uid, profileData.imageFile!);
+      String? imageUrl =
+          await imageService!.uploadUserImage(uid, profileData.imageFile!);
       volunteer.imageUrl = imageUrl;
     }
     await _firestore!

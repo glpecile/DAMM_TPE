@@ -1,6 +1,7 @@
 import 'package:SerManos/models/register.dart';
 import 'package:SerManos/pages/routes/home.dart';
 import 'package:SerManos/pages/routes/login.dart';
+import 'package:SerManos/providers/auth_provider.dart';
 import 'package:SerManos/widgets/cells/forms/register.dart';
 import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
@@ -8,6 +9,7 @@ import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:logger/logger.dart';
 
 class Register extends ConsumerStatefulWidget {
   static String name = 'register';
@@ -20,7 +22,11 @@ class Register extends ConsumerStatefulWidget {
 }
 
 class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
-  RegisterData registerData = RegisterData();
+  var logger = Logger();
+
+  bool _isFormValid = false;
+  RegisterData registerData =
+      RegisterData(email: '', password: '', lastName: '', firstName: '');
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -30,6 +36,8 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var authController = ref.read(authControllerProvider.notifier);
+
     return Scaffold(
       backgroundColor: SerManosColors.neutral_0,
       body: SerManosGrid(
@@ -45,9 +53,10 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                 RegisterForm(
                   registerInfo: registerData,
                   formKey: formKey,
-                  // TODO: add api call with riverpod?
-                  onValidationChanged: (bool) {
-                    return bool;
+                  onValidationChanged: (isValid) {
+                    setState(() {
+                      _isFormValid = isValid;
+                    });
                   },
                 ),
               ],
@@ -57,8 +66,9 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                 Row(children: [
                   Expanded(
                     child: ButtonCTA(
-                        // TODO: add api call with riverpod
-                        onPressed: () => context.goNamed(Home.name),
+                        onPressed: () => {
+                              authController.register(registerData)
+                            },
                         btnColor: SerManosColors.secondary_10,
                         text: 'Registrarse',
                         foregroundColor: SerManosColors.primary_10,

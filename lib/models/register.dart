@@ -1,13 +1,13 @@
 class RegisterData {
-  String? firstName;
-  String? lastName;
-  String? email;
-  String? password;
+  String firstName;
+  String lastName;
+  String email;
+  String password;
 
   RegisterData({
-    this.firstName,
-    this.lastName,
-    this.email,
-    this.password,
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.password,
   });
 }

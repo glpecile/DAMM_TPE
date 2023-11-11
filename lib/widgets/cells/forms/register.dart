@@ -1,5 +1,6 @@
 import 'package:SerManos/helpers/validation.dart';
 import 'package:SerManos/models/register.dart';
+import 'package:SerManos/widgets/molecules/inputs/password_input.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../molecules/inputs/text_input.dart';
@@ -68,8 +69,10 @@ class _RegisterFormState extends State<RegisterForm> {
             lastNameController, 'apellido'),
         buildTextInput('Email', 'Ej: juanbarcena@mail.com', emailValidator,
             emailController),
-        buildTextInput('Contraseña', 'Ej: ABCD1234', passwordValidator,
-            passwordController),
+        SerManosPasswordInput(
+            label: 'Contraseña',
+            validator: passwordValidator,
+            controller: passwordController),
       ],
     ));
   }
