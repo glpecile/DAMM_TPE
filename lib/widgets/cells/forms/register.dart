@@ -5,18 +5,16 @@ import 'package:flutter/cupertino.dart';
 import '../../molecules/inputs/text_input.dart';
 
 class RegisterForm extends StatefulWidget {
+  final Function(bool) onValidationChanged;
+  final RegisterData? registerInfo;
+  final GlobalKey<FormState>? formKey;
+
   const RegisterForm({
     super.key,
-    // TODO: make required
     required this.onValidationChanged,
-    required this.signUpInfo,
+    required this.registerInfo,
     required this.formKey,
   });
-
-  // TODO: remove ? and pass correct value
-  final Function(bool)? onValidationChanged;
-  final RegisterData? signUpInfo;
-  final GlobalKey<FormState>? formKey;
 
   @override
   State<RegisterForm> createState() => _RegisterFormState();
@@ -38,8 +36,7 @@ class _RegisterFormState extends State<RegisterForm> {
           nameValidator(lastNameController.text, 'apellido') == null;
     });
     if (_isFormValid != aux) {
-      // TODO: remove ! once onValidationChanged is required
-      widget.onValidationChanged!(_isFormValid);
+      widget.onValidationChanged(_isFormValid);
     }
   }
 

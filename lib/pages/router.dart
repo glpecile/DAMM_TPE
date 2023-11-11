@@ -22,20 +22,20 @@ class SerManosRouter {
         builder: (context, state) => const Start(),
         routes: [
           GoRoute(
-            name: 'register',
-            path: 'register',
+            name: Register.name,
+            path: Register.path,
             builder: (context, state) => const Register(),
           ),
           GoRoute(
-            name: 'login',
-            path: 'login',
+            name: Login.name,
+            path: Login.path,
             builder: (context, state) => const Login(),
           ),
         ],
       ),
       GoRoute(
-        name: 'home',
-        path: '/home',
+        name: Home.name,
+        path: Home.path,
         builder: (context, state) => const Home(),
       )
     ],
