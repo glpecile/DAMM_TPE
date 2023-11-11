@@ -16,33 +16,33 @@ class SerManosRouter {
   ];
 
   final GoRouter router = GoRouter(
-    navigatorKey: _rootNavigatorKey,
-    routes: <RouteBase>[
-      GoRoute(path: '/', redirect: (context, state) => '/home'),
-      GoRoute(
-        name: 'start',
-        path: '/start',
-        builder: (context, state) => const Start(),
-        routes: <RouteBase>[
-          GoRoute(
-            name: Register.name,
-            path: Register.path,
-            builder: (context, state) => const Register(),
-          ),
-          GoRoute(
-            name: Login.name,
-            path: Login.path,
-            builder: (context, state) => const Login(),
-          ),
-        ],
-      ),
-      GoRoute(
-        name: Home.name,
-        path: Home.path,
-        builder: (context, state) => const Home(),
-      )
-    ],
-    errorBuilder: (context, state) => Text('Error: ${state.error}'),
-    redirect: (context, state) => '/start/login',
-  );
+      navigatorKey: _rootNavigatorKey,
+      routes: <RouteBase>[
+        GoRoute(path: '/', redirect: (context, state) => '/home'),
+        GoRoute(
+          name: 'start',
+          path: '/start',
+          builder: (context, state) => const Start(),
+          routes: <RouteBase>[
+            GoRoute(
+              name: Register.name,
+              path: Register.path,
+              builder: (context, state) => const Register(),
+            ),
+            GoRoute(
+              name: Login.name,
+              path: Login.path,
+              builder: (context, state) => const Login(),
+            ),
+          ],
+        ),
+        GoRoute(
+          name: Home.name,
+          path: Home.path,
+          builder: (context, state) => const Home(),
+        )
+      ],
+      errorBuilder: (context, state) => Text('Error: ${state.error}'),
+      redirect: (context, state) => '/start/register',
+      debugLogDiagnostics: true);
 }
