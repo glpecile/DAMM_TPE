@@ -43,6 +43,6 @@ class SerManosRouter {
       )
     ],
     errorBuilder: (context, state) => Text('Error: ${state.error}'),
-    redirect: (context, state) => '/home',
+    redirect: (context, state) => '/start/login',
   );
 }
