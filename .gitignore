@@ -56,10 +56,11 @@ doc/api/
 # VSCode
 .vscode/
 
+# misc
 ios/Podfile.lock
-
 custom_lint.log
-
 .metadata
-
 damm.iml
+
+# generated files
+*.g.dart
