@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 
 class Login extends StatelessWidget {
   static String name = 'login';
-  static String path = name;
+  static String path = '$name';
 
   const Login({super.key});
 

@@ -1,4 +1,6 @@
 import 'package:SerManos/models/register.dart';
+import 'package:SerManos/pages/routes/home.dart';
+import 'package:SerManos/pages/routes/login.dart';
 import 'package:SerManos/widgets/cells/forms/register.dart';
 import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
@@ -9,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class Register extends ConsumerStatefulWidget {
   static String name = 'register';
-  static String path = name;
+  static String path = '$name';
 
   const Register({super.key});
 
@@ -55,7 +57,8 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                 Row(children: [
                   Expanded(
                     child: ButtonCTA(
-                        onPressed: () => {},
+                        // TODO: add api call with riverpod
+                        onPressed: () => context.goNamed(Home.name),
                         btnColor: SerManosColors.secondary_10,
                         text: 'Registrarse',
                         foregroundColor: SerManosColors.primary_10,
@@ -67,7 +70,7 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                   children: [
                     Expanded(
                         child: ButtonCTA(
-                      onPressed: () => context.go('/start/login'),
+                      onPressed: () => context.goNamed(Login.name),
                       text: 'Ya tengo cuenta',
                       btnColor: SerManosColors.primary_100,
                       foregroundColor: SerManosColors.primary_100,
