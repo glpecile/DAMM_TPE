@@ -24,8 +24,7 @@ class AuthController extends _$AuthController {
 
   Future<void> register(RegisterData data) async {
     try {
-      var user = await _userService.signUp(
-          data.firstName, data.lastName, data.email, data.password);
+      var user = await _userService.signUp(data);
     } on FirebaseAuthException catch (error) {
       throw error.code;
     }
