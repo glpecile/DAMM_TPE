@@ -53,19 +53,24 @@ class _LogInFormState extends State<LogInForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: widget.formKey,
       child: Column(
         children: [
           SerManosTextInput(
             label: 'Email',
             validator: emailValidator,
             controller: emailController,
-            onSaved: (String? value) {},
+            onSaved: (String? value) {
+              widget.logInData!.email = value ?? '';
+            },
           ),
           const SizedBox(height: 24),
           SerManosPasswordInput(
             label: 'Contraseña',
             controller: passwordController,
-            onSaved: (String? value) {},
+            onSaved: (String? value) {
+              widget.logInData!.password = value ?? '';
+            },
           )
         ],
       ),

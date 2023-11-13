@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:SerManos/models/login.dart';
 import 'package:SerManos/models/register.dart';
 import 'package:SerManos/models/volunteer.dart';
@@ -14,8 +16,13 @@ class AuthController extends _$AuthController {
   late SharedPreferences _sharedPreferences;
   static const _sharedPrefsKey = 'volunteerData';
 
-  Future<void> logIn(LogInData data) async {
-    var user = await _userService.logIn(data);
+  Future<void> logIn(LogInData data, void redirect) async {
+    try{
+      var user = await _userService.logIn(data);
+      state = user;
+    } finally{
+      redirect;
+    }
   }
 
   Future<void> logOut() async {
