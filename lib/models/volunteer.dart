@@ -1,6 +1,7 @@
 // TODO: pasar de enum a string
 import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/profile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../helpers/gender.dart';
 
@@ -41,9 +42,10 @@ class Volunteer {
         email: json['email'],
         name: json['name'],
         lastName: json['lastName'],
-        favorites: json['favorites'], //!= null ? List<String>.from(json['favorites']) : [],
+        favorites: json['favorites'],
+        //!= null ? List<String>.from(json['favorites']) : [],
         imageUrl: json['imageUrl'],
-        birthDate: DateTime.tryParse(json['bitrhDate']),
+        birthDate: (json['bitrhDate'] as Timestamp).toDate(),
         gender: json['gender'] != null ? Gender.values[json['gender']] : null,
         phone: json['phone'],
         secondaryEmail: json['secondaryEmail'],

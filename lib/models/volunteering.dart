@@ -44,7 +44,7 @@ class Volunteering {
         location: json['location'],
         address: json['address'],
         requirements: json['requirements'],
-        createdAt: DateTime.parse(json['createdAt']),
+        createdAt: (json['createdAt'] as Timestamp).toDate(),
         availableVacant: json['availableVacant'],
         currentVacant: json['currentVacant'],
         isFavorite: false,
