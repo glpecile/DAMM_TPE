@@ -30,7 +30,7 @@ class UserService {
     }
     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(
-            email: data.email!, password: data.password!);
+        email: data.email!, password: data.password!);
     analyticsService!.loginEvent(user.user!.uid);
     return user;
   }
@@ -40,13 +40,9 @@ class UserService {
   }
 
   Future signUp(RegisterData registerData) async {
-    log(registerData.firstName);
-    log(registerData.lastName);
-    log(registerData.email);
-    log(registerData.password);
     UserCredential user = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(
-            email: registerData.email, password: registerData.password);
+        email: registerData.email, password: registerData.password);
     String uid = user.user!.uid;
     await _firestore!.collection(collection).doc(uid).set({
       'email': registerData.email,
@@ -120,7 +116,7 @@ class UserService {
     final uid = volunteer.id;
     if (profileData.imageFile != null) {
       String? imageUrl =
-          await imageService!.uploadUserImage(uid, profileData.imageFile!);
+      await imageService!.uploadUserImage(uid, profileData.imageFile!);
       volunteer.imageUrl = imageUrl;
     }
     await _firestore!

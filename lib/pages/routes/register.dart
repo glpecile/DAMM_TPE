@@ -1,5 +1,3 @@
-import 'package:SerManos/models/register.dart';
-import 'package:SerManos/pages/routes/home.dart';
 import 'package:SerManos/pages/routes/login.dart';
 import 'package:SerManos/providers/auth_provider.dart';
 import 'package:SerManos/widgets/cells/forms/register.dart';
@@ -10,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
+import '../../models/register.dart';
 
 class Register extends ConsumerStatefulWidget {
   static String name = 'register';
@@ -25,8 +24,7 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
   var logger = Logger();
 
   bool _isFormValid = false;
-  RegisterData registerData =
-      RegisterData(email: '', password: '', lastName: '', firstName: '');
+  RegisterData registerData = RegisterData(firstName: "", lastName: "", email: "", password: "");
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -37,7 +35,6 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     var authController = ref.read(authControllerProvider.notifier);
-
     return Scaffold(
       backgroundColor: SerManosColors.neutral_0,
       body: SerManosGrid(
@@ -51,13 +48,13 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                     width: 150, height: 150, fit: BoxFit.contain),
                 const SizedBox(height: 16),
                 RegisterForm(
-                  registerInfo: registerData,
-                  formKey: formKey,
                   onValidationChanged: (isValid) {
                     setState(() {
                       _isFormValid = isValid;
                     });
                   },
+                  registerInfo: registerData,
+                  formKey: formKey,
                 ),
               ],
             ),
@@ -67,8 +64,14 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                   Expanded(
                     child: ButtonCTA(
                         onPressed: () => {
-                              authController.register(registerData)
-                            },
+                          if (formKey.currentState == null) {
+                            logger.w("_formkey.currentState is null!")
+                          } else if (formKey.currentState!.validate()) {
+                            logger.w("form input is valid"),
+                            formKey.currentState!.save(),
+                          },
+                          authController.register(registerData),
+                        },
                         btnColor: SerManosColors.secondary_10,
                         text: 'Registrarse',
                         foregroundColor: SerManosColors.primary_10,
@@ -80,12 +83,12 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                   children: [
                     Expanded(
                         child: ButtonCTA(
-                      onPressed: () => context.goNamed(Login.name),
-                      text: 'Ya tengo cuenta',
-                      btnColor: SerManosColors.primary_100,
-                      foregroundColor: SerManosColors.primary_100,
-                      backgroundColor: Colors.transparent,
-                    ))
+                          onPressed: () => context.goNamed(Login.name),
+                          text: 'Ya tengo cuenta',
+                          btnColor: SerManosColors.primary_100,
+                          foregroundColor: SerManosColors.primary_100,
+                          backgroundColor: Colors.transparent,
+                        ))
                   ],
                 ),
                 const SizedBox(height: 16),
