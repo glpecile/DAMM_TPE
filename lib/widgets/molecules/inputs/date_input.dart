@@ -19,6 +19,7 @@ class SerManosDateInput extends StatefulWidget {
   final String placeholder;
   final String label;
   final TextEditingController controller;
+
   // TODO: remove !
   final Function(String?)? validator;
   final Function(String?)? onSaved;
@@ -46,7 +47,7 @@ class _SerManosDateInputState extends State<SerManosDateInput> {
       validator: dateValidator,
       controller: widget.controller,
       inputFormatters: [maskFormatter],
-      onSaved: widget.onSaved,
+      onSaved: widget.onSaved!,
       helperText: 'DD/MM/YYYY',
       suffixIcon: IconButton(
         icon: const Icon(SerManosIcons.calendar,

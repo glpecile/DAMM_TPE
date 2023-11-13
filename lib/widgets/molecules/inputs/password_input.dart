@@ -7,11 +7,14 @@ import 'package:SerManos/widgets/atoms/icons.dart';
 
 // stateful widget
 class SerManosPasswordInput extends SerManosGenericInput {
-  const SerManosPasswordInput(
-      {super.key,
-      required super.label,
-      super.validator = passwordValidator,
-      required super.controller});
+  const SerManosPasswordInput({
+    super.key,
+    required super.label,
+    super.validator = passwordValidator,
+    required super.controller,
+    required super.onSaved,
+    super.placeholder,
+  });
 
   @override
   State<SerManosPasswordInput> createState() => _SerManosPasswordInputState();
@@ -29,6 +32,7 @@ class _SerManosPasswordInputState extends State<SerManosPasswordInput> {
   @override
   Widget build(BuildContext context) {
     return SerManosTextInput(
+        placeholder: widget.placeholder,
         controller: widget.controller,
         obscureText: !_isPasswordVisible,
         suffixIcon: IconButton(

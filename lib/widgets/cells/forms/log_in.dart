@@ -56,12 +56,17 @@ class _LogInFormState extends State<LogInForm> {
       child: Column(
         children: [
           SerManosTextInput(
-              label: 'Email',
-              validator: emailValidator,
-              controller: emailController),
+            label: 'Email',
+            validator: emailValidator,
+            controller: emailController,
+            onSaved: (String? value) {},
+          ),
           const SizedBox(height: 24),
           SerManosPasswordInput(
-              label: 'Contraseña', controller: passwordController)
+            label: 'Contraseña',
+            controller: passwordController,
+            onSaved: (String? value) {},
+          )
         ],
       ),
     );

@@ -16,7 +16,7 @@ abstract class SerManosGenericInput extends StatefulWidget {
     this.obscureText = false,
     this.helperText,
     this.inputFormatters,
-    this.onSaved,
+    required this.onSaved,
   }) : super(key: key);
 
   final String? placeholder;
@@ -27,7 +27,7 @@ abstract class SerManosGenericInput extends StatefulWidget {
   final bool obscureText;
   final String? helperText;
   final List<TextInputFormatter>? inputFormatters;
-  final Function(String?)? onSaved;
+  final Function(String?) onSaved;
 
   @override
   State<SerManosGenericInput> createState() => _SerManosGenericInputState();

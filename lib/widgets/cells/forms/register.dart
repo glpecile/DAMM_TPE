@@ -60,46 +60,50 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
+    const spaceY = 24.0;
     return Form(
+        key: widget.formKey,
         child: Column(
-      children: [
-        buildTextInput(
-            'Nombre', 'Ej: Juan', nameValidator, nameController, 'nombre'),
-        buildTextInput('Apellido', 'Ej: Barcena', nameValidator,
-            lastNameController, 'apellido'),
-        buildTextInput('Email', 'Ej: juanbarcena@mail.com', emailValidator,
-            emailController),
-        SerManosPasswordInput(
-            label: 'Contraseña',
-            validator: passwordValidator,
-            controller: passwordController),
-      ],
-    ));
+          children: [
+            SerManosTextInput(
+              label: 'Nombre',
+              placeholder: 'Ej: Juan',
+              validator: (value) => nameValidator('Nombre', value),
+              controller: nameController,
+              onSaved: (String? value) {
+                widget.registerInfo!.firstName = value ?? '';
+              },
+            ),
+            const SizedBox(height: spaceY),
+            SerManosTextInput(
+              label: 'Apellido',
+              placeholder: 'Ej: Barcena',
+              validator: (String? value) => nameValidator('Apellido', value),
+              controller: lastNameController,
+              onSaved: (String? value) {
+                widget.registerInfo!.lastName = value ?? '';
+              },
+            ),
+            const SizedBox(height: spaceY),
+            SerManosTextInput(
+              label: 'Email',
+              placeholder: 'juanbarcena@gmail.com',
+              validator: (String? value) => emailValidator(value),
+              controller: emailController,
+              onSaved: (String? value) {
+                widget.registerInfo!.email = value ?? '';
+              },
+            ),
+            const SizedBox(height: spaceY),
+            SerManosPasswordInput(
+              label: 'Contraseña',
+              validator: passwordValidator,
+              controller: passwordController,
+              onSaved: (String? value) {
+                widget.registerInfo!.password = value ?? '';
+              },
+            )
+          ],
+        ));
   }
-}
-
-Widget buildTextInput(
-  String label,
-  String placeholder,
-  Function validator,
-  TextEditingController controller, [
-  String? validationArgument,
-]) {
-  return Column(
-    children: [
-      SerManosTextInput(
-        label: label,
-        placeholder: placeholder,
-        validator: (value) {
-          if (validationArgument != null) {
-            validator(value, validationArgument);
-          } else {
-            validator(value);
-          }
-        },
-        controller: controller,
-      ),
-      const SizedBox(height: 24),
-    ],
-  );
 }

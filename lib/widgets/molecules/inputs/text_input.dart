@@ -13,7 +13,7 @@ class SerManosTextInput extends SerManosGenericInput {
     bool obscureText = false,
     String? helperText,
     List<TextInputFormatter>? inputFormatters,
-    Function(String?)? onSaved,
+    required Function(String?) onSaved,
   }) : super(
           key: key,
           placeholder: placeholder,
