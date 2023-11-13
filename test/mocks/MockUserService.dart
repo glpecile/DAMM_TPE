@@ -53,12 +53,12 @@ class MockUserService extends UserService {
   }
 
   @override
-  void addFavorite(String volunteeringId) async {
+  Future<void> addFavorite(String volunteeringId) async {
     volunteer.favorites.add(volunteeringId);
   }
 
   @override
-  void removeFavorite(String volunteeringId) async {
+  Future<void> removeFavorite(String volunteeringId) async {
     volunteer.favorites.remove(volunteeringId);
   }
 

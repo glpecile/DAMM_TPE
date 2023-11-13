@@ -1,3 +1,4 @@
+import 'package:SerManos/providers/favorites_provider.dart';
 import 'package:SerManos/providers/volunteering_provider.dart';
 import 'package:SerManos/widgets/cells/cards/card.dart';
 import 'package:SerManos/widgets/molecules/inputs/search_input.dart';
@@ -5,12 +6,18 @@ import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../models/volunteering.dart';
+
 class Volunteerings extends ConsumerWidget {
   const Volunteerings({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var volunteerings = ref.watch(volunteeringControllerProvider);
+    List<String> favorites = ref.watch(favoritesControllerProvider);
+    for (Volunteering volunteering in volunteerings) {
+      volunteering.isFavorite = favorites.contains(volunteering.id);
+    }
 
     return Scaffold(
       body: Column(children: [

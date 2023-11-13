@@ -78,7 +78,7 @@ class UserService {
     return null;
   }
 
-  void addFavorite(String volunteeringId) async {
+  Future<void> addFavorite(String volunteeringId) async {
     Volunteer? volunteer = await getCurrentUser();
     if (volunteer == null) {
       return;
@@ -90,7 +90,7 @@ class UserService {
         .update({'favorites': volunteer.favorites});
   }
 
-  void removeFavorite(String volunteeringId) async {
+  Future<void> removeFavorite(String volunteeringId) async {
     Volunteer? volunteer = await getCurrentUser();
     if (volunteer == null) {
       return;
