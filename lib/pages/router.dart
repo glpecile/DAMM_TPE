@@ -2,6 +2,7 @@ import 'package:SerManos/pages/routes/home.dart';
 import 'package:SerManos/pages/routes/login.dart';
 import 'package:SerManos/pages/routes/register.dart';
 import 'package:SerManos/pages/routes/start.dart';
+import 'package:SerManos/pages/routes/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,7 +17,7 @@ class SerManosRouter {
   ];
 
   final GoRouter router = GoRouter(
-      initialLocation: '/start/login',
+      initialLocation: '/welcome',
       routes: <RouteBase>[
         GoRoute(path: '/', redirect: (context, state) => '/home'),
         GoRoute(
@@ -47,6 +48,11 @@ class SerManosRouter {
               builder: (context, state) => EditProfile(),
             )
           ]
+        ),
+        GoRoute(
+            name: Welcome.name,
+            path: Welcome.path,
+            builder: (context, state) => const Welcome(),
         )
       ],
       errorBuilder: (context, state) => Text('Error: ${state.error}'),

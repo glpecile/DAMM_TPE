@@ -44,8 +44,6 @@ class Start extends StatelessWidget {
             ]
         ),
       ),
-
-
     );
   }
 }

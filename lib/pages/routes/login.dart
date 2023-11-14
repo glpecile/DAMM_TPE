@@ -56,37 +56,54 @@ class _LoginState extends ConsumerState<ConsumerStatefulWidget> {
                 logInData: loginData,
                 formKey: formKey,
               ),
-              const SizedBox(height: 190,),
-              Row(
-                  children: [
-                Expanded(
-                    child: ButtonCTA(
-                        btnColor: SerManosColors.neutral_0,
-                        text: "Iniciar Sesión",
-                        onPressed: (){
-                          if (formKey.currentState == null) {
-                            logger.w("_formkey.currentState is null!");
-                          } else if (formKey.currentState!.validate()) {
-                            logger.w("form input is valid");
-                            formKey.currentState!.save();
-                          }
-                          authController.logIn(loginData, context.go('/home'));
-                        },
-                        foregroundColor: SerManosColors.neutral_25,
-                        backgroundColor: SerManosColors.primary_100,
+              const SizedBox(height: 180),
+              Column(
+                children: [
+                  Row(
+                      children: [
+                    Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            width: 328,
+                            child: ButtonCTA(
+                                btnColor: SerManosColors.neutral_0,
+                                text: "Iniciar Sesión",
+                                onPressed: (){
+                                  if (formKey.currentState == null) {
+                                    logger.w("_formkey.currentState is null!");
+                                  } else if (formKey.currentState!.validate()) {
+                                    logger.w("form input is valid");
+                                    formKey.currentState!.save();
+                                  }
+                                  authController.logIn(loginData, context.go('/start'));
+                                },
+                                foregroundColor: SerManosColors.neutral_25,
+                                backgroundColor: SerManosColors.primary_100,
+                                ),
+                          ),
                         )
-                ),
-              ]
+                    ),
+                  ]
+                  ),
+                ],
               ),
               Row(
                 children: [
-                Expanded(child: ButtonCTA(
-                        btnColor: SerManosColors.primary_100,
-                        text: "No tengo cuenta",
-                        onPressed: () => context.go('/start/register'),
-                        foregroundColor: SerManosColors.neutral_25,
-                        backgroundColor: Colors.transparent,
-                        ))
+                Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: SizedBox(
+                        width: 328,
+                        child: ButtonCTA(
+                            btnColor: SerManosColors.primary_100,
+                            text: "No tengo cuenta",
+                            onPressed: () => context.go('/start/register'),
+                            foregroundColor: SerManosColors.neutral_25,
+                            backgroundColor: Colors.transparent,
+                            ),
+                      ),
+                    ))
               ],)
             ]
         ),

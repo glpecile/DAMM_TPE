@@ -62,36 +62,48 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
               children: [
                 Row(children: [
                   Expanded(
-                    child: ButtonCTA(
-                        onPressed: () => {
-                          if (formKey.currentState == null) {
-                            logger.w("_formkey.currentState is null!")
-                          } else if (formKey.currentState!.validate()) {
-                            logger.w("form input is valid"),
-                            formKey.currentState!.save(),
-                          },
-                          authController.register(registerData),
-                        },
-                        btnColor: SerManosColors.secondary_10,
-                        text: 'Registrarse',
-                        foregroundColor: SerManosColors.primary_10,
-                        backgroundColor: SerManosColors.primary_100),
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: SizedBox(
+                        width: 328,
+                        child: ButtonCTA(
+                            onPressed: () => {
+                              if (formKey.currentState == null) {
+                                logger.w("_formkey.currentState is null!")
+                              } else if (formKey.currentState!.validate()) {
+                                logger.w("form input is valid"),
+                                formKey.currentState!.save(),
+                              },
+                              authController.register(registerData),
+                            },
+                            btnColor: SerManosColors.secondary_10,
+                            text: 'Registrarse',
+                            foregroundColor: SerManosColors.neutral_25,
+                            backgroundColor: SerManosColors.primary_100),
+                      ),
+                    ),
                   ),
                 ]),
-                const SizedBox(height: 8),
+                // const SizedBox(height: 8),
                 Row(
                   children: [
                     Expanded(
-                        child: ButtonCTA(
-                          onPressed: () => context.goNamed(Login.name),
-                          text: 'Ya tengo cuenta',
-                          btnColor: SerManosColors.primary_100,
-                          foregroundColor: SerManosColors.primary_100,
-                          backgroundColor: Colors.transparent,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            width: 328,
+                            child: ButtonCTA(
+                              onPressed: () => context.goNamed(Login.name),
+                              text: 'Ya tengo cuenta',
+                              btnColor: SerManosColors.primary_100,
+                              foregroundColor: SerManosColors.neutral_25,
+                              backgroundColor: Colors.transparent,
+                            ),
+                          ),
                         ))
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 40),
               ],
             )
           ],
