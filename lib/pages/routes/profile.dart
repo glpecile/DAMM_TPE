@@ -2,20 +2,35 @@ import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../providers/auth_provider.dart';
 import '../../widgets/cells/cards/card_information.dart';
 
 
-class Profile extends StatelessWidget {
+class Profile extends ConsumerStatefulWidget {
 
 
   const Profile({super.key});
 
   @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _ProfileState();
+}
+
+
+class _ProfileState extends ConsumerState<ConsumerStatefulWidget>{
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var authController = ref.read(authControllerProvider.notifier);
     return Column(
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(top: 32),
             child: CardInformation(
               title: "Información personal",
@@ -25,7 +40,7 @@ class Profile extends StatelessWidget {
               content2: "Hombre",
         ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(top: 32, bottom: 32),
             child: CardInformation(
                 title: "Datos de contacto",
@@ -49,7 +64,10 @@ class Profile extends StatelessWidget {
             child: ButtonCTA(
               btnColor: SerManosColors.error_100,
               text: "Cerrar sesión",
-              onPressed: () => {},
+              onPressed: () => {
+                authController.logOut(),
+                context.go('/start/login')
+              },
               foregroundColor: SerManosColors.neutral_25,
               backgroundColor: SerManosColors.neutral_0,
               ),

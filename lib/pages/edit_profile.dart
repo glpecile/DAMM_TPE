@@ -36,14 +36,14 @@ class EditProfile extends StatelessWidget {
             ),
             Flex(
                 direction: Axis.horizontal,
-                children: [Expanded(
+                children: [
+                  Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 32),
                       child: ButtonCTA(
                         btnColor: SerManosColors.neutral_0,
                         text: "Guardar datos",
-                        onPressed: (){
-                        },
+                        onPressed: (){},
                         foregroundColor: SerManosColors.neutral_25,
                         backgroundColor: SerManosColors.primary_100,
                       ),

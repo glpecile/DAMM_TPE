@@ -32,7 +32,8 @@ class UserService {
         .signInWithEmailAndPassword(
         email: data.email!, password: data.password!);
     analyticsService!.loginEvent(user.user!.uid);
-    return user;
+    var toRet = await getCurrentUser();
+    return toRet;
   }
 
   Future logOut() async {

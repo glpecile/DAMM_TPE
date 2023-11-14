@@ -5,6 +5,7 @@ import 'package:SerManos/models/register.dart';
 import 'package:SerManos/models/volunteer.dart';
 import 'package:SerManos/services/user_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,11 +16,12 @@ class AuthController extends _$AuthController {
   late final UserService _userService = UserService();
   late SharedPreferences _sharedPreferences;
   static const _sharedPrefsKey = 'volunteerData';
+  Logger logger = Logger();
 
   Future<void> logIn(LogInData data, void redirect) async {
     try{
       var user = await _userService.logIn(data);
-      state = user;
+      state = AsyncValue.data(user);
     } finally{
       redirect;
     }
@@ -27,6 +29,7 @@ class AuthController extends _$AuthController {
 
   Future<void> logOut() async {
     await _userService.logOut();
+    state = const AsyncValue.data(null);
   }
 
   Future<void> register(RegisterData data) async {
@@ -38,8 +41,8 @@ class AuthController extends _$AuthController {
   }
 
   @override
-  FutureOr<Volunteer> build() {
-    var user = _userService.getCurrentUser();
-    throw user;
+  Future<Volunteer?> build() async {
+    var user = await _userService.getCurrentUser();
+    return user;
   }
 }
