@@ -39,6 +39,7 @@ class CardVolunteers extends StatelessWidget {
               children: [
                 Image.network(
                   imageUrl,
+                  height: 138,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
@@ -57,13 +58,9 @@ class CardVolunteers extends StatelessWidget {
                             style: const SerManosTypography.subtitle_01(
                                 color: SerManosColors.neutral_100),
                           ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          VacancyIcons(currentVacant: currentVacant),
+                          VacancyIcons(currentVacant: currentVacant, isFavorite: isFavorite, onPressedFav: onPressedFav, onPressedLocation: onPressedLocation),
                         ],
                       ),
-                      gIcons(isFavorite: isFavorite, onPressedFavorite: onPressedFav, onPressedLocation: onPressedLocation)
                     ],
                   ),
                 ),
@@ -90,9 +87,6 @@ class gIcons extends StatelessWidget {
           color: SerManosColors.primary_100,
           onPressed: onPressedFavorite,
           size: 24,
-        ),
-        const SizedBox(
-          width: 16,
         ),
         SerManosIconButton(
           icon: SerManosIcons.locationSharp,
@@ -140,15 +134,21 @@ class Vacancy extends StatelessWidget {
 
 class VacancyIcons extends StatelessWidget {
   final int currentVacant;
+  bool isFavorite;
+  final void Function()? onPressedFav;
+  final void Function()? onPressedLocation;
 
-  const VacancyIcons({super.key, required this.currentVacant});
+  VacancyIcons({super.key, required this.currentVacant, required this.isFavorite, required this.onPressedFav, required this.onPressedLocation});
 
   @override
   Widget build(BuildContext context) {
     return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Vacancy(currentVacant: '$currentVacant'),
+          const SizedBox(
+            width: 95,
+          ),
+          gIcons(isFavorite: isFavorite, onPressedFavorite: onPressedFav, onPressedLocation: onPressedLocation)
         ]);
   }
 }
