@@ -48,7 +48,8 @@ class UserService {
       'email': registerData.email,
       'secondaryEmail': registerData.email, // TODO: CHECK
       'name': registerData.firstName,
-      'lastname': registerData.lastName,
+      'lastName': registerData.lastName,
+      'favorites': [],
       'password': registerData.password,
       'hasCompletedProfile': false,
       'isVolunteeringApproved': false

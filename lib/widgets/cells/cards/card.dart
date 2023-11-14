@@ -4,8 +4,12 @@ import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/shadows.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CardVolunteers extends StatelessWidget {
+import '../../../providers/favorites_provider.dart';
+
+class CardVolunteers extends ConsumerWidget {
+  final String id;
   final String imageUrl;
   final String title;
   final String description;
@@ -15,6 +19,7 @@ class CardVolunteers extends StatelessWidget {
   final void Function()? onPressedLocation;
 
   CardVolunteers({super.key,
+    required this.id,
     required this.imageUrl,
     required this.title,
     required this.description,
@@ -24,7 +29,10 @@ class CardVolunteers extends StatelessWidget {
     required this.onPressedLocation,});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    FavoritesController favoritesMethods = ref.read(favoritesControllerProvider.notifier);
+
+
     return Center(
         child: Container(
           width: 328,
@@ -58,7 +66,7 @@ class CardVolunteers extends StatelessWidget {
                             style: const SerManosTypography.subtitle_01(
                                 color: SerManosColors.neutral_100),
                           ),
-                          VacancyIcons(currentVacant: currentVacant, isFavorite: isFavorite, onPressedFav: onPressedFav, onPressedLocation: onPressedLocation),
+                          VacancyIcons(currentVacant: currentVacant, isFavorite: isFavorite, onPressedFav: () => favoritesMethods.toggleFavorite(id), onPressedLocation: onPressedLocation),
                         ],
                       ),
                     ],

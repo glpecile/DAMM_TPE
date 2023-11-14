@@ -75,6 +75,7 @@ class Volunteerings extends ConsumerWidget {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: CardVolunteers(
+                          id: volunteering.id,
                           imageUrl: volunteering.imageUrl,
                           title: volunteering.title,
                           description: volunteering.description,
