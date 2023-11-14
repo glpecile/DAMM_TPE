@@ -18,42 +18,39 @@ class EditProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 32, bottom: 32),
-      child: Scaffold(
-        body: SerManosGrid(
-          child: ListView(
-            children: [
-              ProfileDataForm(
-                onValidationChanged: (isValid) {
-                  _isFormValid = isValid;
-                },
-                formKey: formKey,
-              ),
-              ContactDataForm(
-                onValidationChanged: (isValid) {
-                  _isFormValid = isValid;
-                },
-                formKey: formKey,
-              ),
-              Flex(
-                  direction: Axis.horizontal,
-                  children: [Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 32),
-                        child: ButtonCTA(
-                          btnColor: SerManosColors.neutral_0,
-                          text: "Guardar datos",
-                          onPressed: (){
-                          },
-                          foregroundColor: SerManosColors.neutral_25,
-                          backgroundColor: SerManosColors.primary_100,
-                        ),
-                      )
-                  ),]
-              )
-            ],
-          ),
+    return Scaffold(
+      body: SerManosGrid(
+        child: ListView(
+          children: [
+            ProfileDataForm(
+              onValidationChanged: (isValid) {
+                _isFormValid = isValid;
+              },
+              formKey: formKey,
+            ),
+            ContactDataForm(
+              onValidationChanged: (isValid) {
+                _isFormValid = isValid;
+              },
+              formKey: formKey,
+            ),
+            Flex(
+                direction: Axis.horizontal,
+                children: [Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 32),
+                      child: ButtonCTA(
+                        btnColor: SerManosColors.neutral_0,
+                        text: "Guardar datos",
+                        onPressed: (){
+                        },
+                        foregroundColor: SerManosColors.neutral_25,
+                        backgroundColor: SerManosColors.primary_100,
+                      ),
+                    )
+                ),]
+            )
+          ],
         ),
       ),
     );}
