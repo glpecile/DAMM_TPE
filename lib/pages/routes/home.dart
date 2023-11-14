@@ -1,4 +1,5 @@
-import 'package:SerManos/pages/profile.dart';
+import 'package:SerManos/pages/edit_profile.dart';
+import 'package:SerManos/pages/routes/profile.dart';
 import 'package:SerManos/widgets/cells/header.dart';
 import 'package:SerManos/widgets/organisms/news.dart';
 import 'package:SerManos/widgets/organisms/volunteerings.dart';
@@ -23,7 +24,7 @@ class Home extends StatelessWidget {
               child: TabBarView(
             children: [
               Volunteerings(),
-              EditProfile(),
+              Profile(),
               News(),
             ],
           ))),

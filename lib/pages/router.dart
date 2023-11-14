@@ -5,6 +5,8 @@ import 'package:SerManos/pages/routes/start.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'edit_profile.dart';
+
 class SerManosRouter {
   static final List<String> nonAuthRoutes = [
     '/',
@@ -38,6 +40,13 @@ class SerManosRouter {
           name: Home.name,
           path: Home.path,
           builder: (context, state) => const Home(),
+          routes: <RouteBase> [
+            GoRoute(
+              name: EditProfile.name,
+              path: EditProfile.path,
+              builder: (context, state) => EditProfile(),
+            )
+          ]
         )
       ],
       errorBuilder: (context, state) => Text('Error: ${state.error}'),
