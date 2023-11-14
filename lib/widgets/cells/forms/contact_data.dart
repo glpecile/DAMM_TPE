@@ -10,7 +10,7 @@ class ContactDataForm extends StatefulWidget {
     super.key,
     this.contactData,
     // TODO: make required
-    required this.onValidationChanged,
+     this.onValidationChanged,
     required this.formKey,
   });
 
@@ -57,6 +57,7 @@ class _ContactDataFormState extends State<ContactDataForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: 32),
           const Text(
             "Datos de contacto",
             style: SerManosTypography.headline_01(

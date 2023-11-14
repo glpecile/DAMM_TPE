@@ -15,7 +15,6 @@ class SerManosIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        padding: EdgeInsets.zero,
         constraints: const BoxConstraints(),
         onPressed: onPressed,
         icon: Icon(

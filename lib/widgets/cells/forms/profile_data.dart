@@ -79,7 +79,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                   height: 24,
                 ),
                 CardInput(
-                    title: "Información del usuario",
+                    title: "Información de perfil",
                     onPressed: (value) {
                       setGender(value!);
                     }),

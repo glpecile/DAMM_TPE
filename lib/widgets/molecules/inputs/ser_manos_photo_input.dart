@@ -111,7 +111,7 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
                   ? Avatar(imageFile: _image)
                   : Avatar(
                       imageUrl: widget.image,
-                    )
+                    ),
           ],
         ));
   }
