@@ -3,6 +3,7 @@ import 'package:SerManos/widgets/cells/cards/card_news.dart';
 import 'package:SerManos/widgets/cells/forms/profile_data.dart';
 import 'package:SerManos/widgets/cells/header.dart';
 import 'package:SerManos/widgets/molecules/inputs/search_input.dart';
+import 'package:SerManos/widgets/organisms/news.dart';
 import 'package:SerManos/widgets/organisms/volunteerings.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
@@ -27,42 +28,7 @@ class Home extends StatelessWidget {
             children: [
               Volunteerings(),
               ProfileDataForm(),
-              Column(
-                children: [
-                  Column(children: [
-                    SearchInput(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 16, bottom: 24, top: 24, right: 16),
-                        child: Text(
-                          'Voluntariados',
-                          style: SerManosTypography.headline_01(),
-                        ),
-                      ),
-                    ),
-                    // CardVolunteers(),
-                  ]),
-                  ProfileDataForm(),
-                  Column(
-                    children: [
-                      CardNews(
-                          overline: "REPORTE 2820",
-                          title: "Ser donante de sangre voluntario",
-                          description:
-                          "Desde el Hospital Centenario recalcan la importancia de la donación voluntaria de Sangre"),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      // CardVolunteers()
-                    ],
-                  ),
-                  // CardVolunteers()
-                ],
-              ),
+              News(),
             ],
           ))),
     );

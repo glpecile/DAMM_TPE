@@ -8,15 +8,18 @@ class CardNews extends StatelessWidget {
   // TODO: swap for model with news data
   final String overline;
   final String title;
-  final String description;
-  final String? imageUrl;
+  final String subtitle;
+  final String imageUrl;
+
+  final Function onPressed;
 
   const CardNews({
     super.key,
     required this.overline,
     required this.title,
-    required this.description,
-    this.imageUrl,
+    required this.subtitle,
+    required this.imageUrl,
+    required this.onPressed,
   });
 
   @override
@@ -34,7 +37,7 @@ class CardNews extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Image.network(
-                imageUrl!,
+                imageUrl,
                 width: 118,
                 fit: BoxFit.cover,
               ),
@@ -43,7 +46,8 @@ class CardNews extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 8,right: 8,top: 16,bottom: 8),
+                      padding: const EdgeInsets.only(
+                          left: 8, right: 8, top: 16, bottom: 8),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -58,11 +62,10 @@ class CardNews extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              description,
+                              subtitle,
                               style: const SerManosTypography.body_02(),
                             ),
-                          ]
-                      ),
+                          ]),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8),
@@ -71,7 +74,7 @@ class CardNews extends StatelessWidget {
                         child: ButtonCTA(
                           btnColor: SerManosColors.primary_100,
                           text: "Leer Más",
-                          onPressed: () {},
+                          onPressed: () => onPressed,
                           foregroundColor: SerManosColors.neutral_75,
                         ),
                       ),
