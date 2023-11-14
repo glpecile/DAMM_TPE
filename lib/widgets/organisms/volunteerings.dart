@@ -17,6 +17,7 @@ class Volunteerings extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    /*
     List<Volunteering> volunteerings =
         ref.watch(volunteeringControllerProvider);
     VolunteeringController volunteeringsMethods =
@@ -25,9 +26,105 @@ class Volunteerings extends ConsumerWidget {
     FavoritesController favoritesMethods =
         ref.read(favoritesControllerProvider.notifier);
 
+
     for (Volunteering volunteering in volunteerings) {
       volunteering.isFavorite = favorites.contains(volunteering.id);
     }
+    */
+
+    var volunteeringController = ref.watch(volunteeringControllerProvider);
+
+    return volunteeringController.when(
+        data: (volunteerings) {
+          List<String> favorites = ref.watch(favoritesControllerProvider).value!;
+          FavoritesController favoritesMethods = ref.read(favoritesControllerProvider.notifier);
+
+          for (Volunteering volunteering in volunteerings) {
+            volunteering.isFavorite = favorites.contains(volunteering.id);
+          }
+
+          return Scaffold(
+            backgroundColor: SerManosColors.secondary_10,
+            body: RefreshIndicator(
+              onRefresh: () async =>
+                  ref.refresh(volunteeringControllerProvider.future),
+              child: Column(children: [
+                // TODO: add search functionality
+                const SearchInput(),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: 16, bottom: 24, top: 24, right: 16),
+                    child: Text(
+                      'Voluntariados',
+                      style: SerManosTypography.headline_01(),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: volunteerings.length,
+                    itemBuilder: (context, index) {
+                      var volunteering = volunteerings[index];
+                      log(volunteering.location.latitude);
+                      log(volunteering.location.latitude);
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: CardVolunteers(
+                          imageUrl: volunteering.imageUrl,
+                          title: volunteering.title,
+                          description: volunteering.description,
+                          isFavorite: volunteering.isFavorite,
+                          currentVacant: volunteering.currentVacant,
+                          onPressedFav: () => favoritesMethods
+                              .toggleFavorite(volunteerings[index].id),
+                          onPressedLocation: () => openOnGoogleMaps(
+                              volunteering.location.latitude,
+                              volunteering.location.longitude),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                )
+              ]),
+            ),
+          );
+        },
+        error: (error, stackTrace) => const Center(
+              child: SizedBox(
+                width: 60,
+                height: 60,
+                child: CircularProgressIndicator(
+                  color: SerManosColors.secondary_10,
+                ),
+              ),
+            ),
+        loading: () => const Center(
+              child: SizedBox(
+                width: 60,
+                height: 60,
+                child: CircularProgressIndicator(
+                  color: SerManosColors.secondary_10,
+                ),
+              ),
+            ));
+    /*
+    return Center(
+      child: SizedBox(
+        width: 60,
+        height: 60,
+        child: CircularProgressIndicator(
+          color: color,
+        ),
+      ),
+    );
 
     return Scaffold(
       backgroundColor: SerManosColors.secondary_10,
@@ -82,5 +179,6 @@ class Volunteerings extends ConsumerWidget {
         ]),
       ),
     );
+     */
   }
 }

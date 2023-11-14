@@ -9,32 +9,42 @@ part 'favorites_provider.g.dart';
 class FavoritesController extends _$FavoritesController {
   final _userService = UserService();
 
-  void getFavorites() async {
-    var favorites = await _userService.getFavorites();
-    state = favorites;
+  Future<List<String>> _getFavorites() async {
+    return await _userService.getFavorites();
   }
 
   // TODO: capaz recibir el volunteering y preguntar si lo tiene prendido el fav
   void toggleFavorite(String volunteeringId) async {
-    (state.contains(volunteeringId))
+    // TODO: puede fallar esto?
+    (state.value!.contains(volunteeringId))
         ? _removeFavorite(volunteeringId)
         : _addFavorite(volunteeringId);
   }
 
   void _addFavorite(String volunteeringId) async {
-    await _userService.addFavorite(volunteeringId);
-    state = [...state, volunteeringId];
+    try {
+      await _userService.addFavorite(volunteeringId);
+      var auxFavs = state.value!;
+      auxFavs = [...auxFavs, volunteeringId];
+      state = AsyncValue.data(auxFavs);
+    } catch (e) {
+      print(e);
+    }
   }
 
   void _removeFavorite(String volunteeringId) async {
-    await _userService.removeFavorite(volunteeringId);
-    state = [...state.where((id) => id != volunteeringId)];
+    try {
+      await _userService.removeFavorite(volunteeringId);
+      var auxFavs = state.value!;
+      auxFavs = [...auxFavs.where((id) => id != volunteeringId)];
+      state = AsyncValue.data(auxFavs);
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
-  List<String> build() {
-    state = [];
-    getFavorites();
-    return state;
+  Future<List<String>> build() async {
+    return await _getFavorites();
   }
 }
