@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:SerManos/helpers/maps.dart';
 import 'package:SerManos/providers/favorites_provider.dart';
 import 'package:SerManos/providers/volunteering_provider.dart';
+import 'package:SerManos/widgets/cells/cards/active_volunteering.dart';
 import 'package:SerManos/widgets/cells/cards/card.dart';
+import 'package:SerManos/widgets/cells/cards/card_actual.dart';
 import 'package:SerManos/widgets/molecules/inputs/search_input.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
@@ -11,46 +13,39 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../models/volunteering.dart';
+import '../../providers/auth_provider.dart';
 
 class Volunteerings extends ConsumerWidget {
   const Volunteerings({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /*
-    List<Volunteering> volunteerings =
-        ref.watch(volunteeringControllerProvider);
-    VolunteeringController volunteeringsMethods =
-        ref.read(volunteeringControllerProvider.notifier);
-    List<String> favorites = ref.watch(favoritesControllerProvider);
-    FavoritesController favoritesMethods =
-        ref.read(favoritesControllerProvider.notifier);
-
-
-    for (Volunteering volunteering in volunteerings) {
-      volunteering.isFavorite = favorites.contains(volunteering.id);
-    }
-    */
-
     var volunteeringController = ref.watch(volunteeringControllerProvider);
 
     return volunteeringController.when(
         data: (volunteerings) {
-          List<String> favorites = ref.watch(favoritesControllerProvider).value!;
-          FavoritesController favoritesMethods = ref.read(favoritesControllerProvider.notifier);
+          List<String> favorites =
+              ref.watch(favoritesControllerProvider).value!;
+          FavoritesController favoritesMethods =
+              ref.read(favoritesControllerProvider.notifier);
+
 
           for (Volunteering volunteering in volunteerings) {
             volunteering.isFavorite = favorites.contains(volunteering.id);
           }
 
+          // TODO: AGREGAR LOGICA CUANDO ESTO ESTA VACIO
           return Scaffold(
             backgroundColor: SerManosColors.secondary_10,
             body: RefreshIndicator(
               onRefresh: () async =>
                   ref.refresh(volunteeringControllerProvider.future),
               child: Column(children: [
-                // TODO: add search functionality
-                const SearchInput(),
+                SearchInput(
+                    onChanged: (value) => ref
+                        .read(volunteeringControllerProvider.notifier)
+                        .search(value, null)),
+                const ActiveVolunteering(),
                 const SizedBox(
                   height: 10,
                 ),

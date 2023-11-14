@@ -38,8 +38,8 @@ class AuthController extends _$AuthController {
   }
 
   @override
-  FutureOr<Volunteer> build() {
+  Future<Volunteer?> build() {
     var user = _userService.getCurrentUser();
-    throw user;
+    return user;
   }
 }
