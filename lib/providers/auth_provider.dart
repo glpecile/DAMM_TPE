@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:SerManos/models/login.dart';
 import 'package:SerManos/models/register.dart';
@@ -30,10 +29,10 @@ class AuthController extends _$AuthController {
   }
 
   Future<void> logIn(LogInData data, void redirect) async {
-    try{
+    try {
       var user = await _userService.logIn(data);
       state = AsyncValue.data(user);
-    } finally{
+    } finally {
       redirect;
     }
   }
@@ -45,7 +44,7 @@ class AuthController extends _$AuthController {
 
   Future<void> register(RegisterData data) async {
     try {
-      var user = await _userService.signUp(data);
+      await _userService.signUp(data);
     } on FirebaseAuthException catch (error) {
       throw error.code;
     }
@@ -56,8 +55,8 @@ class AuthController extends _$AuthController {
     final prefs = await SharedPreferences.getInstance();
     Volunteer? user;
     if (prefs.containsKey(_sharedPrefsKey)) {
-      final extractedUserData = json.decode(
-          prefs.getString(_sharedPrefsKey)!) as Map<String, dynamic>;
+      final extractedUserData = json.decode(prefs.getString(_sharedPrefsKey)!)
+          as Map<String, dynamic>;
       user = Volunteer.fromJson(extractedUserData);
     } else {
       user = await _userService.getCurrentUser();
@@ -72,5 +71,4 @@ class AuthController extends _$AuthController {
   Future<Volunteer?> getCurrentUser() async {
     return _userService.getCurrentUser();
   }
-
 }

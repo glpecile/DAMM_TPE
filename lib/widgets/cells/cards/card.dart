@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../providers/favorites_provider.dart';
 
+// TODO: cambiar a Stateful Widget porque cambia el state de isFavorite
 class CardVolunteers extends ConsumerWidget {
   final String id;
   final String imageUrl;
@@ -31,7 +32,6 @@ class CardVolunteers extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     FavoritesController favoritesMethods = ref.read(favoritesControllerProvider.notifier);
-
 
     return Center(
         child: Container(

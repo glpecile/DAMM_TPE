@@ -1,5 +1,4 @@
-import 'package:SerManos/pages/edit_profile.dart';
-import 'package:SerManos/pages/routes/profile.dart';
+import 'package:SerManos/widgets/organisms/profile.dart';
 import 'package:SerManos/widgets/cells/header.dart';
 import 'package:SerManos/widgets/organisms/news.dart';
 import 'package:SerManos/widgets/organisms/volunteerings.dart';

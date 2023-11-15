@@ -1,8 +1,6 @@
 import 'package:SerManos/services/user_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../services/volunteering_service.dart';
-
 part 'favorites_provider.g.dart';
 
 @Riverpod(keepAlive: true)

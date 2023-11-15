@@ -7,7 +7,6 @@ import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:logger/logger.dart';
 import '../../models/register.dart';
 
 class Register extends ConsumerStatefulWidget {
@@ -21,10 +20,9 @@ class Register extends ConsumerStatefulWidget {
 }
 
 class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
-  var logger = Logger();
-
   bool _isFormValid = false;
-  RegisterData registerData = RegisterData(firstName: "", lastName: "", email: "", password: "");
+  RegisterData registerData =
+      RegisterData(firstName: "", lastName: "", email: "", password: "");
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -38,9 +36,8 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
     return Scaffold(
       backgroundColor: SerManosColors.neutral_0,
       body: SerManosGrid(
-        child: ListView(
-          children: [
-            Column(
+        child: ListView(children: [
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
@@ -70,14 +67,12 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                           width: 328,
                           child: ButtonCTA(
                               onPressed: () => {
-                                if (formKey.currentState == null) {
-                                  logger.w("_formkey.currentState is null!")
-                                } else if (formKey.currentState!.validate()) {
-                                  logger.w("form input is valid"),
-                                  formKey.currentState!.save(),
-                                },
-                                authController.register(registerData),
-                              },
+                                    if (formKey.currentState!.validate())
+                                      {
+                                        formKey.currentState!.save(),
+                                        authController.register(registerData),
+                                      },
+                                  },
                               btnColor: SerManosColors.secondary_10,
                               text: 'Registrarse',
                               foregroundColor: SerManosColors.neutral_25,
@@ -91,26 +86,26 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                     children: [
                       Expanded(
                           child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: SizedBox(
-                              width: 328,
-                              child: ButtonCTA(
-                                onPressed: () => context.goNamed(Login.name),
-                                text: 'Ya tengo cuenta',
-                                btnColor: SerManosColors.primary_100,
-                                foregroundColor: SerManosColors.neutral_25,
-                                backgroundColor: Colors.transparent,
-                              ),
-                            ),
-                          ))
+                        alignment: Alignment.bottomCenter,
+                        child: SizedBox(
+                          width: 328,
+                          child: ButtonCTA(
+                            onPressed: () => context.goNamed(Login.name),
+                            text: 'Ya tengo cuenta',
+                            btnColor: SerManosColors.primary_100,
+                            foregroundColor: SerManosColors.neutral_25,
+                            backgroundColor: Colors.transparent,
+                          ),
+                        ),
+                      ))
                     ],
                   ),
                   const SizedBox(height: 40),
                 ],
               )
             ],
-          ),]
-        ),
+          ),
+        ]),
       ),
     );
   }

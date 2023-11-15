@@ -1,11 +1,8 @@
-import 'dart:math';
-
 import 'package:SerManos/helpers/maps.dart';
 import 'package:SerManos/providers/favorites_provider.dart';
 import 'package:SerManos/providers/volunteering_provider.dart';
 import 'package:SerManos/widgets/cells/cards/active_volunteering.dart';
 import 'package:SerManos/widgets/cells/cards/card.dart';
-import 'package:SerManos/widgets/cells/cards/card_actual.dart';
 import 'package:SerManos/widgets/molecules/inputs/search_input.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
@@ -13,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../models/volunteering.dart';
-import '../../providers/auth_provider.dart';
 
 class Volunteerings extends ConsumerWidget {
   const Volunteerings({super.key});
@@ -29,6 +25,8 @@ class Volunteerings extends ConsumerWidget {
           FavoritesController favoritesMethods =
               ref.read(favoritesControllerProvider.notifier);
 
+          VolunteeringController volunteeringMethods =
+              ref.read(volunteeringControllerProvider.notifier);
 
           for (Volunteering volunteering in volunteerings) {
             volunteering.isFavorite = favorites.contains(volunteering.id);
@@ -42,9 +40,8 @@ class Volunteerings extends ConsumerWidget {
                   ref.refresh(volunteeringControllerProvider.future),
               child: Column(children: [
                 SearchInput(
-                    onChanged: (value) => ref
-                        .read(volunteeringControllerProvider.notifier)
-                        .search(value, null)),
+                    onChanged: (value) =>
+                        volunteeringMethods.search(value, null)),
                 const ActiveVolunteering(),
                 const SizedBox(
                   height: 10,
@@ -65,8 +62,11 @@ class Volunteerings extends ConsumerWidget {
                     itemCount: volunteerings.length,
                     itemBuilder: (context, index) {
                       var volunteering = volunteerings[index];
-                      log(volunteering.location.latitude);
-                      log(volunteering.location.latitude);
+                      if (volunteerings.isEmpty) {
+                        return const Center(
+                          child: Text('No hay voluntariados disponibles'),
+                        );
+                      }
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: CardVolunteers(
@@ -75,7 +75,8 @@ class Volunteerings extends ConsumerWidget {
                           title: volunteering.title,
                           description: volunteering.description,
                           isFavorite: volunteering.isFavorite,
-                          currentVacant: volunteering.availableVacant - volunteering.currentVacant,
+                          currentVacant: volunteering.availableVacant -
+                              volunteering.currentVacant,
                           onPressedFav: () => favoritesMethods
                               .toggleFavorite(volunteerings[index].id),
                           onPressedLocation: () => openOnGoogleMaps(

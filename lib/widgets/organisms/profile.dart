@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../providers/auth_provider.dart';
-import '../../widgets/cells/cards/card_information.dart';
+import '../cells/cards/card_information.dart';
 
 
 class Profile extends ConsumerStatefulWidget {
@@ -45,10 +45,10 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget>{
                 ),
               ),
               const Text("VOLUNTARIO", style: SerManosTypography.overline(), textAlign: TextAlign.center,),
-              Text("${user.name[0].toUpperCase()}${user.name.substring(1).toLowerCase()} ${user.lastName[0].toUpperCase()}${user.lastName.substring(1).toLowerCase()}", style: SerManosTypography.subtitle_01(), textAlign: TextAlign.center,),
+              Text("${user.name[0].toUpperCase()}${user.name.substring(1).toLowerCase()} ${user.lastName[0].toUpperCase()}${user.lastName.substring(1).toLowerCase()}", style: const SerManosTypography.subtitle_01(), textAlign: TextAlign.center,),
               Text(user.email, style: const SerManosTypography.body_01(color: SerManosColors.secondary_200), textAlign: TextAlign.center,),
               Padding(
-                padding: EdgeInsets.only(top: 32),
+                padding: const EdgeInsets.only(top: 32),
                 child: CardInformation(
                   title: "Información personal",
                   label1: "FECHA DE NACIMIENTO",
@@ -58,7 +58,7 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget>{
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 32, bottom: 32),
+                padding: const EdgeInsets.only(top: 32, bottom: 32),
                 child: CardInformation(
                     title: "Datos de contacto",
                     label1: "TELÉFONO",
@@ -75,7 +75,7 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget>{
                     foregroundColor: SerManosColors.primary_10,
                     backgroundColor: SerManosColors.primary_100),
               ),
-              SizedBox(height: 8,),
+              const SizedBox(height: 8,),
               SizedBox(
                 width: 308,
                 child: ButtonCTA(

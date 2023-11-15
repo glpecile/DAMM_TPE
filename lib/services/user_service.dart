@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/login.dart';
 import 'package:SerManos/models/profile.dart';
