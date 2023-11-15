@@ -55,7 +55,7 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>sermanos.com.ar</string>
+        <string>sermanos.glpecile.xyz</string>
         <key>CFBundleURLSchemes</key>
         <array>
         <string>appscheme</string>
