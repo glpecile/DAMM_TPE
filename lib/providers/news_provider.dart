@@ -8,17 +8,12 @@ part 'news_provider.g.dart';
 class NewsController extends _$NewsController {
   final NewsService _newsService = NewsService();
 
-  Future<List<News>> getNews() async {
+  Future<List<News>> _getNews() async {
     return await _newsService.getNews();
-  }
-
-  getNewsById(String newsId) async {
-    var news = await _newsService.getNewsById(newsId);
-    return news;
   }
 
   @override
   Future<List<News>> build() async {
-    return getNews();
+    return await _getNews();
   }
 }
