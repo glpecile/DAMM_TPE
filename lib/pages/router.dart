@@ -1,3 +1,4 @@
+import 'package:SerManos/pages/news_detail.dart';
 import 'package:SerManos/pages/routes/home.dart';
 import 'package:SerManos/pages/routes/login.dart';
 import 'package:SerManos/pages/routes/register.dart';
@@ -46,6 +47,11 @@ class SerManosRouter {
               name: EditProfile.name,
               path: EditProfile.path,
               builder: (context, state) => EditProfile(),
+            ),
+            GoRoute(
+                name: NewsDetail.name,
+                path: NewsDetail.path,
+                builder: (context, state) => const NewsDetail(),
             ),
           ]
         ),
