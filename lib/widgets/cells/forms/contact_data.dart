@@ -66,10 +66,10 @@ class _ContactDataFormState extends State<ContactDataForm> {
           ),
           const SizedBox(height: 24),
           const Text(
-            "Estos datos serán visibles para los usuarios que vean tu perfil",
+            "Estos datos serán compartidos con la organización para ponerse en contacto contigo",
             style: SerManosTypography.subtitle_01(
               color: SerManosColors.neutral_100,
-            ),
+            ),textAlign: TextAlign.left,
           ),
           const SizedBox(height: 24),
           SerManosTextInput(

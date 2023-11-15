@@ -46,7 +46,7 @@ class SerManosRouter {
               name: EditProfile.name,
               path: EditProfile.path,
               builder: (context, state) => EditProfile(),
-            )
+            ),
           ]
         ),
         GoRoute(

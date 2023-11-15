@@ -3,6 +3,7 @@ import 'package:SerManos/widgets/cells/forms/profile_data.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/molecules/buttons/button_cta.dart';
 import '../widgets/tokens/colors.dart';
@@ -19,6 +20,9 @@ class EditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(onPressed: () => context.pop(), icon: const Icon(Icons.close),)
+      ),
       body: SerManosGrid(
         child: ListView(
           children: [
