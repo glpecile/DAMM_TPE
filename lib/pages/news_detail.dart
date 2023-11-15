@@ -12,10 +12,7 @@ class NewsDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-          backgroundColor: SerManosColors.secondary_10,
-          appBar: Header(),
-    );
+    return Text("Hello world!");
   }
 
 }

@@ -57,51 +57,54 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                   ),
                 ],
               ),
-              Column(
-                children: [
-                  Row(children: [
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: SizedBox(
-                          width: 328,
-                          child: ButtonCTA(
-                              onPressed: () => {
-                                    if (formKey.currentState!.validate())
-                                      {
-                                        formKey.currentState!.save(),
-                                        authController.register(registerData),
-                                      },
-                                  },
-                              btnColor: SerManosColors.secondary_10,
-                              text: 'Registrarse',
-                              foregroundColor: SerManosColors.neutral_25,
-                              backgroundColor: SerManosColors.primary_100),
-                        ),
-                      ),
-                    ),
-                  ]),
-                  // const SizedBox(height: 8),
-                  Row(
-                    children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 80),
+                child: Column(
+                  children: [
+                    Row(children: [
                       Expanded(
-                          child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: SizedBox(
-                          width: 328,
-                          child: ButtonCTA(
-                            onPressed: () => context.goNamed(Login.name),
-                            text: 'Ya tengo cuenta',
-                            btnColor: SerManosColors.primary_100,
-                            foregroundColor: SerManosColors.neutral_25,
-                            backgroundColor: Colors.transparent,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            width: 328,
+                            child: ButtonCTA(
+                                onPressed: () => {
+                                      if (formKey.currentState!.validate())
+                                        {
+                                          formKey.currentState!.save(),
+                                          authController.register(registerData),
+                                        },
+                                    },
+                                btnColor: SerManosColors.secondary_10,
+                                text: 'Registrarse',
+                                foregroundColor: SerManosColors.neutral_25,
+                                backgroundColor: SerManosColors.primary_100),
                           ),
                         ),
-                      ))
-                    ],
-                  ),
-                  const SizedBox(height: 40),
-                ],
+                      ),
+                    ]),
+                    // const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Expanded(
+                            child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            width: 328,
+                            child: ButtonCTA(
+                              onPressed: () => context.goNamed(Login.name),
+                              text: 'Ya tengo cuenta',
+                              btnColor: SerManosColors.primary_100,
+                              foregroundColor: SerManosColors.neutral_25,
+                              backgroundColor: Colors.transparent,
+                            ),
+                          ),
+                        ))
+                      ],
+                    ),
+                    const SizedBox(height: 40),
+                  ],
+                ),
               )
             ],
           ),

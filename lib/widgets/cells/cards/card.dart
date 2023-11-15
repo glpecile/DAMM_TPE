@@ -4,6 +4,7 @@ import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/shadows.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../providers/favorites_provider.dart';
@@ -32,47 +33,49 @@ class CardVolunteers extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     FavoritesController favoritesMethods = ref.read(favoritesControllerProvider.notifier);
-
-    return Center(
-        child: Container(
-          width: 328,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(2),
-            color: SerManosColors.neutral_0,
-            boxShadow: SerManosShadows.shadow_2,
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(2),
-            child: Column(
-              children: [
-                Image.network(
-                  imageUrl,
-                  height: 138,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("ACCIÓN SOCIAL",
-                              style: SerManosTypography.overline()),
-                          Text(
-                            title,
-                            style: const SerManosTypography.subtitle_01(
-                                color: SerManosColors.neutral_100),
-                          ),
-                          VacancyIcons(currentVacant: currentVacant, isFavorite: isFavorite, onPressedFav: () => favoritesMethods.toggleFavorite(id), onPressedLocation: onPressedLocation),
-                        ],
-                      ),
-                    ],
+    return InkWell(
+      onTap: () => context.go('/home/detail'),
+        child: Center(
+          child: Container(
+            width: 328,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(2),
+              color: SerManosColors.neutral_0,
+              boxShadow: SerManosShadows.shadow_2,
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(2),
+              child: Column(
+                children: [
+                  Image.network(
+                    imageUrl,
+                    height: 138,
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("ACCIÓN SOCIAL",
+                                style: SerManosTypography.overline()),
+                            Text(
+                              title,
+                              style: const SerManosTypography.subtitle_01(
+                                  color: SerManosColors.neutral_100),
+                            ),
+                            VacancyIcons(currentVacant: currentVacant, isFavorite: isFavorite, onPressedFav: () => favoritesMethods.toggleFavorite(id), onPressedLocation: onPressedLocation),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ));

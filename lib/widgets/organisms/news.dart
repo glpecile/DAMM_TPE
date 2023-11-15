@@ -1,4 +1,3 @@
-import 'package:SerManos/pages/routes/news_detail.dart';
 import 'package:SerManos/providers/news_provider.dart';
 import 'package:SerManos/widgets/cells/cards/card_news.dart';
 import 'package:SerManos/widgets/molecules/loading_indicator.dart';
@@ -6,6 +5,8 @@ import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../pages/news_detail.dart';
 
 class News extends ConsumerWidget {
   const News({super.key});

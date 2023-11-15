@@ -1,4 +1,5 @@
-import 'package:SerManos/pages/routes/news_detail.dart';
+import 'package:SerManos/pages/card_detail.dart';
+import 'package:SerManos/pages/news_detail.dart';
 import 'package:SerManos/pages/routes/home.dart';
 import 'package:SerManos/pages/routes/login.dart';
 import 'package:SerManos/pages/routes/register.dart';
@@ -17,7 +18,7 @@ class SerManosRouter {
   ];
 
   final GoRouter router = GoRouter(
-      initialLocation: '/welcome',
+      initialLocation: '/home',
       routes: <RouteBase>[
         GoRoute(path: '/', redirect: (context, state) => '/home'),
         GoRoute(
@@ -51,6 +52,11 @@ class SerManosRouter {
                 name: NewsDetail.name,
                 path: NewsDetail.path,
                 builder: (context, state) => const NewsDetail(),
+            ),
+            GoRoute(
+                name: CardDetail.name,
+                path: CardDetail.path,
+                builder: (context, state) => const CardDetail(),
             ),
           ]
         ),
