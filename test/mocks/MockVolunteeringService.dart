@@ -1,4 +1,3 @@
-import 'package:SerManos/models/volunteer.dart';
 import 'package:SerManos/models/volunteering.dart';
 import 'package:SerManos/services/volunteering_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

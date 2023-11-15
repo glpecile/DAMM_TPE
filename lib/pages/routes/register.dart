@@ -11,7 +11,7 @@ import '../../models/register.dart';
 
 class Register extends ConsumerStatefulWidget {
   static String name = 'register';
-  static String path = '$name';
+  static String path = name;
 
   const Register({super.key});
 

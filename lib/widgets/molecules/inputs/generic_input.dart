@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 // stateful widget
 abstract class SerManosGenericInput extends StatefulWidget {
   const SerManosGenericInput({
-    Key? key,
+    super.key,
     this.placeholder,
     required this.label,
     this.suffixIcon,
@@ -17,7 +17,7 @@ abstract class SerManosGenericInput extends StatefulWidget {
     this.helperText,
     this.inputFormatters,
     required this.onSaved,
-  }) : super(key: key);
+  });
 
   final String? placeholder;
   final String label;

@@ -4,10 +4,10 @@ import 'package:SerManos/models/login.dart';
 import 'package:SerManos/models/profile.dart';
 import 'package:SerManos/models/register.dart';
 import 'package:SerManos/models/volunteer.dart';
-import 'package:SerManos/services/analytics_service.dart';
 import 'package:SerManos/services/user_service.dart';
 
 class MockUserService extends UserService {
+  @override
   final String collection = 'users';
   final Volunteer volunteer = Volunteer.fromJson({
     'id': '0',
@@ -67,6 +67,7 @@ class MockUserService extends UserService {
     return volunteer.favorites;
   }
 
+  @override
   Future<Volunteer?> editUser(
       ContactData contactData, ProfileData profileData) async {
     volunteer.editVolunteer(contactData, profileData);

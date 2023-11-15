@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class Avatar extends StatelessWidget {
-  const Avatar({Key? key, this.imageUrl, this.imageFile, this.sm = true})
-      : super(key: key);
+  const Avatar({super.key, this.imageUrl, this.imageFile, this.sm = true});
 
   final String? imageUrl;
   final File? imageFile;

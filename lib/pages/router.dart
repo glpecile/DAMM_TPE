@@ -18,7 +18,7 @@ class SerManosRouter {
   ];
 
   final GoRouter router = GoRouter(
-      initialLocation: '/home',
+      initialLocation: '/welcome',
       routes: <RouteBase>[
         GoRoute(path: '/', redirect: (context, state) => '/home'),
         GoRoute(
@@ -46,7 +46,7 @@ class SerManosRouter {
             GoRoute(
               name: EditProfile.name,
               path: EditProfile.path,
-              builder: (context, state) => EditProfile(),
+              builder: (context, state) => const EditProfile(),
             ),
             GoRoute(
                 name: NewsDetail.name,
@@ -56,8 +56,11 @@ class SerManosRouter {
             GoRoute(
                 name: CardDetail.name,
                 path: CardDetail.path,
-                builder: (context, state) => const CardDetail(),
-            ),
+                builder: (context, GoRouterState state){
+                final id = state.pathParameters['volunteeringId'];
+                return CardDetail(id: id!);
+              },
+            )
           ]
         ),
         GoRoute(

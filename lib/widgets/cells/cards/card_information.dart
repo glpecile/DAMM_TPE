@@ -55,7 +55,7 @@ class CardInformation extends StatelessWidget {
             content1,
             style: const SerManosTypography.body_01(color: SerManosColors.neutral_100),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             label2,
             style: const SerManosTypography.overline(),

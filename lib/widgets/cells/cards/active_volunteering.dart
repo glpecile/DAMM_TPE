@@ -22,7 +22,7 @@ class ActiveVolunteering extends ConsumerWidget {
             return const SizedBox.shrink();
           }
         },
-        error: (error, stackTrace) => SizedBox.shrink(),
-        loading: () => SizedBox.shrink());
+        error: (error, stackTrace) => const SizedBox.shrink(),
+        loading: () => const SizedBox.shrink());
   }
 }

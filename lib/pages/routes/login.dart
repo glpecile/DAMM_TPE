@@ -12,7 +12,7 @@ import '../../providers/auth_provider.dart';
 
 class Login extends ConsumerStatefulWidget {
   static String name = 'login';
-  static String path = '$name';
+  static String path = name;
 
   const Login({super.key});
 

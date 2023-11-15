@@ -1,3 +1,4 @@
+import 'package:SerManos/pages/card_detail.dart';
 import 'package:SerManos/widgets/atoms/icons.dart';
 import 'package:SerManos/widgets/molecules/buttons/icon_btn.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
@@ -34,7 +35,7 @@ class CardVolunteers extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     FavoritesController favoritesMethods = ref.read(favoritesControllerProvider.notifier);
     return InkWell(
-      onTap: () => context.go('/home/detail'),
+        onTap: () => context.pushNamed(CardDetail.name, pathParameters: {'volunteeringId': id}),
         child: Center(
           child: Container(
             width: 328,
@@ -53,26 +54,31 @@ class CardVolunteers extends ConsumerWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        const Text("ACCIÓN SOCIAL",
+                            style: SerManosTypography.overline()),
+                        Text(
+                          title,
+                          style: const SerManosTypography.subtitle_01(
+                              color: SerManosColors.neutral_100),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
                           children: [
-                            const Text("ACCIÓN SOCIAL",
-                                style: SerManosTypography.overline()),
-                            Text(
-                              title,
-                              style: const SerManosTypography.subtitle_01(
-                                  color: SerManosColors.neutral_100),
-                            ),
                             VacancyIcons(currentVacant: currentVacant, isFavorite: isFavorite, onPressedFav: () => favoritesMethods.toggleFavorite(id), onPressedLocation: onPressedLocation),
+                            SizedBox(width: 80,),
+                            gIcons(isFavorite: isFavorite, onPressedFavorite: onPressedFav, onPressedLocation: onPressedLocation)
                           ],
                         ),
+
                       ],
                     ),
+
                   ),
                 ],
               ),
@@ -154,12 +160,9 @@ class VacancyIcons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Vacancy(currentVacant: '$currentVacant'),
-          const SizedBox(
-            width: 95,
-          ),
-          gIcons(isFavorite: isFavorite, onPressedFavorite: onPressedFav, onPressedLocation: onPressedLocation)
         ]);
   }
 }

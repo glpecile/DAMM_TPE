@@ -47,7 +47,7 @@ class News extends ConsumerWidget {
             ),
           );
         },
-        error: (error, stackTrace) => SizedBox.shrink(),
+        error: (error, stackTrace) => const SizedBox.shrink(),
         loading: () => const LoadingIndicator()
     );
   }
