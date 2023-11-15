@@ -1,6 +1,9 @@
+import 'package:SerManos/pages/news_detail.dart';
 import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
 import 'package:SerManos/widgets/tokens/shadows.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../tokens/colors.dart';
 import '../../tokens/typography.dart';
 
@@ -10,8 +13,7 @@ class CardNews extends StatelessWidget {
   final String title;
   final String subtitle;
   final String imageUrl;
-
-  final Function onPressed;
+  final String id;
 
   const CardNews({
     super.key,
@@ -19,13 +21,14 @@ class CardNews extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.imageUrl,
-    required this.onPressed,
+    required this.id,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onPressed,
+      onTap: () =>
+          context.pushNamed(NewsDetail.name, pathParameters: {'newsId': id}),
       child: Container(
         width: 328,
         decoration: BoxDecoration(
@@ -75,7 +78,8 @@ class CardNews extends StatelessWidget {
                         child: ButtonCTA(
                           btnColor: SerManosColors.primary_100,
                           text: "Leer Más",
-                          onPressed: () => onPressed,
+                          onPressed: () => context.pushNamed(NewsDetail.name,
+                              pathParameters: {'newsId': id}),
                           foregroundColor: SerManosColors.neutral_75,
                         ),
                       ),
