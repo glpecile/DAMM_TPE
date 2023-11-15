@@ -4,6 +4,7 @@ import 'package:SerManos/models/login.dart';
 import 'package:SerManos/models/register.dart';
 import 'package:SerManos/models/volunteer.dart';
 import 'package:SerManos/services/user_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -31,6 +32,7 @@ class AuthController extends _$AuthController {
   Future<void> logIn(LogInData data, void redirect) async {
     try {
       var user = await _userService.logIn(data);
+      await _saveToPrefs(user);
       state = AsyncValue.data(user);
     } finally {
       redirect;
@@ -39,6 +41,7 @@ class AuthController extends _$AuthController {
 
   Future<void> logOut() async {
     await _userService.logOut();
+    await _removeFromPrefs();
     state = const AsyncValue.data(null);
   }
 
@@ -54,9 +57,16 @@ class AuthController extends _$AuthController {
   Future<Volunteer?> build() async {
     final prefs = await SharedPreferences.getInstance();
     Volunteer? user;
+    //prefs.remove(_sharedPrefsKey);
     if (prefs.containsKey(_sharedPrefsKey)) {
       final extractedUserData = json.decode(prefs.getString(_sharedPrefsKey)!)
           as Map<String, dynamic>;
+      extractedUserData['birthDate'] =
+          DateTime.tryParse(extractedUserData['birthDate']) != null
+              ? Timestamp.fromDate(
+                  DateTime.parse(extractedUserData['birthDate']))
+              : null;
+      logger.i(extractedUserData);
       user = Volunteer.fromJson(extractedUserData);
     } else {
       user = await _userService.getCurrentUser();
