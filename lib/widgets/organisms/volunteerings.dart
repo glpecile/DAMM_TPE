@@ -75,7 +75,7 @@ class Volunteerings extends ConsumerWidget {
                           title: volunteering.title,
                           description: volunteering.description,
                           isFavorite: volunteering.isFavorite,
-                          currentVacant: volunteering.currentVacant,
+                          currentVacant: volunteering.availableVacant - volunteering.currentVacant,
                           onPressedFav: () => favoritesMethods
                               .toggleFavorite(volunteerings[index].id),
                           onPressedLocation: () => openOnGoogleMaps(

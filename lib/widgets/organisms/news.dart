@@ -12,6 +12,42 @@ class News extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var news = ref.watch(newsControllerProvider);
 
+    return news.when(
+        data: (newsList) {
+          return Scaffold(
+            backgroundColor: SerManosColors.secondary_10,
+            body: Column(
+              children: [
+                Expanded(
+                    child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    var newsItem = newsList[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: CardNews(
+                        overline: newsItem.newsletter,
+                        title: newsItem.title,
+                        subtitle: newsItem.subtitle,
+                        imageUrl: newsItem.imagePath,
+                        onPressed: () {
+                          context.go('/news/${newsItem.id}');
+                        },
+                      ),
+                    );
+                  },
+                  itemCount: newsList.length,
+                )),
+                const SizedBox(
+                  height: 10,
+                ),
+                // CardVolunteers()
+              ],
+            ),
+          );
+        },
+        error: (error, stackTrace) => SizedBox.shrink(),
+        loading: () => SizedBox.shrink());
+
     return Scaffold(
       backgroundColor: SerManosColors.secondary_10,
       body: Column(

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:SerManos/models/login.dart';
@@ -17,6 +18,16 @@ class AuthController extends _$AuthController {
   late SharedPreferences _sharedPreferences;
   static const _sharedPrefsKey = 'volunteerData';
   Logger logger = Logger();
+
+  Future<void> _saveToPrefs(Volunteer volunteer) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(_sharedPrefsKey, json.encode(volunteer.toJson()));
+  }
+
+  Future<void> _removeFromPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove(_sharedPrefsKey);
+  }
 
   Future<void> logIn(LogInData data, void redirect) async {
     try{
@@ -42,7 +53,19 @@ class AuthController extends _$AuthController {
 
   @override
   Future<Volunteer?> build() async {
-    var user = await _userService.getCurrentUser();
+    final prefs = await SharedPreferences.getInstance();
+    Volunteer? user;
+    if (prefs.containsKey(_sharedPrefsKey)) {
+      final extractedUserData = json.decode(
+          prefs.getString(_sharedPrefsKey)!) as Map<String, dynamic>;
+      user = Volunteer.fromJson(extractedUserData);
+    } else {
+      user = await _userService.getCurrentUser();
+      if (user != null) {
+        await _saveToPrefs(user);
+      }
+    }
+
     return user;
   }
 }

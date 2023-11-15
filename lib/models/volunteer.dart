@@ -16,9 +16,21 @@ class Volunteer {
   Gender? gender;
   String? phone;
   String? secondaryEmail;
-  bool hasCompletedProfile;
+
+  //bool hasCompletedProfile;
   String? volunteering; // You can only have one volunteering
   bool isVolunteeringApproved;
+
+  get hasCompletedProfile => [
+        email,
+        name,
+        lastName,
+        imageUrl,
+        birthDate,
+        gender,
+        phone,
+        secondaryEmail
+      ].every((element) => element != null);
 
   Volunteer(
       {required this.id,
@@ -31,7 +43,7 @@ class Volunteer {
       this.gender,
       this.phone,
       this.secondaryEmail,
-      required this.hasCompletedProfile,
+      //required this.hasCompletedProfile,
       this.volunteering,
       required this.isVolunteeringApproved});
 
@@ -44,17 +56,20 @@ class Volunteer {
         lastName: json['lastName'],
         favorites: List<String>.from(json['favorites']),
         imageUrl: json['imageUrl'],
-        birthDate: json['birthDate'] != null ? (json['birthDate'] as Timestamp).toDate() : null,
+        birthDate: json['birthDate'] != null
+            ? (json['birthDate'] as Timestamp).toDate()
+            : null,
         gender: json['gender'] != null ? Gender.values[json['gender']] : null,
         phone: json['phone'],
         secondaryEmail: json['secondaryEmail'],
-        hasCompletedProfile: json['hasCompletedProfile'],
+        //hasCompletedProfile: json['hasCompletedProfile'],
         volunteering: json['volunteering'],
         isVolunteeringApproved: json['isVolunteeringApproved']);
   }
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'email': email,
       'name': name,
       'lastName': lastName,
@@ -64,7 +79,7 @@ class Volunteer {
       'gender': gender?.index,
       'phone': phone,
       'secondaryEmail': secondaryEmail,
-      'hasCompletedProfile': hasCompletedProfile,
+      //'hasCompletedProfile': hasCompletedProfile,
       'volunteering': volunteering,
       'isVolunteeringApproved': isVolunteeringApproved
     };
@@ -76,6 +91,7 @@ class Volunteer {
     gender = profileData.gender;
     phone = contactData.phone;
     secondaryEmail = contactData.email;
+    /*
     if (profileData.gender != null &&
         profileData.dateOfBirth != null &&
         //profileData.imageUrl != null &&
@@ -83,5 +99,6 @@ class Volunteer {
         contactData.email != null) {
       hasCompletedProfile = true;
     }
+     */
   }
 }

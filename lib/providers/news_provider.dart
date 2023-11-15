@@ -18,7 +18,7 @@ class NewsController extends _$NewsController {
   }
 
   @override
-  FutureOr<List<News>> build() async {
+  Future<List<News>> build() async {
     return getNews();
   }
 }
