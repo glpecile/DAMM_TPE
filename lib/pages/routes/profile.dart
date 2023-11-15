@@ -27,10 +27,11 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget>{
 
   @override
   Widget build(BuildContext context) {
+    var user = ref.watch(authControllerProvider).value!;
     var authController = ref.read(authControllerProvider.notifier);
     return Column(
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 32),
             child: CardInformation(
               title: "Información personal",
@@ -40,14 +41,14 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget>{
               content2: "Hombre",
         ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 32, bottom: 32),
             child: CardInformation(
                 title: "Datos de contacto",
                 label1: "TELÉFONO",
                 content1: "+5491155764852",
                 label2: "E-MAIL",
-                content2: "mimail@gmail.com"),
+                content2: user.email),
           ),
           SizedBox(
             width: 308,

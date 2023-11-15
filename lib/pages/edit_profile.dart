@@ -10,7 +10,7 @@ import '../widgets/tokens/colors.dart';
 
 class EditProfile extends StatelessWidget {
   static String name = 'edit_profile';
-  static String path = '$name';
+  static String path = name;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool _isFormValid = false;

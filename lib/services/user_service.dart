@@ -100,6 +100,11 @@ class UserService {
         .update({'favorites': volunteer.favorites});
   }
 
+  Future<String> getEmail() async {
+    var user = await getCurrentUser();
+    return user!.email;
+  }
+
   Future<List<String>> getFavorites() async {
     Volunteer? volunteer = await getCurrentUser();
     if (volunteer == null) {

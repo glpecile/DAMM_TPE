@@ -45,4 +45,9 @@ class AuthController extends _$AuthController {
     var user = await _userService.getCurrentUser();
     return user;
   }
+
+  Future<Volunteer?> getCurrentUser() async {
+    return _userService.getCurrentUser();
+  }
+
 }

@@ -30,16 +30,22 @@ class Start extends StatelessWidget {
               const SizedBox(height: 190,),
               Row(
                   children: [
-                Expanded(
-                    child: ButtonCTA(
-                        btnColor: SerManosColors.neutral_0,
-                        text: "Comenzar",
-                        onPressed: () => context.go('/home'),
-                        foregroundColor: SerManosColors.neutral_25,
-                        backgroundColor: SerManosColors.primary_100,
+                    Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            width: 328,
+                            child: ButtonCTA(
+                              btnColor: SerManosColors.neutral_0,
+                              text: "Comenzar",
+                              onPressed: () => context.go('/home'),
+                              foregroundColor: SerManosColors.neutral_25,
+                              backgroundColor: SerManosColors.primary_100,
+                            ),
+                          ),
                         )
-                ),
-              ]
+                    ),
+                  ]
               ),
             ]
         ),
