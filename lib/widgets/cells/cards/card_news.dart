@@ -6,7 +6,7 @@ import '../../tokens/typography.dart';
 
 class CardNews extends StatelessWidget {
   // TODO: swap for model with news data
-  final String overline;
+  final String newsletter;
   final String title;
   final String subtitle;
   final String imageUrl;
@@ -15,7 +15,7 @@ class CardNews extends StatelessWidget {
 
   const CardNews({
     super.key,
-    required this.overline,
+    required this.newsletter,
     required this.title,
     required this.subtitle,
     required this.imageUrl,
@@ -25,6 +25,7 @@ class CardNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () => onPressed,
       child: Container(
         width: 328,
         decoration: BoxDecoration(
@@ -52,7 +53,7 @@ class CardNews extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              overline,
+                              newsletter,
                               style: const SerManosTypography.overline(),
                             ),
                             Text(

@@ -4,8 +4,8 @@ import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../widgets/molecules/buttons/button_cta.dart';
-import '../widgets/tokens/colors.dart';
+import '../../widgets/molecules/buttons/button_cta.dart';
+import '../../widgets/tokens/colors.dart';
 
 class EditProfile extends StatefulWidget {
   static String name = 'edit_profile';
