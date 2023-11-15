@@ -11,7 +11,6 @@ class UserVolunteeringController extends _$UserVolunteeringController {
   final UserService _userService = UserService();
 
   // TODO: capaz usar todo con refs
-
   Future<Volunteering?> _getUserVolunteering() async {
     var user = await _userService.getCurrentUser();
     if (user != null && user.volunteering != null) {
@@ -27,12 +26,20 @@ class UserVolunteeringController extends _$UserVolunteeringController {
   }
 
   Future<void> applyToVolunteering(String volunteeringId) async {
-    var volunteering =
-        await _volunteeringService.getVolunteeringById(volunteeringId);
+    var volunteering = await _volunteeringService.getVolunteeringById(volunteeringId);
     if (volunteering != null) {
       await _volunteeringService.applyVolunteering(volunteeringId);
       volunteering.isVolunteeringApproved = false;
       state = AsyncValue.data(volunteering);
+    }
+  }
+
+  Future<void> leaveVolunteering(String volunteeringId) async {
+    var volunteering = await _volunteeringService.getVolunteeringById(volunteeringId);
+    if (volunteering != null) {
+      await _volunteeringService.leaveVolunteering(volunteeringId);
+      volunteering.isVolunteeringApproved = false;
+      state = const AsyncValue.data(null);
     }
   }
 

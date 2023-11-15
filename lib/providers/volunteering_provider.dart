@@ -11,8 +11,7 @@ part 'volunteering_provider.g.dart';
 class VolunteeringController extends _$VolunteeringController {
   final VolunteeringService _volunteeringService = VolunteeringService();
 
-  Future<List<Volunteering>> _getVolunteerings(
-      String? textSearch, GeoPoint? userPosition) async {
+  Future<List<Volunteering>> _getVolunteerings(String? textSearch, GeoPoint? userPosition) async {
     var volunteerings =
         await _volunteeringService.getVolunteerings(textSearch, userPosition);
     return volunteerings;
