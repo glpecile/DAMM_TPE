@@ -3,7 +3,7 @@
 // import 'package:flutter/cupertino.dart';
 // import 'package:hooks_riverpod/hooks_riverpod.dart';
 //
-// import '../../models/volunteering.dart';
+// import '../../../models/volunteering.dart';
 //
 // class CardDetailMap extends HookConsumerWidget {
 //   const CardDetailMap({Key? key, required this.volunteering,}) : super(key: key);
@@ -12,12 +12,11 @@
 //
 //   @override
 //   Widget build(BuildContext context, WidgetRef ref) {
-//     final Completer<GoogleMapController> _controller =
-//         Completer<GoogleMapController>();
+//     final Completer<GoogleMapController> _controller = Completer<GoogleMapController>();
 //
 //     return GoogleMap(
 //       initialCameraPosition: CameraPosition(
-//         target: LatLng(volunteering.lat, volunteering.lng),
+//         target: LatLng(volunteering.location.latitude, volunteering.location.longitude),
 //         zoom: 15,
 //       ),
 //       markers: <Marker>{
@@ -25,8 +24,8 @@
 //           markerId: MarkerId(volunteering.id),
 //           onTap: () {},
 //           position: LatLng(
-//             volunteering.lat,
-//             volunteering.lng,
+//             volunteering.location.latitude,
+//             volunteering.location.longitude,
 //           ),
 //           icon: BitmapDescriptor.defaultMarker,
 //         ),

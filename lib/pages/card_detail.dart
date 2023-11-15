@@ -1,5 +1,6 @@
 import 'package:SerManos/providers/volunteering_by_id_provider.dart';
 import 'package:SerManos/widgets/atoms/icons.dart';
+import 'package:SerManos/widgets/cells/cards/card_map_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -117,6 +118,8 @@ class CardDetail extends ConsumerWidget {
                               color: SerManosColors.neutral_100),
                         ),
                       ),
+                      const SizedBox(height: 24),
+                      // CardMapDetail(volunteering: volunteering),
                       const SizedBox(height: 24),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
