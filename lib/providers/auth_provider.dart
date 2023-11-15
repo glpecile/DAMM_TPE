@@ -68,4 +68,9 @@ class AuthController extends _$AuthController {
 
     return user;
   }
+
+  Future<Volunteer?> getCurrentUser() async {
+    return _userService.getCurrentUser();
+  }
+
 }

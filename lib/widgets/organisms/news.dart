@@ -65,7 +65,8 @@ class News extends ConsumerWidget {
                       subtitle: newsItem.subtitle,
                       imageUrl: newsItem.imagePath,
                       onPressed: () {
-                        context.go('/news/${newsItem.id}');
+                        context.go('/home/news');
+                        // context.go('/news/${newsItem.id}');
                       },
                     ),
                   );
