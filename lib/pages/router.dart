@@ -1,13 +1,13 @@
 import 'package:SerManos/pages/card_detail.dart';
-import 'package:SerManos/pages/news_detail.dart';
+import 'package:SerManos/pages/routes/edit_profile.dart';
 import 'package:SerManos/pages/routes/home.dart';
 import 'package:SerManos/pages/routes/login.dart';
+import 'package:SerManos/pages/routes/news_detail.dart';
 import 'package:SerManos/pages/routes/register.dart';
 import 'package:SerManos/pages/routes/start.dart';
 import 'package:SerManos/pages/routes/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'routes/edit_profile.dart';
 
 class SerManosRouter {
   static final List<String> nonAuthRoutes = [
@@ -39,34 +39,32 @@ class SerManosRouter {
           ],
         ),
         GoRoute(
-          name: Home.name,
-          path: Home.path,
-          builder: (context, state) => const Home(),
-          routes: <RouteBase> [
-            GoRoute(
-              name: EditProfile.name,
-              path: EditProfile.path,
-              builder: (context, state) => const EditProfile(),
-            ),
-            GoRoute(
+            name: Home.name,
+            path: Home.path,
+            builder: (context, state) => const Home(),
+            routes: <RouteBase>[
+              GoRoute(
+                name: EditProfile.name,
+                path: EditProfile.path,
+                builder: (context, state) => const EditProfile(),
+              ),
+              GoRoute(
                 name: NewsDetail.name,
                 path: NewsDetail.path,
-                builder: (context, state) => const NewsDetail(),
-            ),
-            GoRoute(
+                builder: (context, state) =>
+                    NewsDetail(id: state.pathParameters['newsId']!),
+              ),
+              GoRoute(
                 name: CardDetail.name,
                 path: CardDetail.path,
-                builder: (context, GoRouterState state){
-                final id = state.pathParameters['volunteeringId'];
-                return CardDetail(id: id!);
-              },
-            )
-          ]
-        ),
+                builder: (context, state) =>
+                    CardDetail(id: state.pathParameters['volunteeringId']!),
+              )
+            ]),
         GoRoute(
-            name: Welcome.name,
-            path: Welcome.path,
-            builder: (context, state) => const Welcome(),
+          name: Welcome.name,
+          path: Welcome.path,
+          builder: (context, state) => const Welcome(),
         )
       ],
       errorBuilder: (context, state) => Text('Error: ${state.error}'),
