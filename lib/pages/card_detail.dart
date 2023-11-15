@@ -21,7 +21,8 @@ class CardDetail extends ConsumerWidget {
     return volunteeringByIdController.when(
         data: (volunteering) {
           return Scaffold(
-            body: SingleChildScrollView(
+            body: RefreshIndicator(
+              onRefresh: () async => ref.refresh(getVolunteeringByIdControllerProvider(volunteeringId: id).future),
               child: Column(
                 children: [
                   ColoredBox(
