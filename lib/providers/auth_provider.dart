@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:SerManos/models/login.dart';
+import 'package:SerManos/models/profile.dart';
 import 'package:SerManos/models/register.dart';
 import 'package:SerManos/models/volunteer.dart';
 import 'package:SerManos/services/user_service.dart';
@@ -9,6 +10,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/contact.dart';
 
 part 'auth_provider.g.dart';
 
@@ -48,6 +51,16 @@ class AuthController extends _$AuthController {
   Future<void> register(RegisterData data) async {
     try {
       await _userService.signUp(data);
+    } on FirebaseAuthException catch (error) {
+      throw error.code;
+    }
+  }
+
+  Future<void> editUser(ContactData contactData, ProfileData profileData) async {
+    try {
+      var user = await _userService.editUser(contactData, profileData);
+      await _saveToPrefs(user!);
+      state = AsyncValue.data(user);
     } on FirebaseAuthException catch (error) {
       throw error.code;
     }
