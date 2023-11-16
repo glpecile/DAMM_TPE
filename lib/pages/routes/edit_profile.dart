@@ -21,7 +21,7 @@ class EditProfile extends ConsumerStatefulWidget {
 
 class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
+  GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   bool _isFormValid = false;
 
   @override
@@ -50,7 +50,7 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                   _isFormValid = isValid;
                 });
               },
-              formKey: formKey,
+              formKey: formKey2,
             ),
             Flex(direction: Axis.horizontal, children: [
               Expanded(
