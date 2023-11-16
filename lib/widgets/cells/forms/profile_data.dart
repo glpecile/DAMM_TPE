@@ -65,6 +65,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
             height: 24,
           ),
           Form(
+            key: widget.formKey,
             child: Column(
               children: [
                 SerManosDateInput(

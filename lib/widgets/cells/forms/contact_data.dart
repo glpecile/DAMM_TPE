@@ -54,6 +54,7 @@ class _ContactDataFormState extends State<ContactDataForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: widget.formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
