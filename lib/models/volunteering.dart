@@ -64,4 +64,9 @@ class Volunteering {
             2;
     distanceToUser = 12742 * asin(sqrt(a));
   }
+
+  @override
+  String toString() {
+    return 'Volunteering: $id';
+  }
 }
