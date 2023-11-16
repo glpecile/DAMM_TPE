@@ -47,6 +47,9 @@
             android:value="2" />
     </application>
     <!-- Provide required visibility configuration for API level 30 and above -->
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <queries>
         <!-- If your app checks for SMS support -->
         <intent>
