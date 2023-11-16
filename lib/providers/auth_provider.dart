@@ -4,6 +4,7 @@ import 'package:SerManos/models/login.dart';
 import 'package:SerManos/models/profile.dart';
 import 'package:SerManos/models/register.dart';
 import 'package:SerManos/models/volunteer.dart';
+import 'package:SerManos/pages/routes/welcome.dart';
 import 'package:SerManos/services/user_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,13 +33,13 @@ class AuthController extends _$AuthController {
     prefs.remove(_sharedPrefsKey);
   }
 
-  Future<void> logIn(LogInData data, void redirect) async {
+  Future<void> logIn(LogInData data, var redirect) async {
     try {
       var user = await _userService.logIn(data);
       await _saveToPrefs(user);
       state = AsyncValue.data(user);
     } finally {
-      redirect;
+      redirect(Welcome.name);
     }
   }
 
@@ -72,7 +73,7 @@ class AuthController extends _$AuthController {
   @override
   Future<Volunteer?> build() async {
     _sharedPreferences = await SharedPreferences.getInstance();
-    //_sharedPreferences.remove(_sharedPrefsKey);
+    _sharedPreferences.remove(_sharedPrefsKey);
     //_persistenceRefreshLogic();
 
     Volunteer? user;

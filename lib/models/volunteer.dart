@@ -1,9 +1,12 @@
 // TODO: pasar de enum a string
+import 'dart:developer';
+
 import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../helpers/gender.dart';
+import 'package:intl/intl.dart';
 
 class Volunteer {
   final String id;
@@ -20,6 +23,7 @@ class Volunteer {
   //bool hasCompletedProfile;
   String? volunteering; // You can only have one volunteering
   bool isVolunteeringApproved;
+  static final DateFormat dateFormat = DateFormat("dd/MM/yyyy");
 
   bool get hasCompletedProfile => [
         imageUrl,
@@ -54,7 +58,7 @@ class Volunteer {
         favorites: List<String>.from(json['favorites']),
         imageUrl: json['imageUrl'],
         birthDate: json['birthDate'] != null
-            ? (json['birthDate'] as Timestamp).toDate()
+            ? dateFormat.parse(json['birthDate'])
             : null,
         gender: json['gender'] != null ? Gender.values[json['gender']] : null,
         phone: json['phone'],
@@ -72,7 +76,7 @@ class Volunteer {
       'lastName': lastName,
       'favorites': favorites,
       'imageUrl': imageUrl,
-      'birthDate': birthDate != null ? birthDate!.toIso8601String() : null,
+      'birthDate': birthDate != null ? dateFormat.format(birthDate!) : null,
       'gender': gender?.index,
       'phone': phone,
       'secondaryEmail': secondaryEmail,
@@ -85,7 +89,13 @@ class Volunteer {
   void editVolunteer(
       ContactData contactData, ProfileData profileData, String? imageUrl) {
     imageUrl = imageUrl ?? profileData.imageUrl;
-    birthDate = DateTime.tryParse(profileData.dateOfBirth!);
+    log("A punto de parsear para editar");
+    log(profileData.dateOfBirth!);
+
+    // Define el formato de fecha que estás utilizando
+    birthDate = dateFormat.parse(profileData.dateOfBirth!);
+
+    log(birthDate!.toIso8601String());
     gender = profileData.gender;
     phone = contactData.phone;
     secondaryEmail = contactData.email;

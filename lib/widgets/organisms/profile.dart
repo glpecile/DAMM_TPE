@@ -76,7 +76,7 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget> {
                       label1: "TELÉFONO",
                       content1: user.phone!,
                       label2: "E-MAIL",
-                      content2: user.email),
+                      content2: user.secondaryEmail!),
                 ),
                 SizedBox(
                   width: 308,

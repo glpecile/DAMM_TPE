@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:SerManos/models/login.dart';
 import 'package:SerManos/pages/routes/welcome.dart';
 import 'package:SerManos/widgets/cells/forms/log_in.dart';
@@ -80,8 +82,9 @@ class _LoginState extends ConsumerState<ConsumerStatefulWidget> {
                             logger.w("form input is valid");
                             formKey.currentState!.save();
                           }
+                          log("A PUNTO DE LOGGEAR");
                           authController.logIn(
-                              loginData, context.goNamed(Welcome.name));
+                              loginData, context.goNamed);
                         },
                         foregroundColor: SerManosColors.neutral_25,
                         backgroundColor: SerManosColors.primary_100,

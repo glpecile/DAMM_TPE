@@ -82,6 +82,7 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                           contactInfoFormKey.currentState!.save();
                           personalInfoFormKey.currentState!.save();
                           log("EDITANDO");
+                          log(profileData.dateOfBirth!);
                           ref.read(authControllerProvider.notifier)
                               .editUser(contactData, profileData);
                           // log("Saving data: ${user?.secondaryEmail} ${user?.phone}");
