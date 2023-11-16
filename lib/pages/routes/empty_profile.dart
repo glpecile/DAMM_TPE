@@ -3,6 +3,7 @@ import 'package:SerManos/widgets/molecules/buttons/short_button.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../widgets/atoms/icons.dart';
 import '../../widgets/tokens/typography.dart';
@@ -42,7 +43,7 @@ class EmptyProfile extends StatelessWidget {
             ),
           ),
         ),
-        ShortButton(btnColor: SerManosColors.neutral_0, text: "Completar", onPressed: (){}, foregroundColor: SerManosColors.neutral_10, backgroundColor: SerManosColors.primary_100, size: Size.small, icon: SerManosIcons.add)
+        ShortButton(btnColor: SerManosColors.neutral_0, text: "Completar", onPressed: (){context.go('/home/edit_profile');}, foregroundColor: SerManosColors.neutral_10, backgroundColor: SerManosColors.primary_100, size: Size.small, icon: SerManosIcons.add)
       ],
     );
   }

@@ -3,28 +3,30 @@ import 'package:SerManos/widgets/cells/forms/profile_data.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../widgets/atoms/icons.dart';
 import '../../widgets/molecules/buttons/button_cta.dart';
 import '../../widgets/tokens/colors.dart';
 
-class EditProfile extends StatefulWidget {
+class EditProfile extends ConsumerStatefulWidget {
   static String name = 'edit_profile';
   static String path = name;
 
   const EditProfile({super.key});
 
   @override
-  State<EditProfile> createState() => _EditProfileState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _EditProfileState();
 }
 
-class _EditProfileState extends State<EditProfile> {
+class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool _isFormValid = false;
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
