@@ -78,14 +78,19 @@ class _ContactDataFormState extends State<ContactDataForm> {
             label: "Mail",
             controller: emailController,
             validator: emailValidator,
-            onSaved: (String? value) {},
+            onSaved: (String? value) {
+              widget.contactData!.email = value ?? '';
+            },
           ),
           const SizedBox(height: 24),
           SerManosTextInput(
             placeholder: "Ej: +541178445459",
             label: "Teléfono",
             controller: phoneController,
-            validator: phoneValidator, onSaved: (String? value) {  },
+            validator: phoneValidator,
+            onSaved: (String? value) {
+              widget.contactData!.phone = value ?? '';
+            },
           ),
         ],
       ),

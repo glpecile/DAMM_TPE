@@ -42,7 +42,7 @@ class CardInput extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       color: SerManosColors.neutral_10,
-      child: GenderRadio(
+      child: GenderRadioForm(
         onPressed: onPressed,
       ),
     );
