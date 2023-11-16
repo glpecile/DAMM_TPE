@@ -4,6 +4,7 @@ import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../widgets/atoms/icons.dart';
 import '../../widgets/molecules/buttons/button_cta.dart';
 import '../../widgets/tokens/colors.dart';
 
@@ -28,7 +29,7 @@ class _EditProfileState extends State<EditProfile> {
       appBar: AppBar(
           leading: IconButton(
         onPressed: () => context.pop(),
-        icon: const Icon(Icons.close),
+        icon: const Icon(SerManosIcons.close),
       )),
       body: SerManosGrid(
         child: ListView(
