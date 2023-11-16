@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/profile.dart';
 import 'package:SerManos/providers/auth_provider.dart';
@@ -34,6 +36,7 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     var user = ref.watch(authControllerProvider);
+    var controllerMethods = ref.watch(authControllerProvider.notifier);
     return user.when(
         data: (user) {
           return Scaffold(
@@ -71,21 +74,16 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                         btnColor: SerManosColors.neutral_0,
                         text: "Guardar datos",
                         onPressed: () {
+                          log("TOQUE BOTON");
                           if (!contactInfoFormKey.currentState!.validate() ||
                               !personalInfoFormKey.currentState!.validate()) {
                             return;
                           }
                           contactInfoFormKey.currentState!.save();
                           personalInfoFormKey.currentState!.save();
-                          user?.editVolunteer(
-                              ContactData(
-                                  email: user.secondaryEmail,
-                                  phone: user.phone),
-                              ProfileData(
-                                  gender: user.gender,
-                                  dateOfBirth:
-                                      user.birthDate?.toIso8601String()),
-                              'https://firebasestorage.googleapis.com/v0/b/sermanos-91896.appspot.com/o/volunteerings%2FTecho.jpg?alt=media&token=40c7abbf-2d90-44fe-af3e-f358e35a0559');
+                          log("EDITANDO");
+                          ref.read(authControllerProvider.notifier)
+                              .editUser(contactData, profileData);
                           // log("Saving data: ${user?.secondaryEmail} ${user?.phone}");
                           // context.go('/home');
                         },

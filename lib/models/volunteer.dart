@@ -22,9 +22,6 @@ class Volunteer {
   bool isVolunteeringApproved;
 
   bool get hasCompletedProfile => [
-        email,
-        name,
-        lastName,
         imageUrl,
         birthDate,
         gender,
@@ -92,6 +89,7 @@ class Volunteer {
     gender = profileData.gender;
     phone = contactData.phone;
     secondaryEmail = contactData.email;
+
     /*
     if (profileData.gender != null &&
         profileData.dateOfBirth != null &&
