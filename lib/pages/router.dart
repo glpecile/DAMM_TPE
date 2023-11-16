@@ -18,7 +18,7 @@ class SerManosRouter {
   ];
 
   final GoRouter router = GoRouter(
-      initialLocation: '/home',
+      initialLocation: '/welcome',
       routes: <RouteBase>[
         GoRoute(path: '/', redirect: (context, state) => '/home'),
         GoRoute(
