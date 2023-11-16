@@ -30,7 +30,7 @@ class VolunteeringController extends _$VolunteeringController {
   @override
   Future<List<Volunteering>> build() async {
     userLocation = await ref
-        .watch(userLocationControllerProvider.selectAsync((data) => data));
+        .watch(userLocationControllerProvider.future);
     await ref.watch(favoritesControllerProvider.selectAsync((data) => null));
     return await _getVolunteerings(null, null);
   }

@@ -7,6 +7,9 @@ import '../../widgets/tokens/grid.dart';
 import '../../widgets/tokens/typography.dart';
 
 class Start extends StatelessWidget {
+  static String name = 'start';
+  static String path = '/$name';
+
   const Start({super.key});
 
   @override
@@ -24,12 +27,11 @@ class Start extends StatelessWidget {
                   width: 150,
                   height: 150,),
                 const SizedBox(height: 20,),
-                const Text("¡Bienvenido!", style: SerManosTypography.headline_01(),),
                 const SizedBox(height: 30,),
-                const Text("Nunca subestimes tu habilidad para mejorar la vida de alguien.",
+                const Text("“El esfuerzo desinteresado para llevar alegría a los demás será el comienzo de una vida más feliz para nosotros”",
                   style: SerManosTypography.subtitle_01(),
                   textAlign: TextAlign.center,),
-                const SizedBox(height: 190,),
+                const SizedBox(height: 250,),
                 Row(
                     children: [
                       Expanded(
@@ -39,8 +41,8 @@ class Start extends StatelessWidget {
                               width: 328,
                               child: ButtonCTA(
                                 btnColor: SerManosColors.neutral_0,
-                                text: "Comenzar",
-                                onPressed: () => context.go('/home'),
+                                text: "Iniciar Sesión",
+                                onPressed: ()=>context.go('/start/login'),
                                 foregroundColor: SerManosColors.neutral_25,
                                 backgroundColor: SerManosColors.primary_100,
                               ),
@@ -49,6 +51,23 @@ class Start extends StatelessWidget {
                       ),
                     ]
                 ),
+                Row(
+                  children: [
+                    Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            width: 328,
+                            child: ButtonCTA(
+                              btnColor: SerManosColors.primary_100,
+                              text: "Registrarse",
+                              onPressed: () => context.go('/start/register'),
+                              foregroundColor: SerManosColors.neutral_25,
+                              backgroundColor: Colors.transparent,
+                    ),
+                          ),
+                        ))
+                  ],)
               ]
           ),]
         ),

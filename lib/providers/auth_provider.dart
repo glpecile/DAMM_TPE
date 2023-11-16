@@ -55,12 +55,14 @@ class AuthController extends _$AuthController {
 
   @override
   Future<Volunteer?> build() async {
-    final prefs = await SharedPreferences.getInstance();
+    _sharedPreferences = await SharedPreferences.getInstance();
+    //_persistenceRefreshLogic();
+
     Volunteer? user;
-    //prefs.remove(_sharedPrefsKey);
-    if (prefs.containsKey(_sharedPrefsKey)) {
-      final extractedUserData = json.decode(prefs.getString(_sharedPrefsKey)!)
-          as Map<String, dynamic>;
+    if (_sharedPreferences.containsKey(_sharedPrefsKey)) {
+      final extractedUserData =
+          json.decode(_sharedPreferences.getString(_sharedPrefsKey)!)
+              as Map<String, dynamic>;
       extractedUserData['birthDate'] =
           DateTime.tryParse(extractedUserData['birthDate']) != null
               ? Timestamp.fromDate(
@@ -69,13 +71,30 @@ class AuthController extends _$AuthController {
       logger.i(extractedUserData);
       user = Volunteer.fromJson(extractedUserData);
     } else {
-      user = await _userService.getCurrentUser();
-      if (user != null) {
-        await _saveToPrefs(user);
-      }
+      //user = await _userService.getCurrentUser();
+      //if (user != null) {
+      //  await _saveToPrefs(user);
+      //}
+      user = null;
     }
 
     return user;
+  }
+
+  void _persistenceRefreshLogic() {
+    ref.listenSelf((_, next) {
+      if (next.isLoading) return;
+      if (next.hasError) {
+        _sharedPreferences.remove(_sharedPrefsKey);
+        return;
+      }
+      if (next.value != null) {
+        _sharedPreferences.setString(
+            _sharedPrefsKey, json.encode(next.value!.toJson()));
+      } else {
+        _sharedPreferences.remove(_sharedPrefsKey);
+      }
+    });
   }
 
   Future<Volunteer?> getCurrentUser() async {

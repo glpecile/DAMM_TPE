@@ -17,18 +17,13 @@ void main() async {
   runApp(const ProviderScope(observers: [StateLogger()], child: SerManosApp()));
 }
 
-class SerManosApp extends StatefulWidget {
+class SerManosApp extends ConsumerWidget {
   const SerManosApp({super.key});
 
   @override
-  State<SerManosApp> createState() => _SerManosHomePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
 
-class _SerManosHomePageState extends State<SerManosApp> {
-  final GoRouter _router = SerManosRouter().router;
-
-  @override
-  Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'SerManos',
       theme: ThemeData(
@@ -37,7 +32,10 @@ class _SerManosHomePageState extends State<SerManosApp> {
         useMaterial3: true,
         fontFamily: 'Roboto',
       ),
-      routerConfig: _router,
+      //routerConfig: _router,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+      routeInformationProvider: router.routeInformationProvider,
     );
   }
 }

@@ -4,13 +4,18 @@ import 'package:SerManos/pages/routes/home.dart';
 import 'package:SerManos/pages/routes/login.dart';
 import 'package:SerManos/pages/routes/news_detail.dart';
 import 'package:SerManos/pages/routes/register.dart';
-import 'package:SerManos/pages/routes/start.dart';
 import 'package:SerManos/pages/routes/welcome.dart';
+import 'package:SerManos/pages/routes/start.dart';
+import 'package:SerManos/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class SerManosRouter {
-  static final List<String> nonAuthRoutes = [
+part 'router.g.dart';
+
+@Riverpod(keepAlive: true)
+GoRouter router(RouterRef ref) {
+  final List<String> nonAuthRoutes = [
     '/',
     '/start',
     '/start/register',
@@ -18,12 +23,12 @@ class SerManosRouter {
   ];
 
   final GoRouter router = GoRouter(
-      initialLocation: '/welcome',
+      initialLocation: Home.path,
       routes: <RouteBase>[
         GoRoute(path: '/', redirect: (context, state) => '/home'),
         GoRoute(
-          name: 'start',
-          path: '/start',
+          name: Start.name,
+          path: Start.path,
           builder: (context, state) => const Start(),
           routes: <RouteBase>[
             GoRoute(
@@ -67,7 +72,22 @@ class SerManosRouter {
           builder: (context, state) => const Welcome(),
         )
       ],
+      redirect: (context, state) async {
+        var currentUser = ref.watch(authControllerProvider).value;
+        final bool isAuthlessRoute =
+            nonAuthRoutes.any((element) => element == state.uri.path);
+        final bool isLoggedIn = currentUser != null;
+
+        if (isAuthlessRoute && isLoggedIn) {
+          return Home.path;
+        } else if (isLoggedIn) {
+          return null;
+        }
+
+        return isAuthlessRoute ? null : "/start";
+      },
       errorBuilder: (context, state) => Text('Error: ${state.error}'),
-      // TODO: add auth redirect
       debugLogDiagnostics: true);
+
+  return router;
 }
