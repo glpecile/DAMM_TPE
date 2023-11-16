@@ -1,5 +1,6 @@
 import 'package:SerManos/providers/volunteering_by_id_provider.dart';
 import 'package:SerManos/widgets/atoms/icons.dart';
+import 'package:SerManos/widgets/cells/cards/card.dart';
 import 'package:SerManos/widgets/cells/cards/card_map_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -25,6 +26,8 @@ class CardDetail extends ConsumerWidget {
             body: RefreshIndicator(
               onRefresh: () async => ref.refresh(getVolunteeringByIdControllerProvider(volunteeringId: id).future),
               child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ColoredBox(
                     color: SerManosColors.neutral_100,
@@ -146,6 +149,13 @@ class CardDetail extends ConsumerWidget {
                       ),
                       SizedBox(height: 24),
                     ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16, bottom: 24, top: 8),
+                    child: SizedBox(
+                      height: 30,
+                      width: 110,
+                        child: Vacancy(currentVacant: '${volunteering.availableVacant}')),
                   ),
                 ],
               ),
