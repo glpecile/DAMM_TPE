@@ -8,15 +8,13 @@ import 'package:flutter/cupertino.dart';
 class ContactDataForm extends StatefulWidget {
   const ContactDataForm({
     super.key,
-    this.contactData,
-    // TODO: make required
-     this.onValidationChanged,
+    required this.contactData,
+    required this.onValidationChanged,
     required this.formKey,
   });
 
-  // TODO: remove ? and pass correct value
-  final ContactData? contactData;
-  final Function(bool)? onValidationChanged;
+  final ContactData contactData;
+  final Function(bool) onValidationChanged;
   final GlobalKey<FormState>? formKey;
 
   @override
@@ -35,8 +33,7 @@ class _ContactDataFormState extends State<ContactDataForm> {
           phoneValidator(phoneController.text) == null;
     });
     if (_isFormValid != aux) {
-      // TODO: remove ! once onValidationChanged is required
-      widget.onValidationChanged!(_isFormValid);
+      widget.onValidationChanged(_isFormValid);
     }
   }
 
@@ -70,7 +67,8 @@ class _ContactDataFormState extends State<ContactDataForm> {
             "Estos datos serán compartidos con la organización para ponerse en contacto contigo",
             style: SerManosTypography.subtitle_01(
               color: SerManosColors.neutral_100,
-            ),textAlign: TextAlign.left,
+            ),
+            textAlign: TextAlign.left,
           ),
           const SizedBox(height: 24),
           SerManosTextInput(
@@ -79,7 +77,7 @@ class _ContactDataFormState extends State<ContactDataForm> {
             controller: emailController,
             validator: emailValidator,
             onSaved: (String? value) {
-              widget.contactData!.email = value ?? '';
+              widget.contactData.email = value ?? '';
             },
           ),
           const SizedBox(height: 24),
@@ -89,7 +87,7 @@ class _ContactDataFormState extends State<ContactDataForm> {
             controller: phoneController,
             validator: phoneValidator,
             onSaved: (String? value) {
-              widget.contactData!.phone = value ?? '';
+              widget.contactData.phone = value ?? '';
             },
           ),
         ],

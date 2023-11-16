@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/profile.dart';
 import 'package:SerManos/providers/auth_provider.dart';
@@ -26,53 +24,68 @@ class EditProfile extends ConsumerStatefulWidget {
 }
 
 class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
+  final GlobalKey<FormState> personalInfoFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> contactInfoFormKey = GlobalKey<FormState>();
+  ContactData contactData = ContactData(email: "", phone: "");
+  ProfileData profileData = ProfileData();
+
   bool _isFormValid = false;
 
   @override
   Widget build(BuildContext context) {
     var user = ref.watch(authControllerProvider);
-    return user.when(data: (user){
-      return Scaffold(
-        appBar: AppBar(
-            leading: IconButton(
+    return user.when(
+        data: (user) {
+          return Scaffold(
+            appBar: AppBar(
+                leading: IconButton(
               onPressed: () => context.pop(),
               icon: const Icon(SerManosIcons.close),
             )),
-        body: SerManosGrid(
-          child: ListView(
-            children: [
-              ProfileDataForm(
-                onValidationChanged: (isValid) {
-                  setState(() {
-                    _isFormValid = isValid;
-                  });
-                },
-                formKey: formKey,
-              ),
-              ContactDataForm(
-                onValidationChanged: (isValid) {
-                  setState(() {
-                    _isFormValid = isValid;
-                  });
-                },
-                formKey: formKey2,
-              ),
-              Flex(direction: Axis.horizontal, children: [
-                Expanded(
-                    child: Padding(
+            body: SerManosGrid(
+              child: ListView(
+                children: [
+                  ProfileDataForm(
+                    onValidationChanged: (isValid) {
+                      setState(() {
+                        _isFormValid = isValid;
+                      });
+                    },
+                    formKey: personalInfoFormKey,
+                    profileData: profileData,
+                  ),
+                  ContactDataForm(
+                    contactData: contactData,
+                    onValidationChanged: (isValid) {
+                      setState(() {
+                        _isFormValid = isValid;
+                      });
+                    },
+                    formKey: contactInfoFormKey,
+                  ),
+                  Flex(direction: Axis.horizontal, children: [
+                    Expanded(
+                        child: Padding(
                       padding: const EdgeInsets.only(top: 32),
                       child: ButtonCTA(
                         btnColor: SerManosColors.neutral_0,
                         text: "Guardar datos",
                         onPressed: () {
-                          if (formKey.currentState!.validate() && formKey2.currentState!.validate()) {
-                            formKey.currentState!.save();
-                            formKey2.currentState!.validate();
-                            formKey2.currentState!.save();
-                            user?.editVolunteer(ContactData(email: user.secondaryEmail, phone: user.phone), ProfileData(gender: user.gender, dateOfBirth: user.birthDate?.toIso8601String()));
+                          if (!contactInfoFormKey.currentState!.validate() ||
+                              !personalInfoFormKey.currentState!.validate()) {
+                            return;
                           }
+                          contactInfoFormKey.currentState!.save();
+                          personalInfoFormKey.currentState!.save();
+                          user?.editVolunteer(
+                              ContactData(
+                                  email: user.secondaryEmail,
+                                  phone: user.phone),
+                              ProfileData(
+                                  gender: user.gender,
+                                  dateOfBirth:
+                                      user.birthDate?.toIso8601String()),
+                              'https://firebasestorage.googleapis.com/v0/b/sermanos-91896.appspot.com/o/volunteerings%2FTecho.jpg?alt=media&token=40c7abbf-2d90-44fe-af3e-f358e35a0559');
                           // log("Saving data: ${user?.secondaryEmail} ${user?.phone}");
                           // context.go('/home');
                         },
@@ -80,13 +93,13 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                         backgroundColor: SerManosColors.primary_100,
                       ),
                     )),
-              ])
-            ],
-          ),
-        ),
-      );
-    }, error: (error, stackTrace) => const SizedBox.shrink(),
+                  ])
+                ],
+              ),
+            ),
+          );
+        },
+        error: (error, stackTrace) => const SizedBox.shrink(),
         loading: () => const LoadingIndicator());
-
   }
 }

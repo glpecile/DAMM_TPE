@@ -70,7 +70,7 @@ class MockUserService extends UserService {
   @override
   Future<Volunteer?> editUser(
       ContactData contactData, ProfileData profileData) async {
-    volunteer.editVolunteer(contactData, profileData);
+    volunteer.editVolunteer(contactData, profileData, null);
     return volunteer;
   }
 }

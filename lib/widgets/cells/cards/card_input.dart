@@ -1,8 +1,8 @@
 import 'package:SerManos/helpers/gender.dart';
-import 'package:flutter/material.dart';
 import 'package:SerManos/widgets/cells/forms/radio_button.dart';
+import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
-import '../../tokens/colors.dart';
+import 'package:flutter/material.dart';
 
 class CardInput extends StatelessWidget {
   final String title;

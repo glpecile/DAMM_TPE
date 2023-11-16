@@ -21,7 +21,7 @@ class Volunteer {
   String? volunteering; // You can only have one volunteering
   bool isVolunteeringApproved;
 
-  get hasCompletedProfile => [
+  bool get hasCompletedProfile => [
         email,
         name,
         lastName,
@@ -85,8 +85,9 @@ class Volunteer {
     };
   }
 
-  void editVolunteer(ContactData contactData, ProfileData profileData) {
-    //imageUrl = profileData.imageUrl;
+  void editVolunteer(
+      ContactData contactData, ProfileData profileData, String? imageUrl) {
+    imageUrl = imageUrl ?? profileData.imageUrl;
     birthDate = DateTime.tryParse(profileData.dateOfBirth!);
     gender = profileData.gender;
     phone = contactData.phone;

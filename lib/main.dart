@@ -1,11 +1,11 @@
 import 'package:SerManos/helpers/state_logger.dart';
 import 'package:SerManos/pages/router.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'firebase_options.dart';
 
 void main() async {

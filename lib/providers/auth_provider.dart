@@ -53,10 +53,13 @@ class AuthController extends _$AuthController {
       await _userService.signUp(data);
     } on FirebaseAuthException catch (error) {
       throw error.code;
+    } finally {
+      logIn(LogInData(email: data.email, password: data.password), () {});
     }
   }
 
-  Future<void> editUser(ContactData contactData, ProfileData profileData) async {
+  Future<void> editUser(
+      ContactData contactData, ProfileData profileData) async {
     try {
       var user = await _userService.editUser(contactData, profileData);
       await _saveToPrefs(user!);
@@ -69,6 +72,7 @@ class AuthController extends _$AuthController {
   @override
   Future<Volunteer?> build() async {
     _sharedPreferences = await SharedPreferences.getInstance();
+    //_sharedPreferences.remove(_sharedPrefsKey);
     //_persistenceRefreshLogic();
 
     Volunteer? user;

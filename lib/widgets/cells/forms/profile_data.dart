@@ -9,14 +9,13 @@ import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProfileDataForm extends StatefulWidget {
-  // TODO: remove ?
-  final ProfileData? profileData;
+  final ProfileData profileData;
   final Function(bool)? onValidationChanged;
   final GlobalKey<FormState>? formKey;
 
   const ProfileDataForm({
     super.key,
-    this.profileData,
+    required this.profileData,
     this.onValidationChanged,
     this.formKey,
   });
@@ -30,7 +29,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
   late TextEditingController dateController;
 
   setGender(Gender gender) {
-    widget.profileData?.gender = gender;
+    widget.profileData.gender = gender;
   }
 
   void validate() {
@@ -47,7 +46,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
   void initState() {
     super.initState();
     dateController =
-        TextEditingController(text: widget.profileData?.dateOfBirth);
+        TextEditingController(text: widget.profileData.dateOfBirth);
     dateController.addListener(validate);
   }
 
@@ -73,7 +72,7 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                   placeholder: "Fecha de nacimiento",
                   controller: dateController,
                   onSaved: (String? date) {
-                    widget.profileData?.dateOfBirth = date;
+                    widget.profileData.dateOfBirth = date;
                   },
                 ),
                 const SizedBox(
