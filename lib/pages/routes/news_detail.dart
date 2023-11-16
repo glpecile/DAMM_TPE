@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:SerManos/models/news.dart';
 import 'package:SerManos/providers/news_by_id_provider.dart';
 import 'package:SerManos/widgets/atoms/icons.dart';
-import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
+import 'package:SerManos/widgets/molecules/buttons/expanded_button_cta.dart';
 import 'package:SerManos/widgets/molecules/loading_indicator.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
@@ -97,18 +97,12 @@ class NewsDetail extends ConsumerWidget {
                                 style: SerManosTypography.headline_02()),
                           ),
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ButtonCTA(
-                                btnColor: SerManosColors.neutral_0,
-                                text: 'Compartir',
-                                foregroundColor: SerManosColors.primary_10,
-                                backgroundColor: SerManosColors.primary_100,
-                                onPressed: () async => shareNews(news),
-                              ),
-                            ),
-                          ],
+                        ExpandedButtonCTA(
+                          btnColor: SerManosColors.neutral_0,
+                          text: 'Compartir',
+                          foregroundColor: SerManosColors.primary_10,
+                          backgroundColor: SerManosColors.primary_100,
+                          onPressed: () async => shareNews(news),
                         )
                       ],
                     ),
