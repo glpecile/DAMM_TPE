@@ -1,6 +1,7 @@
 import 'package:SerManos/providers/user_volunteering_controller.dart';
 import 'package:SerManos/providers/volunteering_by_id_provider.dart';
 import 'package:SerManos/widgets/atoms/icons.dart';
+import 'package:SerManos/widgets/cells/cards/card_detail_map.dart';
 import 'package:SerManos/widgets/molecules/buttons/vacancy_button.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
@@ -113,10 +114,20 @@ class CardDetail extends ConsumerWidget {
                           const SizedBox(height: 24),
                           const Text("Participar del voluntariado",
                               style: SerManosTypography.headline_02()),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 24),
+                            child: CardDetailMap(volunteering: volunteering),
+                          ),
                           MarkdownBody(
-                              data: requirements,
-                              listItemCrossAxisAlignment:
-                                  MarkdownListItemCrossAxisAlignment.start),
+                            data: requirements,
+                            listItemCrossAxisAlignment:
+                                MarkdownListItemCrossAxisAlignment.start,
+                            styleSheet: MarkdownStyleSheet(
+                              a: const SerManosTypography.body_01(),
+                              h1: const SerManosTypography.headline_01(),
+                              h2: const SerManosTypography.headline_02(),
+                            ),
+                          ),
                           const SizedBox(height: 8),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,

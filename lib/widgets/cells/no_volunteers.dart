@@ -1,13 +1,11 @@
-import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../tokens/colors.dart';
-import '../tokens/typography.dart';
 
 class NoVolunteers extends StatelessWidget {
-  String title;
+  final String title;
 
-  NoVolunteers({super.key, required this.title});
+  const NoVolunteers({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,10 @@ class NoVolunteers extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Text(title, textAlign: TextAlign.center,),
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+            ),
           )),
     );
   }
