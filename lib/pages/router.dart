@@ -1,4 +1,4 @@
-import 'package:SerManos/pages/card_detail.dart';
+import 'package:SerManos/pages/routes/volunteerings_detail.dart';
 import 'package:SerManos/pages/routes/edit_profile.dart';
 import 'package:SerManos/pages/routes/home.dart';
 import 'package:SerManos/pages/routes/login.dart';

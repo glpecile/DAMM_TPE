@@ -1,6 +1,7 @@
-import 'package:SerManos/pages/card_detail.dart';
+import 'package:SerManos/pages/routes/volunteerings_detail.dart';
 import 'package:SerManos/widgets/atoms/icons.dart';
 import 'package:SerManos/widgets/molecules/buttons/icon_btn.dart';
+import 'package:SerManos/widgets/molecules/buttons/vacancy_button.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/shadows.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
@@ -16,12 +17,13 @@ class CardVolunteers extends ConsumerWidget {
   final String imageUrl;
   final String title;
   final String description;
-  bool isFavorite = false;
+  final bool isFavorite;
   final int currentVacant;
   final void Function()? onPressedFav;
   final void Function()? onPressedLocation;
 
-  CardVolunteers({super.key,
+  const CardVolunteers({
+    super.key,
     required this.id,
     required this.imageUrl,
     required this.title,
@@ -29,13 +31,17 @@ class CardVolunteers extends ConsumerWidget {
     required this.isFavorite,
     required this.currentVacant,
     required this.onPressedFav,
-    required this.onPressedLocation,});
+    required this.onPressedLocation,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    FavoritesController favoritesMethods = ref.read(favoritesControllerProvider.notifier);
+    FavoritesController favoritesMethods =
+        ref.read(favoritesControllerProvider.notifier);
+
     return InkWell(
-        onTap: () => context.pushNamed(CardDetail.name, pathParameters: {'volunteeringId': id}),
+        onTap: () => context
+            .pushNamed(CardDetail.name, pathParameters: {'volunteeringId': id}),
         child: Center(
           child: Container(
             width: 328,
@@ -53,7 +59,8 @@ class CardVolunteers extends ConsumerWidget {
                     height: 138,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
+                    padding: const EdgeInsets.only(
+                        left: 16, right: 16, top: 8, bottom: 16),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,20 +72,28 @@ class CardVolunteers extends ConsumerWidget {
                           style: const SerManosTypography.subtitle_01(
                               color: SerManosColors.neutral_100),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         Row(
                           children: [
-                            VacancyIcons(currentVacant: currentVacant, isFavorite: isFavorite, onPressedFav: () => favoritesMethods.toggleFavorite(id), onPressedLocation: onPressedLocation),
-                            SizedBox(width: 80,),
-                            gIcons(isFavorite: isFavorite, onPressedFavorite: onPressedFav, onPressedLocation: onPressedLocation)
+                            VacancyIcons(
+                                currentVacant: currentVacant,
+                                isFavorite: isFavorite,
+                                onPressedFav: () =>
+                                    favoritesMethods.toggleFavorite(id),
+                                onPressedLocation: onPressedLocation),
+                            const SizedBox(
+                              width: 80,
+                            ),
+                            gIcons(
+                                isFavorite: isFavorite,
+                                onPressedFavorite: onPressedFav,
+                                onPressedLocation: onPressedLocation)
                           ],
                         ),
-
                       ],
                     ),
-
                   ),
                 ],
               ),
@@ -89,11 +104,15 @@ class CardVolunteers extends ConsumerWidget {
 }
 
 class gIcons extends StatelessWidget {
-  bool isFavorite;
+  final bool isFavorite;
   final void Function()? onPressedFavorite;
   final void Function()? onPressedLocation;
 
-  gIcons({super.key, required this.isFavorite, required this.onPressedFavorite, required this.onPressedLocation});
+  const gIcons(
+      {super.key,
+      required this.isFavorite,
+      required this.onPressedFavorite,
+      required this.onPressedLocation});
 
   @override
   Widget build(BuildContext context) {
@@ -116,53 +135,25 @@ class gIcons extends StatelessWidget {
   }
 }
 
-class Vacancy extends StatelessWidget {
-  final String currentVacant;
-
-  const Vacancy({super.key, required this.currentVacant});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          color: SerManosColors.secondary_25,
-        ),
-        child: Row(
-          children: [
-            const Text(
-              "Vacantes: ",
-              style:
-              SerManosTypography.body_02(color: SerManosColors.neutral_100),
-            ),
-            const Icon(
-              Icons.person_rounded,
-              color: SerManosColors.secondary_200,
-              size: 20,
-            ),
-            Text(currentVacant,
-                style: const SerManosTypography.subtitle_01(
-                    color: SerManosColors.secondary_200)),
-          ],
-        ));
-  }
-}
-
 class VacancyIcons extends StatelessWidget {
   final int currentVacant;
-  bool isFavorite;
+  final bool isFavorite;
   final void Function()? onPressedFav;
   final void Function()? onPressedLocation;
 
-  VacancyIcons({super.key, required this.currentVacant, required this.isFavorite, required this.onPressedFav, required this.onPressedLocation});
+  const VacancyIcons(
+      {super.key,
+      required this.currentVacant,
+      required this.isFavorite,
+      required this.onPressedFav,
+      required this.onPressedLocation});
 
   @override
   Widget build(BuildContext context) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Vacancy(currentVacant: '$currentVacant'),
+          VacancyButton(currentVacant: currentVacant),
         ]);
   }
 }
