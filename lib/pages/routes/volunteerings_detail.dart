@@ -4,6 +4,7 @@ import 'package:SerManos/widgets/atoms/icons.dart';
 import 'package:SerManos/widgets/molecules/buttons/vacancy_button.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -25,6 +26,7 @@ class CardDetail extends ConsumerWidget {
 
     return volunteeringByIdController.when(
         data: (volunteering) {
+          var requirements = volunteering.requirements.replaceAll('<br>', '\n');
           return Scaffold(
             body: RefreshIndicator(
               onRefresh: () async => ref.refresh(
@@ -111,16 +113,10 @@ class CardDetail extends ConsumerWidget {
                           const SizedBox(height: 24),
                           const Text("Participar del voluntariado",
                               style: SerManosTypography.headline_02()),
-                          const SizedBox(height: 8),
-                          const Text(
-                            "Requisitos",
-                            style: SerManosTypography.subtitle_01(),
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            "Disponibilidad",
-                            style: SerManosTypography.subtitle_01(),
-                          ),
+                          MarkdownBody(
+                              data: requirements,
+                              listItemCrossAxisAlignment:
+                                  MarkdownListItemCrossAxisAlignment.start),
                           const SizedBox(height: 8),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
