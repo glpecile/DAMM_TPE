@@ -3,6 +3,7 @@ import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -82,8 +83,36 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget>{
                   btnColor: SerManosColors.error_100,
                   text: "Cerrar sesión",
                   onPressed: () => {
-                    authController.logOut(),
-                    context.go('/start/login')
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => Dialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                              BorderRadius.circular(4)),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 16, 16,8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                const Text("Te estas por postular a", style: SerManosTypography.subtitle_01(color: SerManosColors.neutral_100),),
+                                const SizedBox(height: 5),
+                                const Padding(
+                                    padding: EdgeInsets.only(left:0, bottom: 8, right: 0, top:0),
+                                    child: Text("¿Estás seguro que quieres cerrar sesión?", style: SerManosTypography.headline_02(color: SerManosColors.neutral_100))),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children:[
+                                      ButtonCTA(btnColor: SerManosColors.primary_100, text: 'Cancelar', onPressed: () { context.pop(); }, foregroundColor: SerManosColors.neutral_75,),
+                                      ButtonCTA(btnColor: SerManosColors.primary_100, text: 'Cerrar sesión', onPressed: () { authController.logOut(); context.go('/start/login'); }, foregroundColor: SerManosColors.neutral_75,)
+                                    ]
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                    ),
                   },
                   foregroundColor: SerManosColors.neutral_25,
                   backgroundColor: SerManosColors.neutral_0,
