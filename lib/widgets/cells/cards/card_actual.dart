@@ -41,18 +41,18 @@ class CardVolunteersActual extends StatelessWidget {
                       boxShadow: SerManosShadows.shadow_2),
                   child: ClipRRect(
                       child: Padding(
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(12),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text("ACCIÓN SOCIAL", style: SerManosTypography.overline()),
-                                    Text(title, style: const SerManosTypography.subtitle_01(color: SerManosColors.neutral_100),
-                                    ),
-                                  ]),
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const Text("ACCIÓN SOCIAL", style: SerManosTypography.overline()),
+                                      Text(title, style: const SerManosTypography.subtitle_01(color: SerManosColors.neutral_100),
+                                      ),
+                                    ]),
                               const Icon(SerManosIcons.location,color: SerManosColors.primary_100,)
                             ]
                         ),
