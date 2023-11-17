@@ -56,6 +56,10 @@ doc/api/
 # VSCode
 .vscode/
 
+# Firebase
+**/google-services.json
+**/GoogleService-Info.plist
+
 # misc
 ios/Podfile.lock
 custom_lint.log
