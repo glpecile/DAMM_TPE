@@ -67,7 +67,7 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                         return;
                       }
                       formKey.currentState!.save();
-                      authController.register(registerData);
+                      authController.register(registerData, context.goNamed);
                     },
                     text: 'Registrarse',
                     btnColor: _isFormValid

@@ -10,10 +10,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
 class SerManosPhotoInput extends StatefulWidget {
-  const SerManosPhotoInput({super.key, this.image, required this.onSaved});
-
-  final String? image;
+  final String? imageUrl;
   final Function(File) onSaved;
+
+  const SerManosPhotoInput({super.key, this.imageUrl, required this.onSaved});
 
   @override
   State<SerManosPhotoInput> createState() => _SerManosPhotoInputState();
@@ -46,8 +46,8 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
 
   @override
   Widget build(BuildContext context) {
-    bool isChangePhoto = widget.image != null || _image != null;
-    bool isAddPhoto = widget.image == null && _image == null;
+    bool isChangePhoto = widget.imageUrl != null || _image != null;
+    bool isAddPhoto = widget.imageUrl == null && _image == null;
 
     return Container(
         decoration: const BoxDecoration(
@@ -59,23 +59,23 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              "Foto de perfil",
-              style: SerManosTypography.subtitle_01(
-                  color: SerManosColors.neutral_100),
-            ),
             Column(
               children: [
-                if (widget.image != null) const SizedBox(height: 8),
-                if (isChangePhoto)
-                  TextButton(
-                    onPressed: () => handleTap(context),
-                    child: const Text(
-                      "Cambiar foto",
-                      style: SerManosTypography.body_02(
-                          color: SerManosColors.primary_100),
-                    ),
-                  ),
+                const Text(
+                  "Foto de perfil",
+                  style: SerManosTypography.subtitle_01(
+                      color: SerManosColors.neutral_100),
+                ),
+                (isChangePhoto)
+                    ? ShortButton(
+                        onPressed: () => handleTap(context),
+                        text: "Cambiar foto",
+                        size: Size.medium,
+                        btnColor: SerManosColors.neutral_0,
+                        foregroundColor: SerManosColors.primary_10,
+                        backgroundColor: SerManosColors.primary_100,
+                      )
+                    : const SizedBox.shrink(),
               ],
             ),
             if (isAddPhoto)
@@ -91,7 +91,7 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
               _image != null
                   ? Avatar(imageFile: _image)
                   : Avatar(
-                      imageUrl: widget.image,
+                      imageUrl: widget.imageUrl,
                     ),
           ],
         ));

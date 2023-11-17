@@ -48,13 +48,13 @@ class AuthController extends _$AuthController {
     state = const AsyncValue.data(null);
   }
 
-  Future<void> register(RegisterData data) async {
+  Future<void> register(RegisterData data, var redirect) async {
     try {
       await _userService.signUp(data);
     } on FirebaseAuthException catch (error) {
       throw error.code;
     } finally {
-      logIn(LogInData(email: data.email, password: data.password), () {});
+      logIn(LogInData(email: data.email, password: data.password), redirect);
     }
   }
 

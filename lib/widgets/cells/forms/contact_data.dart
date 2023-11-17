@@ -6,16 +6,16 @@ import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/cupertino.dart';
 
 class ContactDataForm extends StatefulWidget {
+  final ContactData contactData;
+  final Function(bool) onValidationChanged;
+  final GlobalKey<FormState>? formKey;
+
   const ContactDataForm({
     super.key,
     required this.contactData,
     required this.onValidationChanged,
     required this.formKey,
   });
-
-  final ContactData contactData;
-  final Function(bool) onValidationChanged;
-  final GlobalKey<FormState>? formKey;
 
   @override
   State<ContactDataForm> createState() => _ContactDataFormState();
@@ -39,6 +39,8 @@ class _ContactDataFormState extends State<ContactDataForm> {
 
   @override
   void initState() {
+    emailController.text = widget.contactData.email ?? '';
+    phoneController.text = widget.contactData.phone ?? '';
     emailController.addListener(() {
       _validateForm();
     });

@@ -68,7 +68,7 @@ class Volunteer {
       'lastName': lastName,
       'favorites': favorites,
       'imageUrl': imageUrl,
-      'birthDate': birthDate != null ? dateFormat.format(birthDate!) : null,
+      'birthDate': getBirthDate,
       'gender': gender?.index,
       'phone': phone,
       'secondaryEmail': secondaryEmail,
@@ -76,6 +76,8 @@ class Volunteer {
       'isVolunteeringApproved': isVolunteeringApproved
     };
   }
+
+  get getBirthDate => birthDate != null ? dateFormat.format(birthDate!) : null;
 
   void editVolunteer(
       ContactData contactData, ProfileData profileData, String? imageUrl) {

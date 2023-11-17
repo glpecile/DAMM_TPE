@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:SerManos/helpers/gender.dart';
 import 'package:SerManos/models/profile.dart';
-import 'package:SerManos/widgets/cells/cards/card_input.dart';
+import 'package:SerManos/widgets/cells/cards/gender_input.dart';
 import 'package:SerManos/widgets/molecules/inputs/date_input.dart';
 import 'package:SerManos/widgets/molecules/inputs/ser_manos_photo_input.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
@@ -28,7 +28,10 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
   bool _isValid = true;
   late TextEditingController dateController;
 
-  setGender(Gender gender) {
+  setGender(Gender? gender) {
+    if (gender == null) {
+      return;
+    }
     widget.profileData.gender = gender;
   }
 
@@ -52,50 +55,50 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Datos de perfil",
-            style: SerManosTypography.headline_01(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Datos de perfil",
+          style: SerManosTypography.headline_01(),
+        ),
+        const SizedBox(
+          height: 24,
+        ),
+        Form(
+          key: widget.formKey,
+          child: Column(
+            children: [
+              SerManosDateInput(
+                label: "DD/MM/YYYY",
+                placeholder: "Fecha de nacimiento",
+                controller: dateController,
+                onSaved: (String? date) {
+                  widget.profileData.dateOfBirth = date;
+                },
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              GenderInput(
+                  title: "Información de perfil",
+                  previousGender: widget.profileData.gender,
+                  onPressed: (value) {
+                    setGender(value!);
+                  }),
+              const SizedBox(
+                height: 24,
+              ),
+              SerManosPhotoInput(
+                imageUrl: widget.profileData.imageUrl,
+                onSaved: (File image) {
+                  widget.profileData.imageFile = image;
+                },
+              ),
+            ],
           ),
-          const SizedBox(
-            height: 24,
-          ),
-          Form(
-            key: widget.formKey,
-            child: Column(
-              children: [
-                SerManosDateInput(
-                  label: "DD/MM/YYYY",
-                  placeholder: "Fecha de nacimiento",
-                  controller: dateController,
-                  onSaved: (String? date) {
-                    widget.profileData.dateOfBirth = date;
-                  },
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                CardInput(
-                    title: "Información de perfil",
-                    onPressed: (value) {
-                      setGender(value!);
-                    }),
-                const SizedBox(
-                  height: 24,
-                ),
-                SerManosPhotoInput(
-                  onSaved: (File image) {
-                    widget.profileData.imageFile = image;
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
