@@ -27,7 +27,7 @@ class CardDetail extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var volunteeringByIdController =
-        ref.watch(getVolunteeringByIdControllerProvider(volunteeringId: id));
+    ref.watch(getVolunteeringByIdControllerProvider(volunteeringId: id));
 
     // TODO: EL REFRESH PARECE QUE NO ACTUALIZA EL FALSO O VERDADERO
     return volunteeringByIdController.when(
@@ -36,8 +36,8 @@ class CardDetail extends ConsumerWidget {
           return Scaffold(
             body: RefreshIndicator(
               onRefresh: () async{
-                  ref.refresh(getVolunteeringByIdControllerProvider(volunteeringId: id).future);
-                  ref.refresh(userVolunteeringControllerProvider.future);
+                ref.refresh(getVolunteeringByIdControllerProvider(volunteeringId: id).future);
+                ref.refresh(userVolunteeringControllerProvider.future);
               },
               child: SingleChildScrollView(
                 child: Column(
@@ -127,7 +127,7 @@ class CardDetail extends ConsumerWidget {
                           MarkdownBody(
                             data: requirements,
                             listItemCrossAxisAlignment:
-                                MarkdownListItemCrossAxisAlignment.start,
+                            MarkdownListItemCrossAxisAlignment.start,
                             styleSheet: MarkdownStyleSheet(
                               a: const SerManosTypography.body_01(),
                               h1: const SerManosTypography.headline_01(),
@@ -156,14 +156,14 @@ class CardDetail extends ConsumerWidget {
           );
         },
         error: (error, stackTrace) => const Center(
-              child: SizedBox(
-                width: 60,
-                height: 60,
-                child: CircularProgressIndicator(
-                  color: SerManosColors.secondary_10,
-                ),
-              ),
+          child: SizedBox(
+            width: 60,
+            height: 60,
+            child: CircularProgressIndicator(
+              color: SerManosColors.secondary_10,
             ),
+          ),
+        ),
         loading: () => const LoadingIndicator());
   }
 }
@@ -176,7 +176,7 @@ class PostulateButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var userVolunteeringController =
-        ref.watch(userVolunteeringControllerProvider);
+    ref.watch(userVolunteeringControllerProvider);
     return userVolunteeringController.when(
       data: (userVolunteering) {
         if (userVolunteering == null) {
@@ -187,83 +187,83 @@ class PostulateButton extends ConsumerWidget {
                   btnColor: SerManosColors.neutral_0,
                   text: 'Postularme',
                   onPressed: (currentVolunteering.availableVacant ==
-                          currentVolunteering.currentVacant)
+                      currentVolunteering.currentVacant)
                       ? null
                       : () {
-                          showDialog(
-                              context: context,
-                              // TODO: LOGICA DE SI TENES O NO EL PERFIL COMPLETO
-                              builder: (BuildContext context) => Dialog(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(4)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          16, 16, 16, 8),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          const Text(
-                                            "Te estas por postular a",
-                                            style:
-                                                SerManosTypography.subtitle_01(
-                                                    color: SerManosColors
-                                                        .neutral_100),
-                                          ),
-                                          const SizedBox(height: 5),
-                                          Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 0,
-                                                  bottom: 8,
-                                                  right: 0,
-                                                  top: 0),
-                                              child: Text(
-                                                  currentVolunteering.title,
-                                                  style:
-                                                      const SerManosTypography
-                                                          .headline_02(
-                                                          color: SerManosColors
-                                                              .neutral_100))),
-                                          Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                ButtonCTA(
-                                                  btnColor: SerManosColors
-                                                      .primary_100,
-                                                  text: 'Cancelar',
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  foregroundColor:
-                                                      SerManosColors.neutral_75,
-                                                ),
-                                                ButtonCTA(
-                                                  btnColor: SerManosColors
-                                                      .primary_100,
-                                                  text: 'Confirmar',
-                                                  onPressed: () {
-                                                    ref
-                                                        .read(
-                                                            userVolunteeringControllerProvider
-                                                                .notifier)
-                                                        .applyToVolunteering(
-                                                            currentVolunteering
-                                                                .id);
-                                                    Navigator.pop(context);
-                                                  },
-                                                  foregroundColor:
-                                                      SerManosColors.neutral_75,
-                                                )
-                                              ])
-                                        ],
+                    showDialog(
+                        context: context,
+                        // TODO: LOGICA DE SI TENES O NO EL PERFIL COMPLETO
+                        builder: (BuildContext context) => Dialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(
+                                16, 16, 16, 8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment:
+                              MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: <Widget>[
+                                const Text(
+                                  "Te estas por postular a",
+                                  style:
+                                  SerManosTypography.subtitle_01(
+                                      color: SerManosColors
+                                          .neutral_100),
+                                ),
+                                const SizedBox(height: 5),
+                                Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 0,
+                                        bottom: 8,
+                                        right: 0,
+                                        top: 0),
+                                    child: Text(
+                                        currentVolunteering.title,
+                                        style:
+                                        const SerManosTypography
+                                            .headline_02(
+                                            color: SerManosColors
+                                                .neutral_100))),
+                                Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.end,
+                                    children: [
+                                      ButtonCTA(
+                                        btnColor: SerManosColors
+                                            .primary_100,
+                                        text: 'Cancelar',
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        foregroundColor:
+                                        SerManosColors.neutral_75,
                                       ),
-                                    ),
-                                  ));
-                        },
+                                      ButtonCTA(
+                                        btnColor: SerManosColors
+                                            .primary_100,
+                                        text: 'Confirmar',
+                                        onPressed: () {
+                                          ref
+                                              .read(
+                                              userVolunteeringControllerProvider
+                                                  .notifier)
+                                              .applyToVolunteering(
+                                              currentVolunteering
+                                                  .id);
+                                          Navigator.pop(context);
+                                        },
+                                        foregroundColor:
+                                        SerManosColors.neutral_75,
+                                      )
+                                    ])
+                              ],
+                            ),
+                          ),
+                        ));
+                  },
                   foregroundColor: SerManosColors.neutral_10,
                   backgroundColor: SerManosColors.primary_100));
         }
@@ -275,10 +275,10 @@ class PostulateButton extends ConsumerWidget {
             return PostulatedTextWidget(
                 firstText: "Estas participando",
                 secondText:
-                    "La organización confirmó que ya estas participando de este voluntariado",
+                "La organización confirmó que ya estas participando de este voluntariado",
                 buttonText: "Abandonar voluntariado",
                 dialogThirstText:
-                    "¿Estás seguro que querés abandonar tu voluntariado?",
+                "¿Estás seguro que querés abandonar tu voluntariado?",
                 dialogSecondText: "Confirmar",
                 volunteeringTitle: currentVolunteering.title,
                 onPressed: () {
@@ -292,9 +292,9 @@ class PostulateButton extends ConsumerWidget {
             return PostulatedTextWidget(
                 firstText: "Te has Postulado",
                 secondText:
-                    "Pronto la organización se pondrá en contacto contigo y te inscribirá como participante.",
+                "Pronto la organización se pondrá en contacto contigo y te inscribirá como participante.",
                 dialogThirstText:
-                    "¿Estás seguro que querés retirar tu postulación?",
+                "¿Estás seguro que querés retirar tu postulación?",
                 dialogSecondText: "Confirmar",
                 volunteeringTitle: currentVolunteering.title,
                 buttonText: "Retirar postulación",
@@ -307,14 +307,22 @@ class PostulateButton extends ConsumerWidget {
         }
         // Ya estas participando en otro voluntariado, debes abandonarlo primero para postularte a este.
         // Abandonar voluntariado actual
-        return PostulatedTextWidget(
-            firstText: "",
-            secondText: "Ya estas participando en otro voluntariado, debes abandonarlo primero para postularte a este.",
-            buttonText: "Abandonar voluntariado actual",
-            dialogThirstText: "",
-            dialogSecondText: "Confirmar",
-            volunteeringTitle: userVolunteering.title,
-            onPressed: () {});
+        return Column(
+          children: [
+            PostulatedTextWidget(
+                firstText: "",
+                secondText: "Ya estas participando en otro voluntariado, debes abandonarlo primero para postularte a este.",
+                buttonText: "Abandonar voluntariado actual",
+                dialogThirstText: "¿Estás seguro que querés retirar tu postulación?",
+                dialogSecondText: "Confirmar",
+                volunteeringTitle: userVolunteering.title,
+                onPressed: (){},
+                btnC: SerManosColors.neutral_50),
+            const SizedBox(
+                width: 328,
+                child: ButtonCTA(btnColor: SerManosColors.neutral_50, text: "Postularme", onPressed: null, foregroundColor: SerManosColors.neutral_50, backgroundColor: SerManosColors.neutral_25))
+          ],
+        );
       },
       error: (Object error, StackTrace stackTrace) {
         return Text(error.toString());
@@ -331,17 +339,19 @@ class PostulatedTextWidget extends StatelessWidget {
   final String dialogThirstText;
   final String dialogSecondText;
   final String volunteeringTitle;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
+  final Color? btnC;
 
   PostulatedTextWidget(
       {super.key,
-      required this.firstText,
-      required this.secondText,
-      required this.buttonText,
-      required this.dialogThirstText,
-      required this.dialogSecondText,
-      required this.volunteeringTitle,
-      required this.onPressed});
+        required this.firstText,
+        required this.secondText,
+        required this.buttonText,
+        required this.dialogThirstText,
+        required this.dialogSecondText,
+        required this.volunteeringTitle,
+        this.onPressed,
+        this.btnC});
 
   @override
   Widget build(BuildContext context) {
@@ -365,65 +375,60 @@ class PostulatedTextWidget extends StatelessWidget {
                     showDialog(
                         context: context,
                         builder: (BuildContext context) => Dialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      dialogThirstText,
-                                      style:
-                                          const SerManosTypography.subtitle_01(
-                                              color:
-                                                  SerManosColors.neutral_100),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 0,
-                                            bottom: 8,
-                                            right: 0,
-                                            top: 0),
-                                        child: Text(volunteeringTitle,
-                                            style: const SerManosTypography
-                                                .headline_02(
-                                                color: SerManosColors
-                                                    .neutral_100))),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          ButtonCTA(
-                                            btnColor:
-                                                SerManosColors.primary_100,
-                                            text: 'Cancelar',
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            foregroundColor:
-                                                SerManosColors.neutral_75,
-                                          ),
-                                          ButtonCTA(
-                                            btnColor:
-                                                SerManosColors.primary_100,
-                                            text: dialogSecondText,
-                                            onPressed: () {
-                                              onPressed();
-                                              Navigator.pop(context);
-                                            },
-                                            foregroundColor:
-                                                SerManosColors.neutral_75,
-                                          )
-                                        ])
-                                  ],
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
+                          child: Padding(
+                            padding:
+                            const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  dialogThirstText,
+                                  style:
+                                  const SerManosTypography.subtitle_01(
+                                      color:
+                                      SerManosColors.neutral_100),
                                 ),
-                              ),
-                            ));
+                                const SizedBox(height: 5),
+                                Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 0,
+                                        bottom: 8,
+                                        right: 0,
+                                        top: 0),
+                                    child: Text(volunteeringTitle,
+                                        style: const SerManosTypography
+                                            .headline_02(
+                                            color: SerManosColors
+                                                .neutral_100))),
+                                Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.end,
+                                    children: [
+                                      ButtonCTA(
+                                        btnColor: SerManosColors.primary_100,
+                                        text: 'Cancelar',
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        foregroundColor:
+                                        SerManosColors.neutral_75,
+                                      ),
+                                      ButtonCTA(
+                                        btnColor: btnC != null ? SerManosColors.neutral_50 : SerManosColors.primary_100,
+                                        text: dialogSecondText,
+                                        onPressed: btnC != null ? null : (){onPressed!();Navigator.pop(context);},
+                                        foregroundColor:
+                                        SerManosColors.neutral_75,
+                                      )
+                                    ])
+                              ],
+                            ),
+                          ),
+                        ));
                   },
                   foregroundColor: SerManosColors.neutral_25,
                   backgroundColor: SerManosColors.neutral_0)
