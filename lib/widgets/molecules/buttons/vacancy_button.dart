@@ -14,7 +14,7 @@ class VacancyButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
-          color: SerManosColors.secondary_25,
+          color: currentVacant == 0 ?  SerManosColors.neutral_25 : SerManosColors.secondary_25,
         ),
         child: Row(
           children: [
@@ -23,14 +23,14 @@ class VacancyButton extends StatelessWidget {
               style:
                   SerManosTypography.body_02(color: SerManosColors.neutral_100),
             ),
-            const Icon(
+            Icon(
               SerManosIcons.person,
-              color: SerManosColors.secondary_200,
+              color: currentVacant == 0 ? SerManosColors.secondary_80 : SerManosColors.secondary_200,
               size: 20,
             ),
             Text(currentVacant.toString(),
-                style: const SerManosTypography.subtitle_01(
-                    color: SerManosColors.secondary_200)),
+                style: SerManosTypography.subtitle_01(
+                    color: currentVacant == 0 ? SerManosColors.secondary_80 : SerManosColors.secondary_200)),
           ],
         ));
   }

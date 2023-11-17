@@ -137,9 +137,7 @@ class CardDetail extends ConsumerWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              VacancyButton(
-                                  currentVacant: volunteering.availableVacant -
-                                      volunteering.currentVacant)
+                              VacancyButton(currentVacant: volunteering.availableVacant - volunteering.currentVacant)
                             ],
                           ),
                           const SizedBox(height: 24),
