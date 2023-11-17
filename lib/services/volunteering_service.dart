@@ -12,7 +12,8 @@ class VolunteeringService {
   AnalyticsService? analyticsService;
   UserService? userService;
 
-  VolunteeringService([this._firestore, this.analyticsService, this.userService]) {
+  VolunteeringService(
+      [this._firestore, this.analyticsService, this.userService]) {
     _firestore ??= FirebaseFirestore.instance;
     analyticsService ??= AnalyticsService();
     userService ??= UserService(_firestore, analyticsService);
@@ -58,10 +59,8 @@ class VolunteeringService {
   }
 
   Future<Volunteering?> getVolunteeringById(String volunteeringId) async {
-    var data = await _firestore!
-        .collection(collection)
-        .doc(volunteeringId)
-        .get();
+    var data =
+        await _firestore!.collection(collection).doc(volunteeringId).get();
     if (data.exists) {
       var volunteeringData = data.data() as Map<String, dynamic>;
       volunteeringData['id'] = data.id;
@@ -86,11 +85,8 @@ class VolunteeringService {
     }
 
     analyticsService!.applyToVolunteeringEvent(volunteeringId, loggedUser.id);
-    await _firestore!
-        .collection(userCollection)
-        .doc(loggedUser.id)
-        .update(
-            {'volunteering': volunteering.id, 'isVolunteeringApproved': false});
+    await _firestore!.collection(userCollection).doc(loggedUser.id).update(
+        {'volunteering': volunteering.id, 'isVolunteeringApproved': false});
   }
 
   Future<void> leaveVolunteering(String volunteeringId) async {
@@ -114,11 +110,13 @@ class VolunteeringService {
         .doc(loggedUser.id)
         .update({'volunteering': null, 'isVolunteeringApproved': false});
 
-    volunteering.currentVacant -= 1;
+    if (loggedUser.isVolunteeringApproved) {
+      volunteering.currentVacant -= 1;
 
-    await _firestore!
-        .collection(collection)
-        .doc(volunteering.id)
-        .update({'currentVacant': volunteering.currentVacant});
+      await _firestore!
+          .collection(collection)
+          .doc(volunteering.id)
+          .update({'currentVacant': volunteering.currentVacant});
+    }
   }
 }
