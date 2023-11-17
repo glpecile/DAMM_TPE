@@ -58,7 +58,8 @@ class AuthController extends _$AuthController {
     }
   }
 
-  Future<void> editUser(ContactData contactData, ProfileData profileData) async {
+  Future<void> editUser(
+      ContactData contactData, ProfileData profileData) async {
     try {
       var user = await _userService.editUser(contactData, profileData);
       await _saveToPrefs(user!);
@@ -96,22 +97,6 @@ class AuthController extends _$AuthController {
     }
 
     return user;
-  }
-
-  void _persistenceRefreshLogic() {
-    ref.listenSelf((_, next) {
-      if (next.isLoading) return;
-      if (next.hasError) {
-        _sharedPreferences.remove(_sharedPrefsKey);
-        return;
-      }
-      if (next.value != null) {
-        _sharedPreferences.setString(
-            _sharedPrefsKey, json.encode(next.value!.toJson()));
-      } else {
-        _sharedPreferences.remove(_sharedPrefsKey);
-      }
-    });
   }
 
   Future<Volunteer?> getCurrentUser() async {

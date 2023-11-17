@@ -82,7 +82,7 @@ class CardVolunteers extends ConsumerWidget {
                             const SizedBox(
                               width: 80,
                             ),
-                            gIcons(
+                            VolunteeringIcons(
                                 isFavorite: isFavorite,
                                 onPressedFavorite: onPressedFav,
                                 onPressedLocation: onPressedLocation)
@@ -99,12 +99,12 @@ class CardVolunteers extends ConsumerWidget {
   }
 }
 
-class gIcons extends StatelessWidget {
+class VolunteeringIcons extends StatelessWidget {
   final bool isFavorite;
   final void Function() onPressedFavorite;
   final void Function() onPressedLocation;
 
-  const gIcons(
+  const VolunteeringIcons(
       {super.key,
       required this.isFavorite,
       required this.onPressedFavorite,

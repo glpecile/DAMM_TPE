@@ -4,8 +4,6 @@ import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 FakeFirebaseFirestore setUp() {
   final instance = FakeFirebaseFirestore();
   const usersCollection = "users";
-  const volunteeringCollection = "volunteering";
-  const newsCollection = "news";
 
   instance.collection(usersCollection).doc('0').set({
     'id': '0',

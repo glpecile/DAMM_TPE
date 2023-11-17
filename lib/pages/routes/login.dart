@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:SerManos/models/login.dart';
+import 'package:SerManos/providers/auth_provider.dart';
 import 'package:SerManos/widgets/cells/forms/log_in.dart';
 import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
@@ -8,9 +7,6 @@ import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:logger/logger.dart';
-
-import '../../providers/auth_provider.dart';
 
 class Login extends ConsumerStatefulWidget {
   static String name = 'login';
@@ -23,9 +19,6 @@ class Login extends ConsumerStatefulWidget {
 }
 
 class _LoginState extends ConsumerState<ConsumerStatefulWidget> {
-  var logger = Logger();
-
-  bool _isFormValid = false;
   LogInData loginData = LogInData();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -40,8 +33,8 @@ class _LoginState extends ConsumerState<ConsumerStatefulWidget> {
     return Scaffold(
       backgroundColor: SerManosColors.neutral_0,
       body: SerManosGrid(
-        child: ListView(children: [
-          Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        child: SingleChildScrollView(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             const SizedBox(
               height: 150,
             ),
@@ -56,7 +49,6 @@ class _LoginState extends ConsumerState<ConsumerStatefulWidget> {
             LogInForm(
               onValidationChanged: (isValid) {
                 setState(() {
-                  _isFormValid = isValid;
                 });
               },
               logInData: loginData,
@@ -75,15 +67,12 @@ class _LoginState extends ConsumerState<ConsumerStatefulWidget> {
                         btnColor: SerManosColors.neutral_0,
                         text: "Iniciar Sesión",
                         onPressed: () {
-                          if (formKey.currentState == null) {
-                            logger.w("_formkey.currentState is null!");
-                          } else if (formKey.currentState!.validate()) {
-                            logger.w("form input is valid");
-                            formKey.currentState!.save();
+                          if (formKey.currentState == null ||
+                              !formKey.currentState!.validate()) {
+                            return;
                           }
-                          log("A PUNTO DE LOGGEAR");
-                          authController.logIn(
-                              loginData, context.goNamed);
+                          formKey.currentState!.save();
+                          authController.logIn(loginData, context.goNamed);
                         },
                         foregroundColor: SerManosColors.neutral_25,
                         backgroundColor: SerManosColors.primary_100,
@@ -110,9 +99,9 @@ class _LoginState extends ConsumerState<ConsumerStatefulWidget> {
                   ),
                 ))
               ],
-            )
+            ),
           ]),
-        ]),
+        ),
       ),
     );
   }
