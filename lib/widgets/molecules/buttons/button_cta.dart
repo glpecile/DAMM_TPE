@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ButtonCTA extends StatelessWidget {
   final Color btnColor;
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color foregroundColor;
   final Color? backgroundColor;
 

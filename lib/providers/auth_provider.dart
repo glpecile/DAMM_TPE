@@ -73,7 +73,7 @@ class AuthController extends _$AuthController {
   @override
   Future<Volunteer?> build() async {
     _sharedPreferences = await SharedPreferences.getInstance();
-    _sharedPreferences.remove(_sharedPrefsKey);
+    //_sharedPreferences.remove(_sharedPrefsKey);
     //_persistenceRefreshLogic();
 
     Volunteer? user;
