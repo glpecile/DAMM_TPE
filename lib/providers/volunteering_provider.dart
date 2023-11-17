@@ -1,14 +1,13 @@
 import 'package:SerManos/models/volunteering.dart';
 import 'package:SerManos/providers/favorites_provider.dart';
 import 'package:SerManos/providers/user_location_provider.dart';
+import 'package:SerManos/services/volunteering_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../services/volunteering_service.dart';
-
 part 'volunteering_provider.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 class VolunteeringController extends _$VolunteeringController {
   final VolunteeringService _volunteeringService = VolunteeringService();
   GeoPoint? userLocation;
@@ -29,8 +28,7 @@ class VolunteeringController extends _$VolunteeringController {
   // y hacer que state sea loading y eso
   @override
   Future<List<Volunteering>> build() async {
-    userLocation = await ref
-        .watch(userLocationControllerProvider.future);
+    userLocation = await ref.watch(userLocationControllerProvider.future);
     await ref.watch(favoritesControllerProvider.selectAsync((data) => null));
     return await _getVolunteerings(null, null);
   }
