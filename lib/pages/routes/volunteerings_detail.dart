@@ -35,9 +35,10 @@ class CardDetail extends ConsumerWidget {
           var requirements = volunteering.requirements.replaceAll('<br>', '\n');
           return Scaffold(
             body: RefreshIndicator(
-              onRefresh: () async => ref.refresh(
-                  getVolunteeringByIdControllerProvider(volunteeringId: id)
-                      .future),
+              onRefresh: () async{
+                  ref.refresh(getVolunteeringByIdControllerProvider(volunteeringId: id).future);
+                  ref.refresh(userVolunteeringControllerProvider.future);
+              },
               child: SingleChildScrollView(
                 child: Column(
                   children: [

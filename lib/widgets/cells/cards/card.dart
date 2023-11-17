@@ -57,6 +57,7 @@ class CardVolunteers extends ConsumerWidget {
                   Image.network(
                     imageUrl,
                     height: 138,
+                    width: double.infinity,
                     fit: BoxFit.cover
                   ),
                   Padding(

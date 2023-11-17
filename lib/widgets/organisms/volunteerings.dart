@@ -1,5 +1,6 @@
 import 'package:SerManos/helpers/maps.dart';
 import 'package:SerManos/providers/favorites_provider.dart';
+import 'package:SerManos/providers/user_volunteering_controller.dart';
 import 'package:SerManos/providers/volunteering_provider.dart';
 import 'package:SerManos/widgets/cells/cards/active_volunteering.dart';
 import 'package:SerManos/widgets/cells/cards/card.dart';
@@ -38,8 +39,10 @@ class Volunteerings extends ConsumerWidget {
             return Scaffold(
               backgroundColor: SerManosColors.secondary_10,
               body: RefreshIndicator(
-                onRefresh: () async =>
-                    ref.refresh(volunteeringControllerProvider.future),
+                onRefresh: () async {
+                  ref.refresh(volunteeringControllerProvider.future);
+                  ref.refresh(userVolunteeringControllerProvider.future);
+                },
                 child: Column(children: [
                   SearchInput(
                       onChanged: (value) =>
