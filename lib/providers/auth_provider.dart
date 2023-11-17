@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/login.dart';
 import 'package:SerManos/models/profile.dart';
 import 'package:SerManos/models/register.dart';
@@ -7,11 +8,8 @@ import 'package:SerManos/models/volunteer.dart';
 import 'package:SerManos/pages/routes/welcome.dart';
 import 'package:SerManos/services/user_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../models/contact.dart';
 
 part 'auth_provider.g.dart';
 
@@ -20,7 +18,6 @@ class AuthController extends _$AuthController {
   late final UserService _userService = UserService();
   late SharedPreferences _sharedPreferences;
   static const _sharedPrefsKey = 'volunteerData';
-  final Logger _logger = Logger();
 
   Future<void> _saveToPrefs(Volunteer volunteer) async {
     final prefs = await SharedPreferences.getInstance();
@@ -73,26 +70,14 @@ class AuthController extends _$AuthController {
   Future<Volunteer?> build() async {
     _sharedPreferences = await SharedPreferences.getInstance();
     //_sharedPreferences.remove(_sharedPrefsKey);
-    //_persistenceRefreshLogic();
 
     Volunteer? user;
     if (_sharedPreferences.containsKey(_sharedPrefsKey)) {
       final extractedUserData =
           json.decode(_sharedPreferences.getString(_sharedPrefsKey)!)
               as Map<String, dynamic>;
-
-      //extractedUserData['birthDate'] = extractedUserData['birthDate'] != null
-      //    ? DateFormat("dd/MM/yyyy").parse(extractedUserData['birthDate'])
-      //    : null;
-      _logger.i(extractedUserData);
-      _logger.i("LA FECHA ES");
-      _logger.i(extractedUserData['birthDate']);
       user = Volunteer.fromJson(extractedUserData);
     } else {
-      //user = await _userService.getCurrentUser();
-      //if (user != null) {
-      //  await _saveToPrefs(user);
-      //}
       user = null;
     }
 

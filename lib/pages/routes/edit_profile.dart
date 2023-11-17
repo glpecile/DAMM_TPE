@@ -43,9 +43,9 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
               gender: user?.gender,
               imageUrl: user?.imageUrl ?? "");
 
-          setState(() {
-            _isFormValid = user!.hasCompletedProfile;
-          });
+          setState(
+            () => _isFormValid = user!.hasCompletedProfile,
+          );
 
           return Scaffold(
             appBar: AppBar(
@@ -58,9 +58,7 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                 children: [
                   ProfileDataForm(
                     onValidationChanged: (isValid) {
-                      setState(() {
-                        _isFormValid = isValid;
-                      });
+                      setState(() => _isFormValid = isValid);
                     },
                     formKey: personalInfoFormKey,
                     profileData: profileData,
@@ -68,9 +66,9 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                   ContactDataForm(
                     contactData: contactData,
                     onValidationChanged: (isValid) {
-                      setState(() {
-                        _isFormValid = isValid;
-                      });
+                      setState(
+                        () => _isFormValid = isValid,
+                      );
                     },
                     formKey: contactInfoFormKey,
                   ),

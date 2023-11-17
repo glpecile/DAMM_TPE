@@ -6,23 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class SerManosDateInput extends StatefulWidget {
+  final String placeholder;
+  final String label;
+  final TextEditingController controller;
+
+  final Function(String?) validator;
+  final Function(String?) onSaved;
+
   const SerManosDateInput({
     super.key,
     required this.placeholder,
     required this.label,
     required this.controller,
-    // TODO: make required
-    this.validator,
-    this.onSaved,
+    required this.validator,
+    required this.onSaved,
   });
-
-  final String placeholder;
-  final String label;
-  final TextEditingController controller;
-
-  // TODO: remove !
-  final Function(String?)? validator;
-  final Function(String?)? onSaved;
 
   @override
   State<SerManosDateInput> createState() => _SerManosDateInputState();
@@ -47,7 +45,7 @@ class _SerManosDateInputState extends State<SerManosDateInput> {
       validator: dateValidator,
       controller: widget.controller,
       inputFormatters: [maskFormatter],
-      onSaved: widget.onSaved!,
+      onSaved: widget.onSaved,
       helperText: 'DD/MM/YYYY',
       suffixIcon: IconButton(
         icon: const Icon(SerManosIcons.calendar,
