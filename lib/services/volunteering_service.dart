@@ -91,8 +91,7 @@ class VolunteeringService {
 
   Future<void> leaveVolunteering(String volunteeringId) async {
     Volunteering? volunteering = await getVolunteeringById(volunteeringId);
-    if (volunteering == null ||
-        volunteering.currentVacant == volunteering.availableVacant) {
+    if (volunteering == null) {
       return;
     }
 
