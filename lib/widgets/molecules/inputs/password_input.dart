@@ -5,7 +5,6 @@ import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:SerManos/widgets/atoms/icons.dart';
 
-// stateful widget
 class SerManosPasswordInput extends SerManosGenericInput {
   const SerManosPasswordInput({
     super.key,

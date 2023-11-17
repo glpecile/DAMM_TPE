@@ -1,6 +1,6 @@
 import 'package:SerManos/pages/routes/login.dart';
 import 'package:SerManos/pages/routes/register.dart';
-import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
+import 'package:SerManos/widgets/molecules/buttons/expanded_button_cta.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
@@ -42,39 +42,19 @@ class Start extends StatelessWidget {
             const SizedBox(
               height: 250,
             ),
-            Row(children: [
-              Expanded(
-                  child: Align(
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  width: 328,
-                  child: ButtonCTA(
-                    btnColor: SerManosColors.neutral_0,
-                    text: "Iniciar Sesión",
-                    onPressed: () => context.goNamed(Login.name),
-                    foregroundColor: SerManosColors.neutral_25,
-                    backgroundColor: SerManosColors.primary_100,
-                  ),
-                ),
-              )),
-            ]),
-            Row(
-              children: [
-                Expanded(
-                    child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    width: 328,
-                    child: ButtonCTA(
-                      btnColor: SerManosColors.primary_100,
-                      text: "Registrarse",
-                      onPressed: () => context.goNamed(Register.name),
-                      foregroundColor: SerManosColors.neutral_25,
-                      backgroundColor: Colors.transparent,
-                    ),
-                  ),
-                ))
-              ],
+            ExpandedButtonCTA(
+              btnColor: SerManosColors.neutral_0,
+              text: "Iniciar Sesión",
+              onPressed: () => context.goNamed(Login.name),
+              foregroundColor: SerManosColors.neutral_25,
+              backgroundColor: SerManosColors.primary_100,
+            ),
+            ExpandedButtonCTA(
+              btnColor: SerManosColors.primary_100,
+              text: "Registrarse",
+              onPressed: () => context.goNamed(Register.name),
+              foregroundColor: SerManosColors.neutral_25,
+              backgroundColor: Colors.transparent,
             )
           ]),
         ),

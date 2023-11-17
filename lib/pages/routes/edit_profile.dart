@@ -68,9 +68,6 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                         child: Padding(
                       padding: const EdgeInsets.only(top: 32),
                       child: ButtonCTA(
-                        btnColor: _isFormValid
-                            ? SerManosColors.neutral_0
-                            : SerManosColors.neutral_50,
                         text: "Guardar datos",
                         onPressed: () {
                           if (!contactInfoFormKey.currentState!.validate() ||
@@ -82,9 +79,10 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                           ref
                               .read(authControllerProvider.notifier)
                               .editUser(contactData, profileData);
-                          // log("Saving data: ${user?.secondaryEmail} ${user?.phone}");
-                          // context.go('/home');
                         },
+                        btnColor: _isFormValid
+                            ? SerManosColors.neutral_0
+                            : SerManosColors.neutral_50,
                         foregroundColor: _isFormValid
                             ? SerManosColors.neutral_25
                             : SerManosColors.neutral_50,

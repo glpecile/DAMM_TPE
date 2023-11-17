@@ -1,13 +1,13 @@
+import 'package:SerManos/models/register.dart';
 import 'package:SerManos/pages/routes/login.dart';
 import 'package:SerManos/providers/auth_provider.dart';
 import 'package:SerManos/widgets/cells/forms/register.dart';
-import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
+import 'package:SerManos/widgets/molecules/buttons/expanded_button_cta.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../../models/register.dart';
 
 class Register extends ConsumerStatefulWidget {
   static String name = 'register';
@@ -36,11 +36,11 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
     return Scaffold(
       backgroundColor: SerManosColors.neutral_0,
       body: SerManosGrid(
-        child: ListView(children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: SingleChildScrollView(
+          child: Column(
             children: [
               Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const SizedBox(height: 48),
                   Image.asset('assets/images/logo.png',
@@ -57,58 +57,41 @@ class _RegisterState extends ConsumerState<ConsumerStatefulWidget> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 80),
-                child: Column(
-                  children: [
-                    Row(children: [
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: SizedBox(
-                            width: 328,
-                            child: ButtonCTA(
-                                onPressed: () => {
-                                      if (formKey.currentState!.validate())
-                                        {
-                                          formKey.currentState!.save(),
-                                          authController.register(registerData),
-                                        },
-                                    },
-                                btnColor: SerManosColors.secondary_10,
-                                text: 'Registrarse',
-                                foregroundColor: SerManosColors.neutral_25,
-                                backgroundColor: SerManosColors.primary_100),
-                          ),
-                        ),
-                      ),
-                    ]),
-                    // const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: SizedBox(
-                            width: 328,
-                            child: ButtonCTA(
-                              onPressed: () => context.goNamed(Login.name),
-                              text: 'Ya tengo cuenta',
-                              btnColor: SerManosColors.primary_100,
-                              foregroundColor: SerManosColors.neutral_25,
-                              backgroundColor: Colors.transparent,
-                            ),
-                          ),
-                        ))
-                      ],
-                    ),
-                    const SizedBox(height: 40),
-                  ],
-                ),
+              const SizedBox(height: 120),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ExpandedButtonCTA(
+                    onPressed: () {
+                      if (!formKey.currentState!.validate()) {
+                        return;
+                      }
+                      formKey.currentState!.save();
+                      authController.register(registerData);
+                    },
+                    text: 'Registrarse',
+                    btnColor: _isFormValid
+                        ? SerManosColors.neutral_0
+                        : SerManosColors.neutral_50,
+                    foregroundColor: _isFormValid
+                        ? SerManosColors.neutral_25
+                        : SerManosColors.neutral_50,
+                    backgroundColor: _isFormValid
+                        ? SerManosColors.primary_100
+                        : SerManosColors.neutral_25,
+                  ),
+                  ExpandedButtonCTA(
+                    onPressed: () => context.goNamed(Login.name),
+                    text: 'Ya tengo cuenta',
+                    btnColor: SerManosColors.primary_100,
+                    foregroundColor: SerManosColors.neutral_25,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ],
               )
             ],
           ),
-        ]),
+        ),
       ),
     );
   }

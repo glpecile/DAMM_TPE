@@ -4,7 +4,6 @@ import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// stateful widget
 abstract class SerManosGenericInput extends StatefulWidget {
   const SerManosGenericInput({
     super.key,
@@ -65,6 +64,7 @@ class _SerManosGenericInputState extends State<SerManosGenericInput> {
     InputDecoration defaultStyle = InputDecoration(
       labelText: widget.label,
       hintText: widget.placeholder,
+      hintStyle: const SerManosTypography.body_01(color: SerManosColors.neutral_50),
       helperText: _focusNode.hasFocus ? widget.helperText : null,
       helperStyle:
           const SerManosTypography.caption(color: SerManosColors.neutral_75),

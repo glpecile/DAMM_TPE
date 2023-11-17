@@ -1,12 +1,14 @@
 import 'package:SerManos/models/login.dart';
 import 'package:SerManos/providers/auth_provider.dart';
 import 'package:SerManos/widgets/cells/forms/log_in.dart';
-import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
+import 'package:SerManos/widgets/molecules/buttons/expanded_button_cta.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'register.dart';
 
 class Login extends ConsumerStatefulWidget {
   static String name = 'login';
@@ -19,6 +21,7 @@ class Login extends ConsumerStatefulWidget {
 }
 
 class _LoginState extends ConsumerState<ConsumerStatefulWidget> {
+  bool _isFormValid = false;
   LogInData loginData = LogInData();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -49,56 +52,39 @@ class _LoginState extends ConsumerState<ConsumerStatefulWidget> {
             LogInForm(
               onValidationChanged: (isValid) {
                 setState(() {
+                  _isFormValid = isValid;
                 });
               },
               logInData: loginData,
               formKey: formKey,
             ),
             const SizedBox(height: 180),
-            Column(
-              children: [
-                Row(children: [
-                  Expanded(
-                      child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      width: 328,
-                      child: ButtonCTA(
-                        btnColor: SerManosColors.neutral_0,
-                        text: "Iniciar Sesión",
-                        onPressed: () {
-                          if (formKey.currentState == null ||
-                              !formKey.currentState!.validate()) {
-                            return;
-                          }
-                          formKey.currentState!.save();
-                          authController.logIn(loginData, context.goNamed);
-                        },
-                        foregroundColor: SerManosColors.neutral_25,
-                        backgroundColor: SerManosColors.primary_100,
-                      ),
-                    ),
-                  )),
-                ]),
-              ],
+            ExpandedButtonCTA(
+              text: "Iniciar Sesión",
+              onPressed: () {
+                if (formKey.currentState == null ||
+                    !formKey.currentState!.validate()) {
+                  return;
+                }
+                formKey.currentState!.save();
+                authController.logIn(loginData, context.goNamed);
+              },
+              btnColor: _isFormValid
+                  ? SerManosColors.neutral_0
+                  : SerManosColors.neutral_50,
+              foregroundColor: _isFormValid
+                  ? SerManosColors.neutral_25
+                  : SerManosColors.neutral_50,
+              backgroundColor: _isFormValid
+                  ? SerManosColors.primary_100
+                  : SerManosColors.neutral_25,
             ),
-            Row(
-              children: [
-                Expanded(
-                    child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    width: 328,
-                    child: ButtonCTA(
-                      btnColor: SerManosColors.primary_100,
-                      text: "No tengo cuenta",
-                      onPressed: () => context.go('/start/register'),
-                      foregroundColor: SerManosColors.neutral_25,
-                      backgroundColor: Colors.transparent,
-                    ),
-                  ),
-                ))
-              ],
+            ExpandedButtonCTA(
+              btnColor: SerManosColors.primary_100,
+              text: "No tengo cuenta",
+              onPressed: () => context.goNamed(Register.name),
+              foregroundColor: SerManosColors.neutral_25,
+              backgroundColor: Colors.transparent,
             ),
           ]),
         ),

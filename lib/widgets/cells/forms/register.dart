@@ -1,9 +1,8 @@
 import 'package:SerManos/helpers/validation.dart';
 import 'package:SerManos/models/register.dart';
 import 'package:SerManos/widgets/molecules/inputs/password_input.dart';
-import 'package:flutter/cupertino.dart';
-
-import '../../molecules/inputs/text_input.dart';
+import 'package:SerManos/widgets/molecules/inputs/text_input.dart';
+import 'package:flutter/material.dart';
 
 class RegisterForm extends StatefulWidget {
   final Function(bool) onValidationChanged;
@@ -87,7 +86,7 @@ class _RegisterFormState extends State<RegisterForm> {
             const SizedBox(height: spaceY),
             SerManosTextInput(
               label: 'Email',
-              placeholder: 'juanbarcena@gmail.com',
+              placeholder: 'Ej: juanbarcena@gmail.com',
               validator: (String? value) => emailValidator(value),
               controller: emailController,
               onSaved: (String? value) {
@@ -97,6 +96,7 @@ class _RegisterFormState extends State<RegisterForm> {
             const SizedBox(height: spaceY),
             SerManosPasswordInput(
               label: 'Contraseña',
+              placeholder: 'Ej: ABCD1234',
               validator: passwordValidator,
               controller: passwordController,
               onSaved: (String? value) {
