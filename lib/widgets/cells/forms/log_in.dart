@@ -5,17 +5,16 @@ import 'package:SerManos/widgets/molecules/inputs/text_input.dart';
 import 'package:flutter/material.dart';
 
 class LogInForm extends StatefulWidget {
+  final Function(bool) onValidationChanged;
+  final LogInData? logInData;
+  final GlobalKey<FormState>? formKey;
+
   const LogInForm({
     super.key,
-    this.onValidationChanged,
+    required this.onValidationChanged,
     this.logInData,
     this.formKey,
   });
-
-  // TODO: remove ? and pass correct value
-  final Function(bool)? onValidationChanged;
-  final LogInData? logInData;
-  final GlobalKey<FormState>? formKey;
 
   @override
   State createState() => _LogInFormState();
@@ -34,8 +33,7 @@ class _LogInFormState extends State<LogInForm> {
           passwordValidator(passwordController.text) == null;
     });
     if (aux != _isFormValid) {
-      // TODO: remove ! once onValidationChanged is required
-      widget.onValidationChanged!(_isFormValid);
+      widget.onValidationChanged(_isFormValid);
     }
   }
 

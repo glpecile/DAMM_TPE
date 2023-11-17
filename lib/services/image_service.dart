@@ -11,8 +11,7 @@ class ImageService {
       String downloadUrl = await uploadTask.ref.getDownloadURL();
       return downloadUrl;
     } catch (e) {
-      // TODO: exception?
-      return null;
+      throw Exception('Failed to upload image: $e');
     }
   }
 }

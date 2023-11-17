@@ -14,7 +14,7 @@ class Volunteering {
   final DateTime createdAt;
   final int availableVacant;
   int currentVacant;
-  bool isFavorite; // TODO: check
+  bool isFavorite;
   double? distanceToUser;
   bool? isVolunteeringApproved;
   bool? hasCompletedProfile;

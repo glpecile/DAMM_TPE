@@ -8,7 +8,6 @@ import '../../tokens/colors.dart';
 import '../../tokens/typography.dart';
 
 class CardNews extends StatelessWidget {
-  // TODO: swap for model with news data
   final String newsletter;
   final String title;
   final String subtitle;

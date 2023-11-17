@@ -10,7 +10,6 @@ class UserVolunteeringController extends _$UserVolunteeringController {
   final VolunteeringService _volunteeringService = VolunteeringService();
   final UserService _userService = UserService();
 
-  // TODO: capaz usar todo con refs
   Future<Volunteering?> _getUserVolunteering() async {
     var user = await _userService.getCurrentUser();
     if (user != null && user.volunteering != null) {

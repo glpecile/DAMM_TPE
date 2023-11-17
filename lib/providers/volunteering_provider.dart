@@ -24,8 +24,6 @@ class VolunteeringController extends _$VolunteeringController {
     state = AsyncValue.data(volunteerings);
   }
 
-  // TODO: capaz hay que jugar un poco mas con el estado
-  // y hacer que state sea loading y eso
   @override
   Future<List<Volunteering>> build() async {
     userLocation = await ref.watch(userLocationControllerProvider.future);

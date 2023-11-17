@@ -11,9 +11,7 @@ class FavoritesController extends _$FavoritesController {
     return await _userService.getFavorites();
   }
 
-  // TODO: capaz recibir el volunteering y preguntar si lo tiene prendido el fav
   void toggleFavorite(String volunteeringId) async {
-    // TODO: puede fallar esto?
     (state.value!.contains(volunteeringId))
         ? _removeFavorite(volunteeringId)
         : _addFavorite(volunteeringId);

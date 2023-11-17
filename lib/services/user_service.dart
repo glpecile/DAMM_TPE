@@ -25,7 +25,7 @@ class UserService {
   Future logIn(LogInData data) async {
     if (data.email == null || data.password == null) {
       throw Exception(
-          'Email and password are required'); // TODO: manejo de excepciones
+          'Email and password are required');
     }
     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(
@@ -46,7 +46,7 @@ class UserService {
     String uid = user.user!.uid;
     await _firestore!.collection(collection).doc(uid).set({
       'email': registerData.email,
-      'secondaryEmail': registerData.email, // TODO: CHECK
+      'secondaryEmail': registerData.email,
       'name': registerData.firstName,
       'lastName': registerData.lastName,
       'favorites': [],

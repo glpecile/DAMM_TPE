@@ -31,9 +31,6 @@ void main() {
 
     test('returns a news item when getNewsById is called with existing id',
         () async {
-      var docRef =
-          await firestore.collection('news').add({'title': 'Test News'});
-
       final result = await firestore.collection('news').add({
         'title': 'Test News',
         'imagePath': 'test/image/path',
