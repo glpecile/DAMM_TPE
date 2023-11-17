@@ -71,7 +71,7 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                         child: Padding(
                       padding: const EdgeInsets.only(top: 32),
                       child: ButtonCTA(
-                        btnColor: SerManosColors.neutral_0,
+                        btnColor: _isFormValid ? SerManosColors.neutral_0 : SerManosColors.neutral_50,
                         text: "Guardar datos",
                         onPressed: () {
                           log("TOQUE BOTON");
@@ -88,8 +88,8 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                           // log("Saving data: ${user?.secondaryEmail} ${user?.phone}");
                           // context.go('/home');
                         },
-                        foregroundColor: SerManosColors.neutral_25,
-                        backgroundColor: SerManosColors.primary_100,
+                        foregroundColor: _isFormValid ? SerManosColors.neutral_25 : SerManosColors.neutral_50,
+                        backgroundColor: _isFormValid ? SerManosColors.primary_100 : SerManosColors.neutral_25,
                       ),
                     )),
                   ])
