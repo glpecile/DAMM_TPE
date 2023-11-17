@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/profile.dart';
 import 'package:SerManos/providers/auth_provider.dart';
@@ -36,7 +34,6 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     var user = ref.watch(authControllerProvider);
-    var controllerMethods = ref.watch(authControllerProvider.notifier);
     return user.when(
         data: (user) {
           return Scaffold(

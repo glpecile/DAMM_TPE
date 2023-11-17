@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:SerManos/models/login.dart';
-import 'package:SerManos/pages/routes/welcome.dart';
 import 'package:SerManos/widgets/cells/forms/log_in.dart';
 import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';

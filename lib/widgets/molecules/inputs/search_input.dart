@@ -25,6 +25,7 @@ class _SearchInputState extends State<SearchInput> {
   void _clearText() {
     setState(() {
       _controller.clear();
+      widget.onClear?.call();
     });
   }
 
@@ -38,7 +39,7 @@ class _SearchInputState extends State<SearchInput> {
           Flexible(
             flex: 1,
             child: Padding(
-              padding: const EdgeInsets.only(top:24),
+              padding: const EdgeInsets.only(top: 24),
               child: Material(
                 elevation: 3,
                 child: TextFormField(
@@ -65,12 +66,12 @@ class _SearchInputState extends State<SearchInput> {
                     suffixIcon: _controller.text.isEmpty
                         ? null
                         : IconButton(
-                      icon: const Icon(
-                        SerManosIcons.close,
-                        color: SerManosColors.neutral_75,
-                      ),
-                      onPressed: _clearText,
-                    ),
+                            icon: const Icon(
+                              SerManosIcons.close,
+                              color: SerManosColors.neutral_75,
+                            ),
+                            onPressed: _clearText,
+                          ),
                   ),
                 ),
               ),

@@ -6,7 +6,6 @@ import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:logger/logger.dart';
 
 import '../../providers/auth_provider.dart';
 import '../cells/cards/card_information.dart';
@@ -28,8 +27,6 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget> {
   Widget build(BuildContext context) {
     var user = ref.watch(authControllerProvider).value!;
     var authController = ref.read(authControllerProvider.notifier);
-    Logger logger = Logger();
-    logger.i(user.hasCompletedProfile);
     return SerManosGrid(
       child: ListView(children: [
         user.hasCompletedProfile
@@ -165,6 +162,9 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget> {
                     foregroundColor: SerManosColors.neutral_25,
                     backgroundColor: SerManosColors.neutral_0,
                   ),
+                ),
+                const SizedBox(
+                  height: 24,
                 )
               ])
             : EmptyProfile(user: user),

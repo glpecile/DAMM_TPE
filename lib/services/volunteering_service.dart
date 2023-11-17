@@ -1,6 +1,7 @@
 import 'package:SerManos/models/volunteering.dart';
 import 'package:SerManos/services/user_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/volunteer.dart';
 import 'analytics_service.dart';
 
@@ -33,7 +34,7 @@ class VolunteeringService {
       if (userPosition != null) {
         volunteering.assignDistance(userPosition);
       }
-      if (textSearch == null) {
+      if (textSearch == null || textSearch.isEmpty) {
         volunteerings.add(volunteering);
       } else {
         if (volunteering.title

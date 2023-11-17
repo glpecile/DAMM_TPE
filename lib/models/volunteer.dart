@@ -1,11 +1,6 @@
-// TODO: pasar de enum a string
-import 'dart:developer';
-
+import 'package:SerManos/helpers/gender.dart';
 import 'package:SerManos/models/contact.dart';
 import 'package:SerManos/models/profile.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-import '../helpers/gender.dart';
 import 'package:intl/intl.dart';
 
 class Volunteer {
@@ -20,7 +15,6 @@ class Volunteer {
   String? phone;
   String? secondaryEmail;
 
-  //bool hasCompletedProfile;
   String? volunteering; // You can only have one volunteering
   bool isVolunteeringApproved;
   static final DateFormat dateFormat = DateFormat("dd/MM/yyyy");
@@ -44,7 +38,6 @@ class Volunteer {
       this.gender,
       this.phone,
       this.secondaryEmail,
-      //required this.hasCompletedProfile,
       this.volunteering,
       required this.isVolunteeringApproved});
 
@@ -63,7 +56,6 @@ class Volunteer {
         gender: json['gender'] != null ? Gender.values[json['gender']] : null,
         phone: json['phone'],
         secondaryEmail: json['secondaryEmail'],
-        //hasCompletedProfile: json['hasCompletedProfile'],
         volunteering: json['volunteering'],
         isVolunteeringApproved: json['isVolunteeringApproved']);
   }
@@ -80,7 +72,6 @@ class Volunteer {
       'gender': gender?.index,
       'phone': phone,
       'secondaryEmail': secondaryEmail,
-      //'hasCompletedProfile': hasCompletedProfile,
       'volunteering': volunteering,
       'isVolunteeringApproved': isVolunteeringApproved
     };
@@ -89,25 +80,12 @@ class Volunteer {
   void editVolunteer(
       ContactData contactData, ProfileData profileData, String? imageUrl) {
     imageUrl = imageUrl ?? profileData.imageUrl;
-    log("A punto de parsear para editar");
-    log(profileData.dateOfBirth!);
 
     // Define el formato de fecha que estás utilizando
     birthDate = dateFormat.parse(profileData.dateOfBirth!);
 
-    log(birthDate!.toIso8601String());
     gender = profileData.gender;
     phone = contactData.phone;
     secondaryEmail = contactData.email;
-
-    /*
-    if (profileData.gender != null &&
-        profileData.dateOfBirth != null &&
-        //profileData.imageUrl != null &&
-        contactData.phone != null &&
-        contactData.email != null) {
-      hasCompletedProfile = true;
-    }
-     */
   }
 }
