@@ -126,3 +126,11 @@ carpeta `/ios/Runner/` para que la aplicación pueda conectarse a Firebase.
     </dict>
 </plist>
 ```
+
+## Testing
+
+Para ejecutar los tests unitarios, ejecutar el siguiente comando:
+
+```shell
+flutter test
+```

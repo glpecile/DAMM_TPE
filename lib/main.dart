@@ -22,7 +22,7 @@ void main() async {
     await AppTrackingTransparency.requestTrackingAuthorization();
   }
 
-if (await AppTrackingTransparency.trackingAuthorizationStatus ==
+  if (await AppTrackingTransparency.trackingAuthorizationStatus ==
       TrackingStatus.denied) {
     // The user has denied access to the system's tracking authorization dialog
     FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);
@@ -41,17 +41,13 @@ class SerManosApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
-      title: 'SerManos',
-      theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: SerManosColors.secondary_10),
-        useMaterial3: true,
-        fontFamily: 'Roboto',
-      ),
-      //routerConfig: _router,
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
-      routeInformationProvider: router.routeInformationProvider,
-    );
+        title: 'SerManos',
+        theme: ThemeData(
+          colorScheme:
+              ColorScheme.fromSeed(seedColor: SerManosColors.secondary_10),
+          useMaterial3: true,
+          fontFamily: 'Roboto',
+        ),
+        routerConfig: router);
   }
 }

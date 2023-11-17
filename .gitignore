@@ -68,3 +68,6 @@ damm.iml
 
 # generated files
 *.g.dart
+
+# golden tests
+**/golden_tests/goldens
