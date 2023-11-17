@@ -1,4 +1,6 @@
 import 'package:SerManos/pages/routes/empty_profile.dart';
+import 'package:SerManos/providers/auth_provider.dart';
+import 'package:SerManos/widgets/cells/cards/card_information.dart';
 import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
 import 'package:SerManos/widgets/molecules/buttons/expanded_button_cta.dart';
 import 'package:SerManos/widgets/molecules/loading_indicator.dart';
@@ -8,9 +10,6 @@ import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../providers/auth_provider.dart';
-import '../cells/cards/card_information.dart';
 
 class Profile extends ConsumerStatefulWidget {
   const Profile({super.key});

@@ -1,4 +1,4 @@
-# DAMM_TPE
+# Trabajo práctico especial: Desarrollo de una app en Flutter
 
 ![SerManos Logo](/assets/images/logo_with_text.png)
 
@@ -28,11 +28,21 @@ un voluntariado y dentro de la vista de noticias para actualizar su contenido.
 
 ### Backend
 
-- Firebase
-    - Database
-    - Storage
-    - Authentication
-    - Analytics
+Para el backend se hace uso de Firebase, utilizando los siguientes servicios:
+
+- Database
+- Storage
+- Authentication
+- Analytics
+- Crashlytics
+
+## Monitoreo y Eventos
+
+Se hace tracking con firebase analytics de los siguientes eventos:
+
+- login del usuario
+- aplicar a voluntariado
+- dejar voluntariado
 
 ## Ejecución
 
@@ -85,34 +95,34 @@ En caso de ejecutar la aplicación en iOS, se debe agregar primero `GoogleServic
 carpeta `/ios/Runner/` para que la aplicación pueda conectarse a Firebase.
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-    <key>API_KEY</key>
-    <string>*******</string>
-    <key>GCM_SENDER_ID</key>
-    <string>666241362205</string>
-    <key>PLIST_VERSION</key>
-    <string>1</string>
-    <key>BUNDLE_ID</key>
-    <string>com.example.fluttertest</string>
-    <key>PROJECT_ID</key>
-    <string>sermanos-91896</string>
-    <key>STORAGE_BUCKET</key>
-    <string>sermanos-91896.appspot.com</string>
-    <key>IS_ADS_ENABLED</key>
-    <false></false>
-    <key>IS_ANALYTICS_ENABLED</key>
-    <false></false>
-    <key>IS_APPINVITE_ENABLED</key>
-    <true></true>
-    <key>IS_GCM_ENABLED</key>
-    <true></true>
-    <key>IS_SIGNIN_ENABLED</key>
-    <true></true>
-    <key>GOOGLE_APP_ID</key>
-    <string>1:666241362205:ios:b8d435e304747628c859f4</string>
-</dict>
+    <dict>
+        <key>API_KEY</key>
+        <string>*******</string>
+        <key>GCM_SENDER_ID</key>
+        <string>666241362205</string>
+        <key>PLIST_VERSION</key>
+        <string>1</string>
+        <key>BUNDLE_ID</key>
+        <string>com.example.fluttertest</string>
+        <key>PROJECT_ID</key>
+        <string>sermanos-91896</string>
+        <key>STORAGE_BUCKET</key>
+        <string>sermanos-91896.appspot.com</string>
+        <key>IS_ADS_ENABLED</key>
+        <false></false>
+        <key>IS_ANALYTICS_ENABLED</key>
+        <false></false>
+        <key>IS_APPINVITE_ENABLED</key>
+        <true></true>
+        <key>IS_GCM_ENABLED</key>
+        <true></true>
+        <key>IS_SIGNIN_ENABLED</key>
+        <true></true>
+        <key>GOOGLE_APP_ID</key>
+        <string>1:666241362205:ios:b8d435e304747628c859f4</string>
+    </dict>
 </plist>
 ```

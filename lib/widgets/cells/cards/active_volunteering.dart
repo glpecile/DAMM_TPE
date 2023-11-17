@@ -15,8 +15,7 @@ class ActiveVolunteering extends ConsumerWidget {
     return userVolunteeringController.when(
         data: (maybeVolunteering) {
           if (maybeVolunteering != null) {
-            return CardVolunteersActual(
-                title: maybeVolunteering.title, id: maybeVolunteering.id);
+            return CardVolunteersActual(volunteering: maybeVolunteering);
           } else {
             return const SizedBox.shrink();
           }

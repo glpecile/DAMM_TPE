@@ -1,27 +1,31 @@
+import 'package:SerManos/helpers/maps.dart';
+import 'package:SerManos/models/volunteering.dart';
 import 'package:SerManos/pages/routes/volunteerings_detail.dart';
+import 'package:SerManos/widgets/atoms/icons.dart';
+import 'package:SerManos/widgets/tokens/colors.dart';
+import 'package:SerManos/widgets/tokens/shadows.dart';
+import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../atoms/icons.dart';
-import '../../tokens/colors.dart';
-import '../../tokens/shadows.dart';
-import '../../tokens/typography.dart';
-
 class CardVolunteersActual extends StatelessWidget {
-  final String title;
-  final String id;
+  final Volunteering volunteering;
 
   const CardVolunteersActual({
     super.key,
-    required this.title,
-    required this.id,
+    required this.volunteering,
   });
 
   @override
   Widget build(BuildContext context) {
+    var id = volunteering.id;
+    var title = volunteering.title;
+    var lat = volunteering.location.latitude;
+    var lng = volunteering.location.longitude;
+
     return InkWell(
-      onTap: () =>
-          context.goNamed(VolunteeringsDetail.name, pathParameters: {'volunteeringId': id}),
+      onTap: () => context.goNamed(VolunteeringsDetail.name,
+          pathParameters: {'volunteeringId': id}),
       child: Column(children: [
         const Align(
           alignment: Alignment.bottomLeft,
@@ -61,9 +65,12 @@ class CardVolunteersActual extends StatelessWidget {
                                     color: SerManosColors.neutral_100),
                               ),
                             ]),
-                        const Icon(
-                          SerManosIcons.location,
-                          color: SerManosColors.primary_100,
+                        IconButton(
+                          icon: const Icon(
+                            SerManosIcons.location,
+                            color: SerManosColors.primary_100,
+                          ),
+                          onPressed: () => openOnGoogleMaps(lat, lng),
                         )
                       ]),
                 )))),
