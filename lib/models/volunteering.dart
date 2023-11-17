@@ -17,6 +17,7 @@ class Volunteering {
   bool isFavorite; // TODO: check
   double? distanceToUser;
   bool? isVolunteeringApproved;
+  bool? hasCompletedProfile;
 
   Volunteering(
       {required this.id,
@@ -33,7 +34,8 @@ class Volunteering {
       required this.currentVacant,
       required this.isFavorite,
       this.distanceToUser,
-      this.isVolunteeringApproved});
+      this.isVolunteeringApproved,
+      this.hasCompletedProfile});
 
   factory Volunteering.fromJson(Map<String, dynamic> json) {
     return Volunteering(

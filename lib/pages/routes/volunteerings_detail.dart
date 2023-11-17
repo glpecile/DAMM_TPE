@@ -1,4 +1,5 @@
 import 'package:SerManos/models/volunteer.dart';
+import 'package:SerManos/pages/routes/edit_profile.dart';
 import 'package:SerManos/providers/user_volunteering_controller.dart';
 import 'package:SerManos/providers/volunteering_by_id_provider.dart';
 import 'package:SerManos/widgets/atoms/icons.dart';
@@ -178,6 +179,7 @@ class PostulateButton extends ConsumerWidget {
       data: (userVolunteering) {
         if (userVolunteering == null) {
           // TODO: Agregar caso donde hay que completar perfil
+
           // Postularme
           var isFull = currentVolunteering.availableVacant == currentVolunteering.currentVacant;
           return Column(
@@ -192,6 +194,8 @@ class PostulateButton extends ConsumerWidget {
                     btnColor: isFull ? SerManosColors.neutral_50 : SerManosColors.neutral_0,
                     text: 'Postularme',
                     onPressed: isFull ? null : () {
+                      var hasCompletedProfile = ref.watch(authControllerProvider);
+                      hasCompletedProfile.when(data: (data) =>
                       showDialog(
                           context: context,
                           // TODO: LOGICA DE SI TENES O NO EL PERFIL COMPLETO
@@ -208,13 +212,7 @@ class PostulateButton extends ConsumerWidget {
                                 crossAxisAlignment:
                                 CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  const Text(
-                                    "Te estas por postular a",
-                                    style:
-                                    SerManosTypography.subtitle_01(
-                                        color: SerManosColors
-                                            .neutral_100),
-                                  ),
+                                  data!.hasCompletedProfile ?  Text("Te estas por postular a", style: SerManosTypography.subtitle_01(color: SerManosColors.neutral_100),) : Text("Para postularte debes primero completar tus datos.", style: SerManosTypography.subtitle_01(color: SerManosColors.neutral_100),),
                                   const SizedBox(height: 5),
                                   Padding(
                                       padding: const EdgeInsets.only(
@@ -246,17 +244,8 @@ class PostulateButton extends ConsumerWidget {
                                         ButtonCTA(
                                           btnColor: SerManosColors
                                               .primary_100,
-                                          text: 'Confirmar',
-                                          onPressed: () {
-                                            ref
-                                                .read(
-                                                userVolunteeringControllerProvider
-                                                    .notifier)
-                                                .applyToVolunteering(
-                                                currentVolunteering
-                                                    .id);
-                                            Navigator.pop(context);
-                                          },
+                                          text: data.hasCompletedProfile ? 'Confirmar' : 'Completar datos',
+                                          onPressed: data.hasCompletedProfile ? () {ref.read(userVolunteeringControllerProvider.notifier).applyToVolunteering(currentVolunteering.id);Navigator.pop(context);} : () {context.goNamed(EditProfile.name);},
                                           foregroundColor:
                                           SerManosColors.neutral_75,
                                         )
@@ -264,7 +253,7 @@ class PostulateButton extends ConsumerWidget {
                                 ],
                               ),
                             ),
-                          ));
+                          )), error: (Object error, StackTrace stackTrace) { }, loading: () {  });
                     },
                     foregroundColor: isFull ? SerManosColors.neutral_50 : SerManosColors.neutral_10,
                     backgroundColor: isFull ? SerManosColors.neutral_25 : SerManosColors.primary_100),

@@ -18,6 +18,7 @@ class UserVolunteeringController extends _$UserVolunteeringController {
           await _volunteeringService.getVolunteeringById(user.volunteering!);
       if (volunteering != null) {
         volunteering.isVolunteeringApproved = user.isVolunteeringApproved;
+        volunteering.hasCompletedProfile = user.hasCompletedProfile;
         return volunteering;
       }
       return null;
