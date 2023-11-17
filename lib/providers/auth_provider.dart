@@ -8,6 +8,7 @@ import 'package:SerManos/pages/routes/welcome.dart';
 import 'package:SerManos/services/user_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +22,7 @@ class AuthController extends _$AuthController {
   late final UserService _userService = UserService();
   late SharedPreferences _sharedPreferences;
   static const _sharedPrefsKey = 'volunteerData';
-  Logger logger = Logger();
+  final Logger _logger = Logger();
 
   Future<void> _saveToPrefs(Volunteer volunteer) async {
     final prefs = await SharedPreferences.getInstance();
@@ -59,8 +60,7 @@ class AuthController extends _$AuthController {
     }
   }
 
-  Future<void> editUser(
-      ContactData contactData, ProfileData profileData) async {
+  Future<void> editUser(ContactData contactData, ProfileData profileData) async {
     try {
       var user = await _userService.editUser(contactData, profileData);
       await _saveToPrefs(user!);
@@ -73,7 +73,7 @@ class AuthController extends _$AuthController {
   @override
   Future<Volunteer?> build() async {
     _sharedPreferences = await SharedPreferences.getInstance();
-    _sharedPreferences.remove(_sharedPrefsKey);
+    //_sharedPreferences.remove(_sharedPrefsKey);
     //_persistenceRefreshLogic();
 
     Volunteer? user;
@@ -81,12 +81,13 @@ class AuthController extends _$AuthController {
       final extractedUserData =
           json.decode(_sharedPreferences.getString(_sharedPrefsKey)!)
               as Map<String, dynamic>;
-      extractedUserData['birthDate'] =
-          DateTime.tryParse(extractedUserData['birthDate']) != null
-              ? Timestamp.fromDate(
-                  DateTime.parse(extractedUserData['birthDate']))
-              : null;
-      logger.i(extractedUserData);
+
+      //extractedUserData['birthDate'] = extractedUserData['birthDate'] != null
+      //    ? DateFormat("dd/MM/yyyy").parse(extractedUserData['birthDate'])
+      //    : null;
+      _logger.i(extractedUserData);
+      _logger.i("LA FECHA ES");
+      _logger.i(extractedUserData['birthDate']);
       user = Volunteer.fromJson(extractedUserData);
     } else {
       //user = await _userService.getCurrentUser();

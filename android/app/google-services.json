@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "666241362205",
+    "project_id": "sermanos-91896",
+    "storage_bucket": "sermanos-91896.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666241362205:android:5cd99cac2d2fb9d9c859f4",
+        "android_client_info": {
+          "package_name": "com.example.fluttertest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGOayX-WQxDUeRat4NRnaoiGP6lGKBUw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
