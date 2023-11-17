@@ -39,7 +39,7 @@ class CardVolunteers extends ConsumerWidget {
 
     return InkWell(
         onTap: () => context
-            .pushNamed(CardDetail.name, pathParameters: {'volunteeringId': id}),
+            .pushNamed(VolunteeringsDetail.name, pathParameters: {'volunteeringId': id}),
         child: Center(
           child: Container(
             width: 328,

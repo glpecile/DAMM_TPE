@@ -62,10 +62,10 @@ GoRouter router(RouterRef ref) {
                     NewsDetail(id: state.pathParameters['newsId']!),
               ),
               GoRoute(
-                name: CardDetail.name,
-                path: CardDetail.path,
+                name: VolunteeringsDetail.name,
+                path: VolunteeringsDetail.path,
                 builder: (context, state) =>
-                    CardDetail(id: state.pathParameters['volunteeringId']!),
+                    VolunteeringsDetail(id: state.pathParameters['volunteeringId']!),
               )
             ]),
         GoRoute(

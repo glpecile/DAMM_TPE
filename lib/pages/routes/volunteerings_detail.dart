@@ -16,12 +16,12 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CardDetail extends ConsumerWidget {
-  static String name = 'detail';
+class VolunteeringsDetail extends ConsumerWidget {
+  static String name = 'volunteerings_detail';
   static String path = '$name/:volunteeringId';
   final String id;
 
-  const CardDetail({super.key, required this.id});
+  const VolunteeringsDetail({super.key, required this.id});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

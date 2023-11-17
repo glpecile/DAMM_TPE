@@ -1,8 +1,8 @@
 import 'package:SerManos/providers/user_volunteering_controller.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:SerManos/widgets/cells/cards/card_actual.dart';
+import 'package:SerManos/widgets/molecules/loading_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ActiveVolunteering extends ConsumerWidget {
   const ActiveVolunteering({super.key});
@@ -15,12 +15,13 @@ class ActiveVolunteering extends ConsumerWidget {
     return userVolunteeringController.when(
         data: (maybeVolunteering) {
           if (maybeVolunteering != null) {
-            return CardVolunteersActual(title: maybeVolunteering.title);
+            return CardVolunteersActual(
+                title: maybeVolunteering.title, id: maybeVolunteering.id);
           } else {
             return const SizedBox.shrink();
           }
         },
         error: (error, stackTrace) => const SizedBox.shrink(),
-        loading: () => const SizedBox.shrink());
+        loading: () => const LoadingIndicator());
   }
 }
