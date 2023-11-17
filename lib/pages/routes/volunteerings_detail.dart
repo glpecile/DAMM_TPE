@@ -29,7 +29,6 @@ class CardDetail extends ConsumerWidget {
     var volunteeringByIdController =
     ref.watch(getVolunteeringByIdControllerProvider(volunteeringId: id));
 
-    // TODO: EL REFRESH PARECE QUE NO ACTUALIZA EL FALSO O VERDADERO
     return volunteeringByIdController.when(
         data: (volunteering) {
           var requirements = volunteering.requirements.replaceAll('<br>', '\n');
@@ -182,90 +181,98 @@ class PostulateButton extends ConsumerWidget {
         if (userVolunteering == null) {
           // TODO: Agregar caso donde hay que completar perfil
           // Postularme
-          return Container(
-              child: ButtonCTA(
-                  btnColor: SerManosColors.neutral_0,
-                  text: 'Postularme',
-                  onPressed: (currentVolunteering.availableVacant ==
-                      currentVolunteering.currentVacant)
-                      ? null
-                      : () {
-                    showDialog(
-                        context: context,
-                        // TODO: LOGICA DE SI TENES O NO EL PERFIL COMPLETO
-                        builder: (BuildContext context) => Dialog(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4)),
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                16, 16, 16, 8),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment:
-                              MainAxisAlignment.start,
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                              children: <Widget>[
-                                const Text(
-                                  "Te estas por postular a",
-                                  style:
-                                  SerManosTypography.subtitle_01(
-                                      color: SerManosColors
-                                          .neutral_100),
-                                ),
-                                const SizedBox(height: 5),
-                                Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 0,
-                                        bottom: 8,
-                                        right: 0,
-                                        top: 0),
-                                    child: Text(
-                                        currentVolunteering.title,
-                                        style:
-                                        const SerManosTypography
-                                            .headline_02(
-                                            color: SerManosColors
-                                                .neutral_100))),
-                                Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.end,
-                                    children: [
-                                      ButtonCTA(
-                                        btnColor: SerManosColors
-                                            .primary_100,
-                                        text: 'Cancelar',
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        foregroundColor:
-                                        SerManosColors.neutral_75,
-                                      ),
-                                      ButtonCTA(
-                                        btnColor: SerManosColors
-                                            .primary_100,
-                                        text: 'Confirmar',
-                                        onPressed: () {
-                                          ref
-                                              .read(
-                                              userVolunteeringControllerProvider
-                                                  .notifier)
-                                              .applyToVolunteering(
-                                              currentVolunteering
-                                                  .id);
-                                          Navigator.pop(context);
-                                        },
-                                        foregroundColor:
-                                        SerManosColors.neutral_75,
-                                      )
-                                    ])
-                              ],
+          var isFull = currentVolunteering.availableVacant == currentVolunteering.currentVacant;
+          return Column(
+            children: [
+              isFull ? const Padding(
+                padding: EdgeInsets.only(top: 24, bottom: 24 ),
+                child: Text("No hay vacantes disponibles para postularse", style: SerManosTypography.body_01(color: SerManosColors.neutral_100), textAlign: TextAlign.center),
+              ) : const SizedBox.shrink(),
+              SizedBox(
+                width: 328,
+                child: ButtonCTA(
+                    btnColor: isFull ? SerManosColors.neutral_50 : SerManosColors.neutral_0,
+                    text: 'Postularme',
+                    onPressed: isFull ? null : () {
+                      showDialog(
+                          context: context,
+                          // TODO: LOGICA DE SI TENES O NO EL PERFIL COMPLETO
+                          builder: (BuildContext context) => Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4)),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  16, 16, 16, 8),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                MainAxisAlignment.start,
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  const Text(
+                                    "Te estas por postular a",
+                                    style:
+                                    SerManosTypography.subtitle_01(
+                                        color: SerManosColors
+                                            .neutral_100),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 0,
+                                          bottom: 8,
+                                          right: 0,
+                                          top: 0),
+                                      child: Text(
+                                          currentVolunteering.title,
+                                          style:
+                                          const SerManosTypography
+                                              .headline_02(
+                                              color: SerManosColors
+                                                  .neutral_100))),
+                                  Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                      children: [
+                                        ButtonCTA(
+                                          btnColor: SerManosColors
+                                              .primary_100,
+                                          text: 'Cancelar',
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          foregroundColor:
+                                          SerManosColors.neutral_75,
+                                        ),
+                                        ButtonCTA(
+                                          btnColor: SerManosColors
+                                              .primary_100,
+                                          text: 'Confirmar',
+                                          onPressed: () {
+                                            ref
+                                                .read(
+                                                userVolunteeringControllerProvider
+                                                    .notifier)
+                                                .applyToVolunteering(
+                                                currentVolunteering
+                                                    .id);
+                                            Navigator.pop(context);
+                                          },
+                                          foregroundColor:
+                                          SerManosColors.neutral_75,
+                                        )
+                                      ])
+                                ],
+                              ),
                             ),
-                          ),
-                        ));
-                  },
-                  foregroundColor: SerManosColors.neutral_10,
-                  backgroundColor: SerManosColors.primary_100));
+                          ));
+                    },
+                    foregroundColor: isFull ? SerManosColors.neutral_50 : SerManosColors.neutral_10,
+                    backgroundColor: isFull ? SerManosColors.neutral_25 : SerManosColors.primary_100),
+              ),
+            ],
+          );
         }
         if (currentVolunteering.id == userVolunteering.id) {
           if (userVolunteering.isVolunteeringApproved!) {

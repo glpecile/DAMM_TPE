@@ -35,7 +35,6 @@ class Volunteerings extends ConsumerWidget {
           for (Volunteering volunteering in volunteerings) {
             volunteering.isFavorite = favorites.contains(volunteering.id);
           }
-          // TODO: AGREGAR LOGICA CUANDO ESTO ESTA VACIO
             return Scaffold(
               backgroundColor: SerManosColors.secondary_10,
               body: RefreshIndicator(

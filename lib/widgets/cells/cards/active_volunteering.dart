@@ -12,11 +12,9 @@ class ActiveVolunteering extends ConsumerWidget {
     var userVolunteeringController =
         ref.watch(userVolunteeringControllerProvider);
 
-    // TODO: AGREGARLE EL TEXTO ACTIVIDAD
     return userVolunteeringController.when(
         data: (maybeVolunteering) {
-          if (maybeVolunteering != null &&
-              maybeVolunteering.isVolunteeringApproved!) {
+          if (maybeVolunteering != null) {
             return CardVolunteersActual(title: maybeVolunteering.title);
           } else {
             return const SizedBox.shrink();
