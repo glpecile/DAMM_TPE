@@ -36,10 +36,13 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget> {
             ? Column(children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 32, bottom: 16),
-                  child: Image.asset(
-                    "assets/images/profile_pic.png",
-                    width: 110,
-                    height: 110,
+                  child: ClipOval(
+                    child: Image.network(
+                      user.imageUrl!,
+                      width: 110,
+                      height: 110,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 const Text(

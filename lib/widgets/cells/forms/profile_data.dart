@@ -87,8 +87,9 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                   height: 24,
                 ),
                 SerManosPhotoInput(
-                  // TODO: send correct method + fix modal
-                  onSaved: (File image) {},
+                  onSaved: (File image) {
+                    widget.profileData.imageFile = image;
+                  },
                 ),
               ],
             ),

@@ -115,8 +115,8 @@ class UserService {
   Future<Volunteer?> editUser(
       ContactData contactData, ProfileData profileData) async {
     Volunteer? volunteer = await getCurrentUser();
-    if (volunteer == null) { //|| profileData.imageFile == null) {
-      return null; // TODO: AGREGAR LO DE IMAGEN @GIAN
+    if (volunteer == null || profileData.imageFile == null) {
+      return null;
     }
     volunteer.editVolunteer(contactData, profileData, null);
     final uid = volunteer.id;

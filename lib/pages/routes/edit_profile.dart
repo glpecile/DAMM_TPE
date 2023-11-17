@@ -71,25 +71,29 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
                         child: Padding(
                       padding: const EdgeInsets.only(top: 32),
                       child: ButtonCTA(
-                        btnColor: _isFormValid ? SerManosColors.neutral_0 : SerManosColors.neutral_50,
+                        btnColor: _isFormValid
+                            ? SerManosColors.neutral_0
+                            : SerManosColors.neutral_50,
                         text: "Guardar datos",
                         onPressed: () {
-                          log("TOQUE BOTON");
                           if (!contactInfoFormKey.currentState!.validate() ||
                               !personalInfoFormKey.currentState!.validate()) {
                             return;
                           }
                           contactInfoFormKey.currentState!.save();
                           personalInfoFormKey.currentState!.save();
-                          log("EDITANDO");
-                          log(profileData.dateOfBirth!);
-                          ref.read(authControllerProvider.notifier)
+                          ref
+                              .read(authControllerProvider.notifier)
                               .editUser(contactData, profileData);
                           // log("Saving data: ${user?.secondaryEmail} ${user?.phone}");
                           // context.go('/home');
                         },
-                        foregroundColor: _isFormValid ? SerManosColors.neutral_25 : SerManosColors.neutral_50,
-                        backgroundColor: _isFormValid ? SerManosColors.primary_100 : SerManosColors.neutral_25,
+                        foregroundColor: _isFormValid
+                            ? SerManosColors.neutral_25
+                            : SerManosColors.neutral_50,
+                        backgroundColor: _isFormValid
+                            ? SerManosColors.primary_100
+                            : SerManosColors.neutral_25,
                       ),
                     )),
                   ])

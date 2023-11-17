@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:SerManos/widgets/cells/modal.dart';
 import 'package:SerManos/widgets/molecules/avatar.dart';
 import 'package:SerManos/widgets/molecules/buttons/short_button.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
@@ -26,8 +26,7 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
 
   void pickImage(ImageSource source, BuildContext context) async {
     try {
-      final image = await ImagePicker()
-          .pickImage(source: source, preferredCameraDevice: CameraDevice.front);
+      final image = await ImagePicker().pickImage(source: source);
       if (image == null) {
         _logger.i('Image was null');
         return;
@@ -39,23 +38,12 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
         // TODO: add context.pop to close modal when router is implemented
       });
     } on PlatformException catch (e) {
-      // TODO: add better error handling
       _logger.e('Missing permissions', error: e);
     }
   }
 
-  handleTapModal(BuildContext context) async {
-    showDialog(
-      context: context,
-      builder: ((BuildContext context) {
-        // TODO: implement modal functionality
-        return const Modal(
-            // onPressedCanceled: () => context.pop(),
-            // onPressedGallery: () => pickImage(ImageSource.gallery, context),
-            // onPressedCamera: () => pickImage(ImageSource.camera, context),
-            );
-      }),
-    );
+  handleTap(BuildContext context) async {
+    pickImage(ImageSource.gallery, context);
   }
 
   @override
@@ -81,12 +69,10 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
             Column(
               children: [
                 if (widget.image != null) const SizedBox(height: 8),
-                if (widget.image != null || _image != null)
+                if (isChangePhoto)
                   // TODO: add button
                   TextButton(
-                    onPressed: () {
-                      handleTapModal(context);
-                    },
+                    onPressed: () => handleTap(context),
                     child: const Text(
                       "Cambiar foto",
                       style: SerManosTypography.body_02(
@@ -95,11 +81,9 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
                   ),
               ],
             ),
-            if (widget.image == null && _image == null)
+            if (isAddPhoto)
               ShortButton(
-                onPressed: () {
-                  handleTapModal(context);
-                },
+                onPressed: () => handleTap(context),
                 text: "Subir foto",
                 size: Size.medium,
                 btnColor: SerManosColors.neutral_0,
