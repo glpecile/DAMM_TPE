@@ -1,4 +1,5 @@
 import 'package:SerManos/pages/routes/volunteerings_detail.dart';
+import 'package:SerManos/providers/favorites_provider.dart';
 import 'package:SerManos/widgets/atoms/icons.dart';
 import 'package:SerManos/widgets/molecules/buttons/icon_btn.dart';
 import 'package:SerManos/widgets/molecules/buttons/vacancy_button.dart';
@@ -9,9 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../providers/favorites_provider.dart';
-
-// TODO: cambiar a Stateful Widget porque cambia el state de isFavorite
 class CardVolunteers extends ConsumerWidget {
   final String id;
   final String imageUrl;
@@ -19,8 +17,8 @@ class CardVolunteers extends ConsumerWidget {
   final String description;
   final bool isFavorite;
   final int currentVacant;
-  final void Function()? onPressedFav;
-  final void Function()? onPressedLocation;
+  final void Function() onPressedFav;
+  final void Function() onPressedLocation;
 
   const CardVolunteers({
     super.key,
@@ -54,12 +52,8 @@ class CardVolunteers extends ConsumerWidget {
               borderRadius: BorderRadius.circular(2),
               child: Column(
                 children: [
-                  Image.network(
-                    imageUrl,
-                    height: 138,
-                    width: double.infinity,
-                    fit: BoxFit.cover
-                  ),
+                  Image.network(imageUrl,
+                      height: 138, width: double.infinity, fit: BoxFit.cover),
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 16, right: 16, top: 8, bottom: 16),
@@ -107,8 +101,8 @@ class CardVolunteers extends ConsumerWidget {
 
 class gIcons extends StatelessWidget {
   final bool isFavorite;
-  final void Function()? onPressedFavorite;
-  final void Function()? onPressedLocation;
+  final void Function() onPressedFavorite;
+  final void Function() onPressedLocation;
 
   const gIcons(
       {super.key,

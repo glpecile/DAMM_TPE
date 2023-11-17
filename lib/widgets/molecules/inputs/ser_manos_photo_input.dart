@@ -6,7 +6,6 @@ import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
@@ -35,7 +34,6 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
         _logger.i('Setting image');
         _image = File(image.path);
         widget.onSaved(_image!);
-        // TODO: add context.pop to close modal when router is implemented
       });
     } on PlatformException catch (e) {
       _logger.e('Missing permissions', error: e);
@@ -70,7 +68,6 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
               children: [
                 if (widget.image != null) const SizedBox(height: 8),
                 if (isChangePhoto)
-                  // TODO: add button
                   TextButton(
                     onPressed: () => handleTap(context),
                     child: const Text(
