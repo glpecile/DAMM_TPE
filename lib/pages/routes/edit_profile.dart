@@ -31,11 +31,26 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
 
   bool _isFormValid = false;
 
+  bool _isFirstRender = true;
+
   @override
   Widget build(BuildContext context) {
     var user = ref.watch(authControllerProvider);
     return user.when(
         data: (user) {
+          if (_isFirstRender) {
+            contactData = ContactData(
+                email: user?.secondaryEmail ?? "", phone: user?.phone ?? "");
+            profileData = ProfileData(
+              gender: user?.gender,
+              imageUrl: user?.imageUrl,
+              dateOfBirth: user?.getBirthDate,
+            );
+            setState(() {
+              _isFormValid = user?.hasCompletedProfile ?? false;
+              _isFirstRender = false;
+            });
+          }
           return Scaffold(
             appBar: AppBar(
                 leading: IconButton(

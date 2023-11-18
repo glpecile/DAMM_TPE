@@ -18,6 +18,7 @@ class RadioGenderState extends State<GenderRadioForm> {
 
   @override
   void initState() {
+    _gender = widget.previousGender;
     super.initState();
   }
 

@@ -81,14 +81,17 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                 height: 24,
               ),
               GenderInput(
-                  title: "Información de perfil",
-                  onPressed: (value) {
-                    setGender(value);
-                  }),
+                title: "Información de perfil",
+                onPressed: (value) {
+                  setGender(value);
+                },
+                previousGender: widget.profileData.gender,
+              ),
               const SizedBox(
                 height: 24,
               ),
               SerManosPhotoInput(
+                imageUrl: widget.profileData.imageUrl,
                 onSaved: (File image) {
                   widget.profileData.imageFile = image;
                 },
