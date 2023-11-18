@@ -10,7 +10,6 @@ class SerManosDateInput extends StatefulWidget {
   final String label;
   final TextEditingController controller;
 
-  final Function(String?) validator;
   final Function(String?) onSaved;
 
   const SerManosDateInput({
@@ -18,7 +17,6 @@ class SerManosDateInput extends StatefulWidget {
     required this.placeholder,
     required this.label,
     required this.controller,
-    required this.validator,
     required this.onSaved,
   });
 

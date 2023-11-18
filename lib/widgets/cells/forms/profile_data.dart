@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:SerManos/helpers/gender.dart';
-import 'package:SerManos/helpers/validation.dart';
 import 'package:SerManos/models/profile.dart';
 import 'package:SerManos/widgets/cells/cards/gender_input.dart';
 import 'package:SerManos/widgets/molecules/inputs/date_input.dart';
@@ -77,22 +76,19 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
                 onSaved: (String? date) {
                   widget.profileData.dateOfBirth = date;
                 },
-                validator: dateValidator,
               ),
               const SizedBox(
                 height: 24,
               ),
               GenderInput(
                   title: "Información de perfil",
-                  previousGender: widget.profileData.gender,
                   onPressed: (value) {
-                    setGender(value!);
+                    setGender(value);
                   }),
               const SizedBox(
                 height: 24,
               ),
               SerManosPhotoInput(
-                imageUrl: widget.profileData.imageUrl,
                 onSaved: (File image) {
                   widget.profileData.imageFile = image;
                 },

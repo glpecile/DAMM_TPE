@@ -36,17 +36,6 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
     var user = ref.watch(authControllerProvider);
     return user.when(
         data: (user) {
-          contactData = ContactData(
-              email: user?.secondaryEmail ?? "", phone: user?.phone ?? "");
-          profileData = ProfileData(
-              dateOfBirth: user?.getBirthDate ?? "",
-              gender: user?.gender,
-              imageUrl: user?.imageUrl);
-
-          setState(
-            () => _isFormValid = user?.hasCompletedProfile ?? false,
-          );
-
           return Scaffold(
             appBar: AppBar(
                 leading: IconButton(

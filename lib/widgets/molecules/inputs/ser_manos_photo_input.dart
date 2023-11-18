@@ -78,21 +78,20 @@ class _SerManosPhotoInputState extends State<SerManosPhotoInput> {
                     : const SizedBox.shrink(),
               ],
             ),
-            if (isAddPhoto)
-              ShortButton(
-                onPressed: () => handleTap(context),
-                text: "Subir foto",
-                size: Size.medium,
-                btnColor: SerManosColors.neutral_0,
-                foregroundColor: SerManosColors.primary_10,
-                backgroundColor: SerManosColors.primary_100,
-              )
-            else
-              _image != null
-                  ? Avatar(imageFile: _image)
-                  : Avatar(
-                      imageUrl: widget.imageUrl,
-                    ),
+            (isAddPhoto)
+                ? ShortButton(
+                    onPressed: () => handleTap(context),
+                    text: "Subir foto",
+                    size: Size.medium,
+                    btnColor: SerManosColors.neutral_0,
+                    foregroundColor: SerManosColors.primary_10,
+                    backgroundColor: SerManosColors.primary_100,
+                  )
+                : (_image != null)
+                    ? Avatar(imageFile: _image)
+                    : Avatar(
+                        imageUrl: widget.imageUrl,
+                      ),
           ],
         ));
   }
