@@ -2,6 +2,7 @@ import 'package:SerManos/pages/routes/empty_profile.dart';
 import 'package:SerManos/providers/auth_provider.dart';
 import 'package:SerManos/widgets/cells/cards/card_information.dart';
 import 'package:SerManos/widgets/molecules/buttons/button_cta.dart';
+import 'package:SerManos/widgets/molecules/buttons/logout_button.dart';
 import 'package:SerManos/widgets/molecules/loading_indicator.dart';
 import 'package:SerManos/widgets/tokens/colors.dart';
 import 'package:SerManos/widgets/tokens/grid.dart';
@@ -18,11 +19,6 @@ class Profile extends ConsumerStatefulWidget {
 }
 
 class _ProfileState extends ConsumerState<ConsumerStatefulWidget> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     var userFromProvider = ref.watch(authControllerProvider);
@@ -93,75 +89,7 @@ class _ProfileState extends ConsumerState<ConsumerStatefulWidget> {
                       const SizedBox(
                         height: 8,
                       ),
-                      SizedBox(
-                        width: 308,
-                        child: ButtonCTA(
-                          btnColor: SerManosColors.error_100,
-                          text: "Cerrar sesión",
-                          onPressed: () => {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) => Dialog(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            16, 16, 16, 8),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            const Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 0,
-                                                    bottom: 8,
-                                                    right: 0,
-                                                    top: 0),
-                                                child: Text(
-                                                    "¿Estás seguro que quieres cerrar sesión?",
-                                                    style: SerManosTypography
-                                                        .headline_02(
-                                                            color: SerManosColors
-                                                                .neutral_100))),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                ButtonCTA(
-                                                  btnColor: SerManosColors
-                                                      .primary_100,
-                                                  text: 'Cancelar',
-                                                  onPressed: () {
-                                                    context.pop();
-                                                  },
-                                                  foregroundColor:
-                                                      SerManosColors.neutral_75,
-                                                ),
-                                                ButtonCTA(
-                                                  btnColor: SerManosColors
-                                                      .error_100,
-                                                  text: 'Cerrar sesión',
-                                                  onPressed: () {
-                                                    authController.logOut();
-                                                  },
-                                                  foregroundColor:
-                                                      SerManosColors.neutral_75,
-                                                )
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    )),
-                          },
-                          foregroundColor: SerManosColors.neutral_25,
-                          backgroundColor: SerManosColors.neutral_0,
-                        ),
-                      ),
+                      LogoutButton(onLogout: () => authController.logOut()),
                       const SizedBox(
                         height: 24,
                       )

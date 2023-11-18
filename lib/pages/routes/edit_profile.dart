@@ -44,7 +44,7 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
               imageUrl: user?.imageUrl ?? "");
 
           setState(
-            () => _isFormValid = user!.hasCompletedProfile,
+            () => _isFormValid = user?.hasCompletedProfile ?? false,
           );
 
           return Scaffold(
