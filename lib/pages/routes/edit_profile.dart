@@ -41,7 +41,7 @@ class _EditProfileState extends ConsumerState<ConsumerStatefulWidget> {
           profileData = ProfileData(
               dateOfBirth: user?.getBirthDate ?? "",
               gender: user?.gender,
-              imageUrl: user?.imageUrl ?? "");
+              imageUrl: user?.imageUrl);
 
           setState(
             () => _isFormValid = user?.hasCompletedProfile ?? false,

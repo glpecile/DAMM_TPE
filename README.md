@@ -134,3 +134,12 @@ Para ejecutar los tests unitarios, ejecutar el siguiente comando:
 ```shell
 flutter test
 ```
+
+## Usuario de prueba
+
+Las credenciales de un usuario de prueba con el perfil completo son las siguientes:
+
+```
+email: gpecile@itba.edu.ar
+password: Gian1234
+```
